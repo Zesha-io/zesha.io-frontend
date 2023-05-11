@@ -50,7 +50,7 @@ const Navbar = ({ handleSidebarToggle, toggleSidebar }) => {
                 type="search"
                 name="search_video"
                 id="search_video"
-                className=" py-2 px-4  block w-full pl-12 pr-12 sm:text-sm rounded-full h-full focus:outline-none focus:border-gray-400 bg-[#F6F5FE]"
+                className=" py-2 px-4  block w-full pl-12 pr-12 sm:text-sm rounded-full h-full focus:outline-none focus:border-gray-400 bg-[#F4F4F5]"
                 placeholder="Search video"
                 autoComplete="off"
               />

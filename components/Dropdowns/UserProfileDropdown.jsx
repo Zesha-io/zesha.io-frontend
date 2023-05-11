@@ -102,9 +102,14 @@ export default function UserProfileDropdown() {
         open={open}
         onClose={handleClose}
       >
+        <MenuItem disableRipple className=" mt-3">
+          <span className="text-[#7F8691] text-sm flex items-center gap-3">
+            Profile
+          </span>
+        </MenuItem>
         <MenuItem onClick={handleSignOut} disableRipple className=" mt-3">
           <span className="text-[#E92005] text-sm flex items-center gap-3">
-            <LoginIcon />
+            {/* <LoginIcon /> */}
             Log out
           </span>
         </MenuItem>

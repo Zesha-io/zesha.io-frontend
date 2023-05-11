@@ -18,6 +18,8 @@ import DropdownIcon from '../Icons/DropdownIcon';
 import { VideoData } from '../../utils/data';
 import VideoIcon2 from '../Icons/VideoIcon2';
 import LinkIcon from '../Icons/LinkIcon';
+import ConfirmDeleteModal from '../Modals/ConfirmDeleteModal';
+import ShareLinkModal from '../Modals/ShareLinkModal';
 // import { ArrowRightAlt } from '@mui/icons-material';
 
 const StyledMenu = styled((props) => (
@@ -63,6 +65,8 @@ const StyledMenu = styled((props) => (
 export default function DotsDropdown({ video }) {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [confirmDeleteModal, setConfirmDeleteModal] = React.useState(false);
+  const [shareLinkModal, setShareLinkModal] = React.useState(false);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -96,6 +100,16 @@ export default function DotsDropdown({ video }) {
   React.useEffect(() => {
     router.prefetch('/');
   }, []);
+
+  const handleConfirmDeleteModal = () => {
+    handleClose();
+    setConfirmDeleteModal(!confirmDeleteModal)
+  }
+
+  const handleShareLinkModal = () => {
+    handleClose();
+    setShareLinkModal(!shareLinkModal)
+  }
 
   return (
     <>
@@ -133,19 +147,22 @@ export default function DotsDropdown({ video }) {
             View public video
           </span>
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={handleShareLinkModal} disableRipple>
           <span className="text-[#344054] text-xs flex items-center gap-2">
             <LinkIcon />
             Share link
           </span>
         </MenuItem>
-        <MenuItem onClick={handleDelete} disableRipple>
+        <MenuItem onClick={handleConfirmDeleteModal} disableRipple>
           <button className="text-[#E92005] text-xs flex items-center gap-2">
             <TrashIcon />
             Delete
           </button>
         </MenuItem>
       </StyledMenu>
+
+      <ConfirmDeleteModal show={confirmDeleteModal} dismiss={handleConfirmDeleteModal} item={video}/>
+      <ShareLinkModal  show={shareLinkModal} dismiss={handleShareLinkModal} item={video}/>
     </>
   );
   VideoDropdown;

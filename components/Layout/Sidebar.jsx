@@ -118,7 +118,7 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
                     href="/creator/videos"
                     className={`menu-item w-full font-thin ${
                       router.asPath === '/creator/videos' ||
-                      router.pathname.startsWith('/videos')
+                      router.pathname.startsWith('/creator/videos')
                         ? 'bg-[#F3F9FF] text-[#046ED1]'
                         : 'text-[#7F8691]'
                     }  flex items-center p-3 px-3  my-2  transition-colors duration-200 ease-in-out hover:bg-[#F3F9FF] hover:text-[#046ED1]  rounded-lg ${

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import DotsDropdown from '../../../components/Dropdowns/DotsDropdown';
 import ThumbsDownIcon from '../../../components/Icons/ThumbsDownIcon';
 import ThumbsUpIcon from '../../../components/Icons/ThumbsUpIcon';
@@ -79,12 +80,16 @@ export default function Videos() {
                   {VideoData.map((video, i) => {
                     return (
                       <tr key={video.id} id={video.id}>
-                        <td className="px-5 py-5  text-sm whitespace-nowrap">
-                          <p>{video.title}</p>
+                        <td className="px-5 py-5  text-sm whitespace-nowrap inline-flex items-center gap-2">
+                          <Image src={'/images/demoimage.png'} width={80} height={50} alt="" className='rounded-lg'/>
+                          <p className='text-[#101828] font-medium'>{video.title}</p>
                         </td>
                         <td className="px-5 py-5 text-sm">
-                          <div className="relative  flex items-center md:justify-start font-normal inline-block text-successGreen600 leading-tight ">
-                            {video.status}
+                          <div className="relative font-normal inline-block leading-tight ">
+                            <span className={`text-xs px-2 py-1 rounded-2xl ${video.status == 0 ? 'text-[#344054] bg-[#EBECED]': 'text-[#175CD3] bg-[#EFF8FF]'}`}>
+                              {video.status == 0 ? 'Unpublished' : 'Published'}
+                            </span>
+                            
                           </div>
                         </td>
                         <td className="px-5 py-5  text-sm">
