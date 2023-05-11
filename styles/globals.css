@@ -63,3 +63,80 @@ a {
 textarea{
   resize: none;
 }
+
+
+/* TABS */
+/* .tabs-header li.react-tabs__tab--selected .tab-icon {
+  color: #f7a932;
+} */
+.tabs-header li.react-tabs__tab--selected button {
+  color: #344054 !important;
+}
+.tabs-header li.react-tabs__tab--selected {
+  color: #344054 !important;
+  border-bottom: 1px solid;
+  border-bottom-color: #046ED1;
+}
+.tabs-header li:hover {
+  transition: all 0.3s ease-in-out;
+}
+.tabs-header li:hover {
+  color: #344054 !important;
+  border-bottom: 1px solid;
+  border-bottom-color: #046ED1;
+  transition: all 0.3s ease-in-out;
+}
+
+/* FADE IN ANIMATION */
+.fade-in {
+  animation: fadeIn 300ms;
+  -webkit-animation: fadeIn 300ms;
+  -moz-animation: fadeIn 300ms;
+  -o-animation: fadeIn 300ms;
+  -ms-animation: fadeIn 300ms;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

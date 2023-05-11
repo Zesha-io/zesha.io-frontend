@@ -76,7 +76,7 @@ const Settings = () => {
                 <div className="mb-6">
                   <label
                     className="text-[#334155] text-sm font-medium mb-3"
-                    htmlFor="lname"
+                    htmlFor="description"
                   >
                     Description
                   </label>
@@ -88,7 +88,7 @@ const Settings = () => {
                 <div className="mb-6 ">
                   <label
                     className="text-[#334155] text-sm font-medium mb-3"
-                    htmlFor="lname"
+                    htmlFor="channel_logo"
                   >
                     Channel Logo
                   </label>

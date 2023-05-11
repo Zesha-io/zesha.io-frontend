@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 import MoreVertIcon from '../Icons/MoreVertIcon';
+import EditIcon from '../Icons/EditIcon';
 import TrashIcon from '../Icons/TrashIcon';
 import AttachIcon from '../Icons/AttachIcon';
 import CopyIcon from '../Icons/CopyIcon';
@@ -14,7 +15,9 @@ import MoreHoriIcon from '../Icons/MoreHoriIcon';
 import ShareIcon from '../Icons/ShareIcon';
 import SummaryIcon from '../Icons/SummaryIcon';
 import DropdownIcon from '../Icons/DropdownIcon';
-import RenameDropdown from './RenameDropdown';
+import { VideoData } from '../../utils/data';
+import VideoIcon2 from '../Icons/VideoIcon2';
+import LinkIcon from '../Icons/LinkIcon';
 // import { ArrowRightAlt } from '@mui/icons-material';
 
 const StyledMenu = styled((props) => (
@@ -35,7 +38,7 @@ const StyledMenu = styled((props) => (
     borderRadius: 8,
     marginTop: theme.spacing(1),
     minWidth: 160,
-    color:'rgb(55, 65, 81)',
+    color: 'rgb(55, 65, 81)',
     boxShadow: '0px 3px 14px 1px rgba(52, 64, 84, 0.06)',
     '& .MuiMenu-list': {
       padding: '4px 0',
@@ -57,7 +60,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function DotsDropdown({ item }) {
+export default function DotsDropdown({ video }) {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -68,30 +71,31 @@ export default function DotsDropdown({ item }) {
     setAnchorEl(null);
   };
 
-  // const handleDelete = () => {
-  //   console.log('deleting...');
-  //   // alert(item.name);
-  //   // console.log(item.id, 'item.id');
+  const handleDelete = () => {
+    console.log('deleting...');
+    // alert(item.name);
+    // console.log(item.id, 'item.id');
 
-  //   // return;
-  //   const index = ScreenData.findIndex((x) => x.id == item.id);
-  //   if (index !== -1) {
-  //     ScreenData.splice(index, 1);
-  //     console.log('deleted...');
-  //     // console.log(ScreenData, 'ScreenData');
-  //     handleClose()
-  //     router.push('/');
-  //   }
-  // };
+    // return;
+    const index = VideoData.findIndex((x) => x.id == video.id);
+    if (index !== -1) {
+      ScreenData.splice(index, 1);
+      console.log('deleted...');
+      // console.log(ScreenData, 'ScreenData');
+      handleClose();
+      router.push('/');
+    }
+  };
+  const handleEdit = () => {
+    console.log('going to edit...');
+    router.push(`/creator/videos/${video?.id}/edit`);
+  };
 
   // console.log(item, 'screen in dropdown');
 
   React.useEffect(() => {
     router.prefetch('/');
   }, []);
-
-
-
 
   return (
     <>
@@ -104,7 +108,7 @@ export default function DotsDropdown({ item }) {
         className="text-[#344054] rounded-full p-2 hover:bg-[#F3F3FE] border-0"
       >
         <span className="">
-          <MoreHoriIcon />
+          <MoreVertIcon />
         </span>
       </button>
       <StyledMenu
@@ -116,29 +120,23 @@ export default function DotsDropdown({ item }) {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
-          <span className='flex items-center justify-between w-full'>
-            <span className="text-[#344054] text-xs flex items-center gap-2">
-              <ShareIcon />
-              Share
-            </span>
-
-            <DropdownIcon isDots={true} />
+        <MenuItem onClick={handleEdit} disableRipple href="/">
+          <span className="text-[#344054] text-xs flex items-center gap-2">
+            <EditIcon />
+            Edit
           </span>
         </MenuItem>
 
-        <RenameDropdown item={item} disableRipple/>
-
         <MenuItem onClick={handleClose} disableRipple>
           <span className="text-[#344054] text-xs flex items-center gap-2">
-            <CopyIcon />
-            Duplicate
+            <VideoIcon2 />
+            View public video
           </span>
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
           <span className="text-[#344054] text-xs flex items-center gap-2">
-            <DownloadIcon />
-            Download
+            <LinkIcon />
+            Share link
           </span>
         </MenuItem>
         <MenuItem onClick={handleDelete} disableRipple>
@@ -147,9 +145,8 @@ export default function DotsDropdown({ item }) {
             Delete
           </button>
         </MenuItem>
-      </StyledMenu>VideoDropdownVideoDroVideoDropdownpdown
-
-
+      </StyledMenu>
     </>
-  );VideoDropdown
+  );
+  VideoDropdown;
 }
