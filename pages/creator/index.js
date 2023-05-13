@@ -3,7 +3,7 @@ import React from 'react';
 import MoneyIcon from '../../components/Icons/MoneyIcon';
 import VideoPlayIcon from '../../components/Icons/VideoPlayIcon';
 import WalletIcon from '../../components/Icons/WalletIcon';
-import Layout from '../../components/Layout/Layout';
+import Layout from '../../components/CreatorLayout/Layout';
 
 import { Tabs } from 'react-tabs';
 import Tab from 'react-tabs/lib/components/Tab';

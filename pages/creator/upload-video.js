@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import React from 'react';
 import GalleryImportIcon from '../../components/Icons/GalleryImportIcon';
-import Layout from '../../components/Layout/Layout';
+import Layout from '../../components/CreatorLayout/Layout';
 
 const UploadVideo = () => {
   return (
     <Layout>
-      <div>
+      <div className="pb-20">
         <div className="grow py-2 mb-3">
           <h1 className="text-xl font-medium">Upload video</h1>
           <p className="text-[#7F8691] text-base">
@@ -48,43 +48,43 @@ const UploadVideo = () => {
                       ></textarea>
                     </div>
 
-                    <div className='mb-6'>
+                    <div className="mb-6">
                       <label
                         className="text-[#334155] text-sm font-medium mb-3"
                         htmlFor="upload_video"
                       >
                         Upload video
-
                       </label>
                       <div class="w-full bg-white mt-1  relative overflow-hidden rounded py-4 border border-dashed border-[#CBD5E1] cursor-pointer">
                         <div class="flex items-center justify-between flex-col gap-3 w-full py-10  ">
                           <span class="text-[#046ED1]">
-                            <GalleryImportIcon/>
+                            <GalleryImportIcon />
                           </span>
                           <h5 class="text-sm text-[#7F8691] ">
-                            <span class="text-secondary ">Drag and drop video files to upload</span>
+                            <span class="text-secondary ">
+                              Drag and drop video files to upload
+                            </span>
                           </h5>
                           <button class="text-[#046ED1] text-sm underline ">
-                          Select files
+                            Select files
                           </button>
                         </div>
                       </div>
                     </div>
-                    <div className='mb-6'>
+                    <div className="mb-6">
                       <label
                         className="text-[#334155] text-sm font-medium mb-3"
                         htmlFor="upload_thumbnail"
                       >
                         Thumbnail
-
                       </label>
                       <div class="w-full md:w-1/4 bg-white mt-1  relative overflow-hidden rounded py-4 border border-dashed border-[#CBD5E1] cursor-pointer">
                         <div class="flex items-center justify-between flex-col gap-3 w-full py-4  ">
                           <span class="text-[#046ED1]">
-                            <GalleryImportIcon/>
+                            <GalleryImportIcon />
                           </span>
                           <button class="text-[#046ED1] text-sm underline ">
-                          Upload thumbnail
+                            Upload thumbnail
                           </button>
                         </div>
                       </div>
@@ -113,7 +113,7 @@ const UploadVideo = () => {
                     <h3 className="text-lg font-medium">Preview</h3>
                   </div>
 
-                  <div className='space-y-3'>
+                  <div className="space-y-3">
                     <div className="w-full h-48 relative block rounded-lg object-cover">
                       <Image
                         src={'/images/demoimage.png'}
@@ -123,13 +123,17 @@ const UploadVideo = () => {
                         className=" rounded-lg object-cover"
                       />
                     </div>
-                    <div className=''>
-                      <h4 className='text-[#344054] text-base font-medium'>Creating the bedroom of your dreams</h4>
+                    <div className="">
+                      <h4 className="text-[#344054] text-base font-medium">
+                        Creating the bedroom of your dreams
+                      </h4>
                     </div>
 
-                    <div >
-                      <h6 className='text-[#7F8691] text-sm mb-2'>Description</h6>
-                      <p className='text-[#344054] text-sm text-justify'>
+                    <div>
+                      <h6 className="text-[#7F8691] text-sm mb-2">
+                        Description
+                      </h6>
+                      <p className="text-[#344054] text-sm text-justify">
                         Lorem ipsum dolor sit amet consectetur. Non purus
                         eleifend quis sit justo at. Sagittis quisque proin
                         accumsan sed pharetra sit feugiat risus. Vehicula.

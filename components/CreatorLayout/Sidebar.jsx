@@ -14,6 +14,7 @@ import VideoPlayIcon from '../Icons/VideoPlayIcon';
 import EmptyWalletIcon from '../Icons/EmptyWalletIcon';
 import MessageQuestionIcon from '../Icons/MessageQuestionIcon';
 import SettingIcon from '../Icons/SettingIcon';
+import DashboardIcon2 from '../Icons/DashboardIcon2';
 
 const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
   const [isCollapsible, setIsCollapsible] = useState(true);
@@ -96,9 +97,9 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
               >
                 <div className="">
                   <Link
-                    href="/creator/dashboard"
+                    href="/creator"
                     className={`menu-item w-full font-thin ${
-                      router.asPath === '/creator/dashboard'
+                      router.asPath === '/creator'
                         ? 'bg-[#F3F9FF] text-[#046ED1]'
                         : 'text-[#7F8691]'
                     }  flex items-center p-3 px-3  my-2  transition-colors duration-200 ease-in-out hover:bg-[#F3F9FF] hover:text-[#046ED1]  rounded-lg ${
@@ -106,7 +107,7 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
                     }`}
                   >
                     <span className="text-left px-3">
-                      <DashboardIcon />
+                      <DashboardIcon2 />
                     </span>
                     {!toggleCollapse && (
                       <span className={classNames('text-xs font-normal ')}>

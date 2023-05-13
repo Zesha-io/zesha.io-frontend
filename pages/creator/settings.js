@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import React from 'react';
-import Layout from '../../components/Layout/Layout';
+import Layout from '../../components/CreatorLayout/Layout';
 
 const Settings = () => {
   return (
     <Layout>
-      <div>
+      <div className="pb-20">
         <div className="grow py-2 mb-3">
           <h1 className="text-xl font-medium  ">Settings</h1>
           <p className="text-[#7F8691] text-base">

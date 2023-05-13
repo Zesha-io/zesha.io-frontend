@@ -88,8 +88,8 @@ export default function UserProfileDropdown() {
           <ProfileIcon height="18" width="16" />
         </span>
         <span className='flex flex-col items-start'>
-          <h4>Alhaminzz</h4>
-          <p>Al***@gmail.com</p>
+          <h4>Perry Banza</h4>
+          <p>Pe***@gmail.com</p>
         </span>
       </button>
 

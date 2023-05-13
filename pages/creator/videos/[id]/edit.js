@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Layout from '../../../../components/Layout/Layout';
+import Layout from '../../../../components/CreatorLayout/Layout';
 import React from 'react';
 import { Tabs } from 'react-tabs';
 import Tab from 'react-tabs/lib/components/Tab';
@@ -15,7 +15,7 @@ import ThumbsUpIcon from '../../../../components/Icons/ThumbsUpIcon';
 const Edit = () => {
   return (
     <Layout>
-      <div className="pb-40">
+      <div className="pb-20">
         <div className="grow py-2 mb-3">
           <div className="flex items-center justify-start gap-3">
             <h1 className="text-xl font-medium">Video</h1>

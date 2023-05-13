@@ -2,14 +2,14 @@ import Image from 'next/image';
 import DotsDropdown from '../../../components/Dropdowns/DotsDropdown';
 import ThumbsDownIcon from '../../../components/Icons/ThumbsDownIcon';
 import ThumbsUpIcon from '../../../components/Icons/ThumbsUpIcon';
-import Layout from '../../../components/Layout/Layout';
+import Layout from '../../../components/CreatorLayout/Layout';
 import { VideoData } from '../../../utils/data';
 
 export default function Videos() {
   console.log(VideoData);
   return (
     <Layout>
-      <div>
+      <div className="pb-20">
         <div className="grow py-2 mb-3">
           <h1 className="text-xl font-medium">Videos</h1>
           <p className="text-[#7F8691] text-base">All your uploaded videos</p>
@@ -81,15 +81,28 @@ export default function Videos() {
                     return (
                       <tr key={video.id} id={video.id}>
                         <td className="px-5 py-5  text-sm whitespace-nowrap inline-flex items-center gap-2">
-                          <Image src={'/images/demoimage.png'} width={80} height={50} alt="" className='rounded-lg'/>
-                          <p className='text-[#101828] font-medium'>{video.title}</p>
+                          <Image
+                            src={'/images/demoimage.png'}
+                            width={80}
+                            height={50}
+                            alt=""
+                            className="rounded-lg"
+                          />
+                          <p className="text-[#101828] font-medium">
+                            {video.title}
+                          </p>
                         </td>
                         <td className="px-5 py-5 text-sm">
                           <div className="relative font-normal inline-block leading-tight ">
-                            <span className={`text-xs px-2 py-1 rounded-2xl ${video.status == 0 ? 'text-[#344054] bg-[#EBECED]': 'text-[#175CD3] bg-[#EFF8FF]'}`}>
+                            <span
+                              className={`text-xs px-2 py-1 rounded-2xl ${
+                                video.status == 0
+                                  ? 'text-[#344054] bg-[#EBECED]'
+                                  : 'text-[#175CD3] bg-[#EFF8FF]'
+                              }`}
+                            >
                               {video.status == 0 ? 'Unpublished' : 'Published'}
                             </span>
-                            
                           </div>
                         </td>
                         <td className="px-5 py-5  text-sm">
@@ -102,20 +115,20 @@ export default function Videos() {
                           <p>{video.earnings}</p>
                         </td>
                         <td className="px-5 py-5  text-sm">
-                        <p>{video.tips}</p>
+                          <p>{video.tips}</p>
                         </td>
                         <td className="px-5 py-5  text-sm">
-                          <div className='flex items-center gap-3'>
-                            <span className='inline-flex  items-center gap-1'>
-                              <ThumbsUpIcon/> {video.up_votes}
-                            </span>  
-                            <span className='inline-flex  items-center gap-1'>
-                              <ThumbsDownIcon/> {video.down_votes}
-                            </span>  
+                          <div className="flex items-center gap-3">
+                            <span className="inline-flex  items-center gap-1">
+                              <ThumbsUpIcon /> {video.up_votes}
+                            </span>
+                            <span className="inline-flex  items-center gap-1">
+                              <ThumbsDownIcon /> {video.down_votes}
+                            </span>
                           </div>
                         </td>
                         <td className="px-5 py-5  text-sm">
-                          <DotsDropdown video={video}/>
+                          <DotsDropdown video={video} />
                         </td>
                       </tr>
                     );
