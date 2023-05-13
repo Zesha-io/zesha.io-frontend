@@ -10,9 +10,9 @@ import ToggleIcon from '../Icons/ToggleIcon';
 const Navbar = ({ handleSidebarToggle, toggleSidebar }) => {
   return (
     <>
-      <div className="header py-3 w-full  h-20 flex items-center bg-white">
-        <div className="container mx-auto flex items-center justify-between gap-8 md:px-4 px-4 lg:px-12  ">
-          <div className="flex flex-row   grow gap-5">
+      <div className="header py-3 w-full  h-20 bg-white flex items-center justify-between">
+        <div className="container mx-auto flex items-center justify-between gap-8 md:px-4 px-4 lg:px-12 w-full ">
+          <div className="flex flex-row    gap-5">
             {/* <button
               type="button"
               className="text-gray-500  hover:text-gray-600 focus:outline-none focus:text-gray-600 my-4 bg-border_cl border-gray-300 text-lg px-1 rounded-md mobile-menu-btn"
@@ -40,7 +40,7 @@ const Navbar = ({ handleSidebarToggle, toggleSidebar }) => {
               </span>
             </button>
 
-            <div className="mt-1 relative rounded-full flex-1  items-center grow flex h-12 w-full ">
+            <div className="relative rounded-full flex-1  items-center grow flex h-12 w-full lg:w-1/2 ">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none h-full">
                 <span className="text-gray-500 px-3">
                   <SearchIcon />
@@ -50,7 +50,7 @@ const Navbar = ({ handleSidebarToggle, toggleSidebar }) => {
                 type="search"
                 name="search_video"
                 id="search_video"
-                className=" py-2 px-4  block w-full pl-12 pr-12 sm:text-sm rounded-full h-full focus:outline-none focus:border-gray-400 bg-[#F4F4F5]"
+                className=" py-2 px-4  block w-full pl-12 pr-8 sm:text-sm rounded-full h-full focus:outline-none focus:border-gray-400 bg-[#F4F4F5]"
                 placeholder="Search video"
                 autoComplete="off"
               />
@@ -59,8 +59,8 @@ const Navbar = ({ handleSidebarToggle, toggleSidebar }) => {
           {/* <div className="flex items-center justify-end gap-1 md:gap-5 px-1 md:px-4">
 
           </div> */}
-          <div className="font-normal flex items-center justify-end flex-row gap-8 lg:w-4/12">
-            <Link href='/creator/upload-video' className="bg-[#F2F2F4] px-3 py-2 rounded-lg hidden md:flex justify-center items-center gap-2 upload-btn">
+          <div className="font-normal flex items-center justify-end flex-row gap-3 xl:gap-8 lg:w-4/12">
+            <Link href='/creator/upload-video' className="bg-[#F2F2F4] px-3 py-2 rounded-lg hidden lg:flex whitespace-nowrap justify-center items-center gap-2 upload-btn">
               <AddIcon />
               Upload Video
             </Link>
