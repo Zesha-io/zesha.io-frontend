@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
-import GalleryImportIcon from '../../components/Icons/GalleryImportIcon';
-import Layout from '../../components/CreatorLayout/Layout';
+import GalleryImportIcon from '../../../components/Icons/GalleryImportIcon';
+import Layout from '../../../components/CreatorLayout/Layout';
 
 const UploadVideo = () => {
   return (

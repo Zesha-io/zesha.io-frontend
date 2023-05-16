@@ -1,12 +1,12 @@
 import React from 'react';
-import Layout from '../../components/CreatorLayout/Layout';
+import Layout from '../../../components/CreatorLayout/Layout';
 import { styled } from '@mui/material/styles';
 // import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import DropdownIcon from '../../components/Icons/DropdownIcon';
+import DropdownIcon from '../../../components/Icons/DropdownIcon';
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />

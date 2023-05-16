@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import React from 'react';
-import DropdownIcon from '../../components/Icons/DropdownIcon';
-import WalletIcon from '../../components/Icons/WalletIcon';
-import Layout from '../../components/CreatorLayout/Layout';
-import GiftCardModal from '../../components/Modals/GiftCardModal';
+import DropdownIcon from '../../../components/Icons/DropdownIcon';
+import WalletIcon from '../../../components/Icons/WalletIcon';
+import Layout from '../../../components/CreatorLayout/Layout';
+import GiftCardModal from '../../../components/Modals/GiftCardModal';
 
 const Payout = () => {
   const [openPayoutModal, setOpenPayoutModal] = React.useState(false);

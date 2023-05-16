@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import React from 'react';
-import EmptyState from '../../components/EmptyState';
-import VideoAddIcon from '../../components/Icons/VideoAddIcon';
-import VideoPlayIcon from '../../components/Icons/VideoPlayIcon';
-import Layout from '../../components/IndividualLayout/Layout';
+import EmptyState from '../../../components/EmptyState';
+import VideoAddIcon from '../../../components/Icons/VideoAddIcon';
+import VideoPlayIcon from '../../../components/Icons/VideoPlayIcon';
+import Layout from '../../../components/IndividualLayout/Layout';
 
 const Recommendations = () => {
   return (

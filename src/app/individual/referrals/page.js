@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import Layout from '../../components/IndividualLayout/Layout';
+import Layout from '../../../components/IndividualLayout/Layout';
 
 const Referral = () => {
   return (
