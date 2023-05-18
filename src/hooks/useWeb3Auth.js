@@ -54,6 +54,10 @@ export default function useWeb3Auth({ redirectUrl }) {
 
                 setAccount(user);
 
+                if (user.idToken) {
+                    document.cookie = "authorized=true; path=/;";
+                }
+
                 console.log("WEB3AUTH: ", web3auth);
                 console.log("ACCOUNT: ", user);
 

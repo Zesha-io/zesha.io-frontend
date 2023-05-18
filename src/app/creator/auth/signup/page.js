@@ -2,7 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import SocialLoginBtns from "@/components/Buttons/SocialLoginBtns";
 
+
 const Signup = () => {
+   
     return (
         <>
             <section className="h-screen">

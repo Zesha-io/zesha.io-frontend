@@ -52,7 +52,7 @@ const StyledMenu = styled((props) => (
     },
 }));
 
-export default function UserProfileDropdown() {
+export default function UserProfileDropdown({ account, logout }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -61,12 +61,6 @@ export default function UserProfileDropdown() {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
-    // React.useEffect(() => {
-    //     router.prefetch("/");
-    // }, []);
-
-    const handleSignOut = () => {};
 
     return (
         <>
@@ -77,12 +71,18 @@ export default function UserProfileDropdown() {
                 aria-expanded={open ? "true" : undefined}
                 onClick={handleClick}
             >
-                <span className="bg-[#F2F2F4] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#046ED1]">
-                    <ProfileIcon height="18" width="16" />
-                </span>
-                <span className="flex flex-col items-start">
-                    <h4>Perry Banza</h4>
-                    <p>Pe***@gmail.com</p>
+                {account.profileImage != "" ? (
+                    <span className="bg-[#F2F2F4] p-1 rounded-full h-12 w-12 flex items-center justify-center text-[#046ED1]">
+                        <img src={account.profileImage} alt="profile" />
+                    </span>
+                ) : (
+                    <span className="bg-[#F2F2F4] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#046ED1]">
+                        <ProfileIcon height="18" width="16" />
+                    </span>
+                )}
+                <span className="flex flex-col items-start text-left">
+                    <h4 className="line-clamp-1">{account.name}</h4>
+                    <p className="line-clamp-1">{account.email}</p>
                 </span>
             </button>
 
@@ -100,11 +100,7 @@ export default function UserProfileDropdown() {
                         Profile
                     </span>
                 </MenuItem>
-                <MenuItem
-                    onClick={handleSignOut}
-                    disableRipple
-                    className=" mt-3"
-                >
+                <MenuItem onClick={logout} disableRipple className=" mt-3">
                     <span className="text-[#E92005] text-sm flex items-center gap-3">
                         {/* <LoginIcon /> */}
                         Log out

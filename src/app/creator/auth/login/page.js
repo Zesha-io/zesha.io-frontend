@@ -3,6 +3,7 @@ import Image from "next/image";
 import SocialLoginBtns from "@/components/Buttons/SocialLoginBtns";
 
 const Login = () => {
+
     return (
         <>
             <section className="h-screen">
@@ -45,7 +46,7 @@ const Login = () => {
                                             Don't have an account?{" "}
                                         </span>
                                         <Link
-                                            href="/auth/signup"
+                                            href="/creator/auth/signup"
                                             className=" text-[#6457EF] ml-2"
                                         >
                                             Sign up

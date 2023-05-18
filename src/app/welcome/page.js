@@ -1,5 +1,7 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
+
 import Link from "next/link";
 import React, { useState } from "react";
 import PageFive from "../../components/Modals/Onboarding/pageFive";
@@ -10,6 +12,8 @@ import PageTwo from "../../components/Modals/Onboarding/pageTwo";
 
 const Welcome = () => {
     const [currentStep, setCurrentStep] = useState(1);
+    const searchParams = useSearchParams();
+    const extensionId = searchParams.get("extensionId");
 
     const steps = [
         "Index",
@@ -72,15 +76,28 @@ const Welcome = () => {
         direction === "next" ? newStep++ : newStep--;
         newStep > 0 && newStep <= steps.length && setCurrentStep(newStep);
     };
+
+    const openExtension = (e) => {
+        e.preventDefault();
+        console.log(extensionId);
+        chrome.runtime.sendMessage(
+            extensionId,
+            { popup: "open" },
+            function (response) {
+                console.log(response);
+            }
+        );
+    };
+
     return (
         <>
-            {/* ${show ? 'show' : ''} */}
             <div className={`main_unboard_box`}>
                 <div className="main_unboard_box-wrapper  onboard--bx shadow-lg rounded-2xl">
                     {displayStep(currentStep)}
 
                     <div className="w-full text-center mt-3">
                         <Link
+                            onClick={openExtension}
                             href="/"
                             className="text-center text-[#046ED1] text-sm underline"
                         >

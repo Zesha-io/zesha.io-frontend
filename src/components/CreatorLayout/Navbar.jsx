@@ -5,7 +5,7 @@ import AddIcon from "../Icons/AddIcon";
 import SearchIcon from "../Icons/SearchIcon";
 import ToggleIcon from "../Icons/ToggleIcon";
 
-const Navbar = ({ handleSidebarToggle, toggleSidebar }) => {
+const Navbar = ({ handleSidebarToggle, toggleSidebar, account, logout }) => {
     return (
         <>
             <div className="header py-3 w-full  h-20 bg-white flex items-center justify-between">
@@ -53,7 +53,10 @@ const Navbar = ({ handleSidebarToggle, toggleSidebar }) => {
                             <AddIcon />
                             Upload Video
                         </Link>
-                        <UserProfileDropdown />
+                        <UserProfileDropdown
+                            account={account}
+                            logout={logout}
+                        />
                     </div>
                 </div>
             </div>

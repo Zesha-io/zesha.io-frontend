@@ -57,7 +57,7 @@ const Dashboard = () => {
                                         </span>
                                     </h5>
                                     <span className="text-[#7F8691] text-sm">
-                                        Wallet balance
+                                        Money earned
                                     </span>
                                 </div>
                             </div>
