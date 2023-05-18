@@ -5,8 +5,8 @@ import OnboardStepper from './OnboardStepper';
 const PageThree = ({ handleClick, currentStep, steps }) => {
   return (
     <>
-      <div className=" fade-in">
-        <div className="flex items-center justify-center mb-6 fade-in">
+      <div className="">
+        <div className="flex items-center justify-center mb-6 fade-in py-3 transition duration-200 ease-linear">
           <div className="grow text-center fade-in">
             <div className="flex items-center justify-center bg-[#EAF3FC] h-48 w-full rounded-2xl">
               <Image
@@ -21,14 +21,14 @@ const PageThree = ({ handleClick, currentStep, steps }) => {
               Video recommendations
             </h1>
 
-            <p className="text-sm text-[#7F8691]">
+            <p className="text-sm text-[#7F8691] transition duration-200 ease-linear">
               Get lost in a world of entertainment with our diverse and dynamic
               video recommendations and you will never run out of great contents
               to watch.
             </p>
           </div>
         </div>
-        <div>
+        <div className='fade-in'>
           <OnboardStepper steps={steps} currentStep={currentStep} />
         </div>
 

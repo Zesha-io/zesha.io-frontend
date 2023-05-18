@@ -2,14 +2,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import PageFive from './pageFive';
-import PageFour from './pageFour';
-import PageOne from './pageOne';
-import PageThree from './pageThree';
-import PageTwo from './pageTwo';
-// import { UseContextProvider } from '../../../contexts/NavigationContext';
+import PageFive from '../../components/Modals/Onboarding/pageFive';
+import PageFour from '../../components/Modals/Onboarding/pageFour';
+import PageOne from '../../components/Modals/Onboarding/pageOne';
+import PageThree from '../../components/Modals/Onboarding/pageThree';
+import PageTwo from '../../components/Modals/Onboarding/pageTwo';
 
-const Main = ({show, dismiss}) => {
+const Welcome = () => {
   const [currentStep, setCurrentStep] = useState(1);
 
   const steps = [
@@ -75,9 +74,9 @@ const Main = ({show, dismiss}) => {
   };
   return (
     <>
-    {/* ${show ? 'show' : ''} */}
-      <div className={`modal__box show`}>
-        <div className="modal__box-wrapper  onboard--bx shadow-lg rounded-2xl">
+      {/* ${show ? 'show' : ''} */}
+      <div className={`main_unboard_box`}>
+        <div className="main_unboard_box-wrapper  onboard--bx shadow-lg rounded-2xl">
           {displayStep(currentStep)}
 
           <div className="w-full text-center mt-3">
@@ -94,4 +93,4 @@ const Main = ({show, dismiss}) => {
   );
 };
 
-export default Main;
+export default Welcome;

@@ -5,12 +5,12 @@ import OnboardStepper from './OnboardStepper';
 const PageTwo = ({ handleClick, currentStep, steps }) => {
   return (
     <>
-      <div className=" fade-in">
-        <div className="flex items-center justify-center mb-6 fade-in">
+      <div className="">
+        <div className="flex items-center justify-center mb-6 fade-in py-3 transition duration-200 ease-linear">
           <div className="grow text-center ">
             <div className="flex items-center justify-center bg-[#EAF3FC] h-48 w-full rounded-2xl">
               <Image
-                src={'/images/delete.gif'}
+                src={'/images/onboardgifs/money-rain.gif'}
                 height={400}
                 width={130}
                 priority
@@ -21,13 +21,13 @@ const PageTwo = ({ handleClick, currentStep, steps }) => {
               Easy payouts
             </h1>
 
-            <p className="text-sm text-[#7F8691]">
+            <p className="text-sm text-[#7F8691] transition duration-200 ease-linear">
               Get paid faster with our effortless payout system and you can say
               goodbye to payment delays with our easy payout options.{' '}
             </p>
           </div>
         </div>
-        <div>
+        <div className='fade-in'>
           <OnboardStepper steps={steps} currentStep={currentStep} />
         </div>
 
