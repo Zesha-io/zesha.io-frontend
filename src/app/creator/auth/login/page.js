@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
+import SocialLoginBtns from "@/components/Buttons/SocialLoginBtns";
 
-const Signup = () => {
+const Login = () => {
     return (
         <>
             <section className="h-screen">
@@ -26,40 +27,9 @@ const Signup = () => {
                                     </div>
 
                                     {/* Social auth */}
-                                    <div className="flex flex-col gap-3">
-                                        <button
-                                            type="button"
-                                            className="flex items-center gap-4 justify-center px-7 py-3 text-[#344054] font-medium text-sm leading-snug  rounded-lg  bg-white  focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out w-full h-12 border border-[#D0D5DD]"
-                                        >
-                                            <Image
-                                                src={
-                                                    "/images/socialImages/GoogleIcon.svg"
-                                                }
-                                                alt={"google-icon"}
-                                                width={20}
-                                                height={20}
-                                                priority
-                                            />
-                                            Sign in with Google
-                                        </button>
-                                        <button
-                                            type="button"
-                                            className="flex items-center gap-4 justify-center px-7 py-3 text-[#344054] font-medium text-sm leading-snug  rounded-lg  bg-white  focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out w-full h-12 border border-[#D0D5DD]"
-                                        >
-                                            <Image
-                                                src={
-                                                    "/images/socialImages/FacebookIcon.svg"
-                                                }
-                                                alt={"facebook-icon"}
-                                                width={20}
-                                                height={20}
-                                                priority
-                                            />
-                                            Sign in with Facebook
-                                        </button>
-                                    </div>
+                                    <SocialLoginBtns signup={false} />
 
-                                    <div className="flex items-center justify-center mt-4 text-xs text-[#807F88]">
+                                    {/* <div className="flex items-center justify-center mt-4 text-xs text-[#807F88]">
                                         <span className="">
                                             By signing up, you agree to our
                                         </span>
@@ -69,7 +39,7 @@ const Signup = () => {
                                         >
                                             Terms of use &amp; service
                                         </Link>
-                                    </div>
+                                    </div> */}
                                     <div className="flex items-center justify-center mt-5">
                                         <span className="text-[#807F88]">
                                             Don't have an account?{" "}
@@ -102,4 +72,4 @@ const Signup = () => {
     );
 };
 
-export default Signup;
+export default Login;

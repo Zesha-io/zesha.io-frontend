@@ -66,7 +66,7 @@ export default function UserProfileDropdown() {
     //     router.prefetch("/");
     // }, []);
 
-    function handleSignOut() {}
+    const handleSignOut = () => {};
 
     return (
         <>

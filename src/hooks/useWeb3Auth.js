@@ -9,6 +9,7 @@ const clientId =
 export default function useWeb3Auth({ redirectUrl }) {
     const [web3auth, setWeb3auth] = useState(null);
     const [provider, setProvider] = useState(null);
+    const [account, setAccount] = useState();
 
     useEffect(() => {
         const init = async () => {
@@ -49,7 +50,13 @@ export default function useWeb3Auth({ redirectUrl }) {
                 setWeb3auth(web3auth);
                 await web3auth.init();
 
+                const user = await web3auth.getUserInfo();
+
+                setAccount(user);
+
                 console.log("WEB3AUTH: ", web3auth);
+                console.log("ACCOUNT: ", user);
+
                 if (web3auth.provider) {
                     setProvider(web3auth.provider);
                 }
@@ -60,12 +67,6 @@ export default function useWeb3Auth({ redirectUrl }) {
 
         init();
     }, []);
-
-    const getAccount = async () => {
-        const user = await web3auth.getUserInfo();
-
-        console.log(user);
-    };
 
     const login = async (providerName) => {
         if (!web3auth) {
@@ -84,5 +85,5 @@ export default function useWeb3Auth({ redirectUrl }) {
         setProvider(web3authProvider);
     };
 
-    return { web3auth, provider, getAccount, login };
+    return { web3auth, provider, account, login };
 }
