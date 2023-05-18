@@ -4,13 +4,10 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import useWeb3Auth from "@/hooks/useWeb3Auth";
 
-export default function SocialLoginBtns() {
-    const { login } = useWeb3Auth(`${process.NEXT_PUBLIC_BASE_URL}/creator`);
-    useEffect(() => {
-        console.log("SocialLoginBtns");
-
-        console.log("Whattter!");
-    }, []);
+export default function SocialLoginBtns({ signup }) {
+    const { login } = useWeb3Auth(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/creator`
+    );
 
     return (
         <div className="flex flex-col gap-3">
@@ -26,7 +23,7 @@ export default function SocialLoginBtns() {
                     height={20}
                     priority
                 />
-                Sign in with Google
+                {signup ? "Sign up " : "Sign in "} with Google
             </button>
             <button
                 onClick={() => login("facebook")}
@@ -40,7 +37,7 @@ export default function SocialLoginBtns() {
                     height={20}
                     priority
                 />
-                Sign in with Facebook
+                {signup ? "Sign up " : "Sign in "}with Facebook
             </button>
         </div>
     );

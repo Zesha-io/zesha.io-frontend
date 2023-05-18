@@ -26,7 +26,7 @@ const Signup = () => {
                                         </h2>
                                     </div>
                                     {/* Social auth */}
-                                    <SocialLoginBtns />
+                                    <SocialLoginBtns signup={true} />
                                     <div className="flex items-center justify-center mt-4 text-xs text-[#807F88]">
                                         <span className="">
                                             By signing up, you agree to our

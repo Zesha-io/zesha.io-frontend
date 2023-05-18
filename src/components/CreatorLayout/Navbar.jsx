@@ -2,9 +2,7 @@ import Link from "next/link";
 import React from "react";
 import UserProfileDropdown from "../Dropdowns/UserProfileDropdown";
 import AddIcon from "../Icons/AddIcon";
-import ProfileIcon from "../Icons/ProfileIcon";
 import SearchIcon from "../Icons/SearchIcon";
-import TagsIcon from "../Icons/TagsIcon";
 import ToggleIcon from "../Icons/ToggleIcon";
 
 const Navbar = ({ handleSidebarToggle, toggleSidebar }) => {

@@ -17,7 +17,7 @@
     "@web3auth/no-modal": "^5.2.0",
     "@web3auth/openlogin-adapter": "^5.2.0",
     "classnames": "^2.3.2",
-    "next": "13.4.1",
+    "next": "^13.4.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-tabs": "^6.0.1"

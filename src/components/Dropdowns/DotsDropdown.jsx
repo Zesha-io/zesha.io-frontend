@@ -1,20 +1,14 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { styled, alpha } from "@mui/material/styles";
-import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import Divider from "@mui/material/Divider";
 import MoreVertIcon from "../Icons/MoreVertIcon";
 import EditIcon from "../Icons/EditIcon";
 import TrashIcon from "../Icons/TrashIcon";
-import AttachIcon from "../Icons/AttachIcon";
-import CopyIcon from "../Icons/CopyIcon";
-import DownloadIcon from "../Icons/DownloadIcon";
-import { useRouter } from "next/router";
-import MoreHoriIcon from "../Icons/MoreHoriIcon";
-import ShareIcon from "../Icons/ShareIcon";
-import SummaryIcon from "../Icons/SummaryIcon";
-import DropdownIcon from "../Icons/DropdownIcon";
+
+import { useRouter } from "next/navigation";
 import { VideoData } from "../../utils/data";
 import VideoIcon2 from "../Icons/VideoIcon2";
 import LinkIcon from "../Icons/LinkIcon";
