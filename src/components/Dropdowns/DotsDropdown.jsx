@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import Button from "@mui/material/Button";
@@ -10,7 +12,7 @@ import TrashIcon from "../Icons/TrashIcon";
 import AttachIcon from "../Icons/AttachIcon";
 import CopyIcon from "../Icons/CopyIcon";
 import DownloadIcon from "../Icons/DownloadIcon";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import MoreHoriIcon from "../Icons/MoreHoriIcon";
 import ShareIcon from "../Icons/ShareIcon";
 import SummaryIcon from "../Icons/SummaryIcon";

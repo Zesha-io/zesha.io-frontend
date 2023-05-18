@@ -1,8 +1,10 @@
+"use client";
+
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import DropdownIcon from '../Icons/DropdownIcon';
 import AddIcon from '../Icons/AddIcon';
 import classNames from 'classnames';

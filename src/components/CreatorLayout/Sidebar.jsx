@@ -1,7 +1,9 @@
+"use client";
+
 import React, { useState, useEffect, useContext } from 'react';
 
 import classNames from 'classnames';
-import { useRouter } from 'next/router';
+import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import AddIcon from '../Icons/AddIcon';
 import ScreenIcon from '../Icons/ScreenIcon';
@@ -25,6 +27,7 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
   };
 
   const router = useRouter();
+  const pathname = usePathname();
 
   const wrapperClasses = classNames(
     'h-full sidebar pb-4 flex justify-between scrollbar-change flex-col overflow-y-auto overflow-x-hidden fixed z-40 md:relative bg-white',
@@ -119,7 +122,7 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
                     href="/creator/videos"
                     className={`menu-item w-full font-thin ${
                       router.asPath === '/creator/videos' ||
-                      router.pathname.startsWith('/creator/videos')
+                      pathname.startsWith('/creator/videos')
                         ? 'bg-[#F3F9FF] text-[#046ED1]'
                         : 'text-[#7F8691]'
                     }  flex items-center p-3 px-3  my-2  transition-colors duration-200 ease-in-out hover:bg-[#F3F9FF] hover:text-[#046ED1]  rounded-lg ${
@@ -139,7 +142,7 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
                     href="/creator/payout"
                     className={`menu-item w-full font-thin ${
                       router.asPath === '/creator/payout' ||
-                      router.pathname.startsWith('/creator/payout')
+                      pathname.startsWith('/creator/payout')
                         ? 'bg-[#F3F9FF] text-[#046ED1]'
                         : 'text-[#7F8691]'
                     }  flex items-center p-3 px-3  my-2  transition-colors duration-200 ease-in-out hover:bg-[#F3F9FF] hover:text-[#046ED1]  rounded-lg ${
@@ -159,7 +162,7 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
                     href="/creator/faqs"
                     className={`menu-item w-full font-thin ${
                       router.asPath === '/creator/faqs' ||
-                      router.pathname.startsWith('/creator/faqs')
+                      pathname.startsWith('/creator/faqs')
                         ? 'bg-[#F3F9FF] text-[#046ED1]'
                         : 'text-[#7F8691] '
                     }  flex  items-center p-3 px-3 my-2  hover:bg-[#F3F9FF] hover:text-[#046ED1] transition-colors duration-200 ease-in-out rounded-lg ${
@@ -182,7 +185,7 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
                     href="/creator/settings"
                     className={`menu-item w-full font-thin ${
                       router.asPath === '/creator/settings' ||
-                      router.pathname.startsWith('/creator/settings')
+                      pathname.startsWith('/creator/settings')
                         ? 'bg-[#F3F9FF] text-[#046ED1]'
                         : 'text-[#7F8691]'
                     }  flex  items-center p-3 px-3 my-2  hover:bg-[#F3F9FF] hover:text-[#046ED1]   transition-colors duration-200 ease-in-out rounded-lg ${

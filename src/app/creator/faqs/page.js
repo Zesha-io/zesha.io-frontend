@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import Layout from '../../../components/CreatorLayout/Layout';
 import { styled } from '@mui/material/styles';
