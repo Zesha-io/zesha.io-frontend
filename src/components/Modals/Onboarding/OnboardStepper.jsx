@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const UnboardStepper = ({ steps, currentStep }) => {
+const OnboardStepper = ({ steps, currentStep }) => {
   const [newStep, setNewStep] = useState([]);
   const stepsRef = useRef();
 
@@ -98,4 +98,4 @@ const UnboardStepper = ({ steps, currentStep }) => {
     </div>
   );
 };
-export default UnboardStepper;
+export default OnboardStepper;

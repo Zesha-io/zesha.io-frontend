@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import InstallModal from '../Modals/InstallModal';
-import Main from '../Modals/Unboarding/main';
+import Main from '../Modals/Onboarding/main';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 
@@ -40,7 +40,7 @@ const Layout = ({ children }) => {
         </div>
       </div>
      
-      {/* MAIN UNBOARDING */}
+      {/* MAIN ONBOARDING */}
       <Main />
 
       {/* Install extension modal */}

@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import DotsDropdown from "../../../components/Dropdowns/DotsDropdown";
 import ThumbsDownIcon from "../../../components/Icons/ThumbsDownIcon";

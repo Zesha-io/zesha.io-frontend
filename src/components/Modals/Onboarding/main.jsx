@@ -1,5 +1,4 @@
 'use client';
-import { UseContextProvider } from '@/utils/unboarding';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -77,8 +76,8 @@ const Main = ({show, dismiss}) => {
   return (
     <>
     {/* ${show ? 'show' : ''} */}
-      <div className={`modal__box `}>
-        <div className="modal__box-wrapper  unboard--bx shadow-lg rounded-2xl">
+      <div className={`modal__box show`}>
+        <div className="modal__box-wrapper  onboard--bx shadow-lg rounded-2xl">
           {displayStep(currentStep)}
 
           <div className="w-full text-center mt-3">

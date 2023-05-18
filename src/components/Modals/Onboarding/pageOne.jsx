@@ -1,15 +1,17 @@
 import Image from 'next/image';
 import React from 'react';
-import FormStepper from './UnboardStepper';
+import OnboardStepper from './OnboardStepper';
 
 const PageOne = ({ handleClick, currentStep, steps }) => {
   return (
     <>
-      <div className="flex items-center justify-center mb-6">
-        <div className="grow text-center fade-in">
+    <div className=" fade-in">
+
+      <div className="flex items-center justify-center mb-6  fade-in">
+        <div className="grow text-center">
           <div className="flex items-center justify-center bg-[#EAF3FC] h-48 w-full rounded-2xl">
             <Image
-              src={'/images/unboardgifs/google-play-success.gif'}
+              src={'/images/onboardgifs/google-play-success.gif'}
               height={400}
               width={130}
               priority
@@ -25,7 +27,7 @@ const PageOne = ({ handleClick, currentStep, steps }) => {
       </div>
 
       <div>
-        <UnboardStepper steps={steps} currentStep={currentStep} />
+        <OnboardStepper steps={steps} currentStep={currentStep} />
       </div>
 
       <div className="flex items-center gap-4 mt-5 flex-row w-full text-sm">
@@ -44,6 +46,8 @@ const PageOne = ({ handleClick, currentStep, steps }) => {
           Next
         </button>
       </div>
+    </div>
+
     </>
   );
 };

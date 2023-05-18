@@ -1,15 +1,17 @@
 import Image from 'next/image';
 import React from 'react';
-import UnboardStepper from './UnboardStepper';
+import OnboardStepper from './OnboardStepper';
 
-const PageThree = ({ handleClick, currentStep, steps }) => {
+const PageFive = ({ handleClick, currentStep, steps }) => {
   return (
     <>
-      <div className="flex items-center justify-center mb-6">
-        <div className="grow text-center fade-in">
+    <div className=" fade-in">
+
+      <div className="flex items-center justify-center mb-6 fade-in">
+        <div className="grow text-center fade-in ">
           <div className="flex items-center justify-center bg-[#EAF3FC] h-48 w-full rounded-2xl">
             <Image
-              src={'/images/unboardgifs/visual-video.gif'}
+              src={'/images/onboardgifs/discord.gif'}
               height={400}
               width={130}
               priority
@@ -17,18 +19,18 @@ const PageThree = ({ handleClick, currentStep, steps }) => {
             />
           </div>
           <h1 className="text-lg font-semibold mt-3 mb-2 text-[#344054]">
-            Video recommendations
+            Join our community
           </h1>
 
           <p className="text-sm text-[#7F8691]">
-            Get lost in a world of entertainment with our diverse and dynamic
-            video recommendations and you will never run out of great contents
-            to watch.
+            Find support, encouragement, and inspiration from fellow members by
+            becoming part of our growing community.
           </p>
         </div>
       </div>
+
       <div>
-        <UnboardStepper steps={steps} currentStep={currentStep} />
+        <OnboardStepper steps={steps} currentStep={currentStep} />
       </div>
 
       <div className="flex items-center gap-4 mt-5 flex-row w-full text-sm">
@@ -47,8 +49,9 @@ const PageThree = ({ handleClick, currentStep, steps }) => {
           Next
         </button>
       </div>
+      </div>
     </>
   );
 };
 
-export default PageThree;
+export default PageFive;

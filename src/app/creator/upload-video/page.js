@@ -1,3 +1,4 @@
+"use cient";
 import Image from 'next/image';
 import React from 'react';
 import GalleryImportIcon from '../../../components/Icons/GalleryImportIcon';

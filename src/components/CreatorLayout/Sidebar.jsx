@@ -102,7 +102,7 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
                   <Link
                     href="/creator"
                     className={`menu-item w-full font-thin ${
-                      router.asPath === '/creator'
+                      pathname === '/creator'
                         ? 'bg-[#F3F9FF] text-[#046ED1]'
                         : 'text-[#7F8691]'
                     }  flex items-center p-3 px-3  my-2  transition-colors duration-200 ease-in-out hover:bg-[#F3F9FF] hover:text-[#046ED1]  rounded-lg ${
@@ -121,7 +121,7 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
                   <Link
                     href="/creator/videos"
                     className={`menu-item w-full font-thin ${
-                      router.asPath === '/creator/videos' ||
+                      pathname === '/creator/videos' ||
                       pathname.startsWith('/creator/videos')
                         ? 'bg-[#F3F9FF] text-[#046ED1]'
                         : 'text-[#7F8691]'
@@ -141,7 +141,7 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
                   <Link
                     href="/creator/payout"
                     className={`menu-item w-full font-thin ${
-                      router.asPath === '/creator/payout' ||
+                      pathname === '/creator/payout' ||
                       pathname.startsWith('/creator/payout')
                         ? 'bg-[#F3F9FF] text-[#046ED1]'
                         : 'text-[#7F8691]'
@@ -161,7 +161,7 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
                   <Link
                     href="/creator/faqs"
                     className={`menu-item w-full font-thin ${
-                      router.asPath === '/creator/faqs' ||
+                      pathname === '/creator/faqs' ||
                       pathname.startsWith('/creator/faqs')
                         ? 'bg-[#F3F9FF] text-[#046ED1]'
                         : 'text-[#7F8691] '
@@ -184,7 +184,7 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
                   <Link
                     href="/creator/settings"
                     className={`menu-item w-full font-thin ${
-                      router.asPath === '/creator/settings' ||
+                      pathname === '/creator/settings' ||
                       pathname.startsWith('/creator/settings')
                         ? 'bg-[#F3F9FF] text-[#046ED1]'
                         : 'text-[#7F8691]'

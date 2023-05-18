@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import Layout from '../../components/IndividualLayout/Layout';
 import { Tabs } from 'react-tabs';
