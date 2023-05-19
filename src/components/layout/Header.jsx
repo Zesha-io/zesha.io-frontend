@@ -110,7 +110,13 @@ const Header = () => {
                                 </Link>
 
                                 <Link
-                                    href={`${pathname}/auth/signup`}
+                                    href={`${
+                                        pathname != "/"
+                                            ? pathname == "/creators"
+                                                ? "creator"
+                                                : "individual"
+                                            : "individual"
+                                    }/auth/signup`}
                                     className="block lg:inline-block mt-4 lg:mt-0 text-white bg-[#046ED1] rounded-lg px-7 py-2 transition duration-300 ease"
                                 >
                                     Sign Up
