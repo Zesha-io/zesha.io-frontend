@@ -1,4 +1,5 @@
+import PageSkeleton from "@/components/Effect/PageSkeleton";
+
 export default function Loading() {
-    // Or a custom loading skeleton component
-    return <h1>Loader...</h1>;
+    return <PageSkeleton />;
 }
