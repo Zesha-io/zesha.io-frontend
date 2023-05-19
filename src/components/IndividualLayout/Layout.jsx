@@ -3,10 +3,12 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
+import useWeb3Auth from "@/hooks/useWeb3Auth";
 
 const Layout = ({ children }) => {
-    // const {data: session} = useSession();
-
+    const { account, logout } = useWeb3Auth(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/creator`
+    );
     const [toggleCollapse, setToggleCollapse] = useState(false);
     const [isMininmized, setIsMinimized] = useState(false);
 
@@ -30,6 +32,8 @@ const Layout = ({ children }) => {
                     <Navbar
                         handleSidebarToggle={handleSidebarToggle}
                         toggleSidebar={toggleSidebar}
+                        account={account}
+                        logout={logout}
                     />
 
                     <div className="main-wrapper ">

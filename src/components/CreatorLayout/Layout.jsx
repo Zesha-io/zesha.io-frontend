@@ -4,14 +4,12 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import useWeb3Auth from "@/hooks/useWeb3Auth";
-import { useRouter } from "next/navigation";
 
 const Layout = ({ children }) => {
     const [toggleCollapse, setToggleCollapse] = useState(false);
     const [isMininmized, setIsMinimized] = useState(false);
-    const router = useRouter();
 
-    const { account, web3auth } = useWeb3Auth(
+    const { account, logout } = useWeb3Auth(
         `${process.env.NEXT_PUBLIC_BASE_URL}/creator`
     );
     const toggleSidebar = () => {
@@ -22,18 +20,6 @@ const Layout = ({ children }) => {
         setToggleCollapse(!toggleCollapse);
     };
 
-    const logout = () => {
-        web3auth.logout();
-        document.cookie =
-            "authorized=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        router.replace(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/creator/auth/login`
-        );
-    };
-
-    useEffect(() => {
-        console.log("Account Logged in:", account);
-    }, [account]);
 
     return (
         <>

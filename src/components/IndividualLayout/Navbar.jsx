@@ -5,21 +5,12 @@ import UserProfileDropdown from "../Dropdowns/UserProfileDropdown";
 import SearchIcon from "../Icons/SearchIcon";
 import ToggleIcon from "../Icons/ToggleIcon";
 
-const Navbar = ({ handleSidebarToggle, toggleSidebar }) => {
+const Navbar = ({ handleSidebarToggle, toggleSidebar, account, logout }) => {
     return (
         <>
             <div className="header py-3 w-full  h-20 flex items-center bg-white">
                 <div className="container mx-auto flex items-center justify-between gap-8 md:px-4 px-4 lg:px-12  ">
                     <div className="flex flex-row   grow gap-5">
-                        {/* <button
-              type="button"
-              className="text-gray-500  hover:text-gray-600 focus:outline-none focus:text-gray-600 my-4 bg-border_cl border-gray-300 text-lg px-1 rounded-md mobile-menu-btn"
-              aria-label="toggle menu"
-            >
-              <div className="bar-one"></div>
-              <div className="bar-two"></div>
-              <div className="bar-three"></div>
-            </button> */}
                         <button
                             onClick={handleSidebarToggle}
                             className="hover:bg-[#F3F3FE] focus:outline-none px-3 transition duration-200 ease-in-out rounded-md hidden md:block"
@@ -58,7 +49,10 @@ const Navbar = ({ handleSidebarToggle, toggleSidebar }) => {
 
           </div> */}
                     <div className="font-normal flex items-center justify-end flex-row gap-8 lg:w-4/12">
-                        <UserProfileDropdown />
+                        <UserProfileDropdown
+                            account={account}
+                            logout={logout}
+                        />
                     </div>
                 </div>
             </div>
