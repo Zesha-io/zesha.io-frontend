@@ -6,10 +6,12 @@ import { useEffect, useState } from "react";
 const clientId =
     "BJgW2unbHXVCrRwtNtmws_f4i8Z32d1mcm4jw3rxa3ieerlQOXsAPhGL97yNWjB_iOheWuxQtZQS-Vo3EQJHhFw";
 
-export default function useWeb3Auth({ redirectUrl }) {
+export default function useWeb3Auth(redirectUrl) {
     const [web3auth, setWeb3auth] = useState(null);
     const [provider, setProvider] = useState(null);
     const [account, setAccount] = useState();
+
+    console.log("RD URL:", redirectUrl);
 
     useEffect(() => {
         const init = async () => {
@@ -34,7 +36,7 @@ export default function useWeb3Auth({ redirectUrl }) {
                         clientId, //Optional - Provide only if you haven't provided it in the Web3Auth Instantiation Code
                         uxMode: "redirect",
                         loginProvider: ["google", "facebook"],
-                        redirectUrl: redirectUrl,
+                        redirectUrl: "http://localhost:3000",
                         whiteLabel: {
                             name: "Zesha",
                             logoLight:

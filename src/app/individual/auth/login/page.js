@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import SocialLoginBtns from "@/components/Buttons/SocialLoginBtns";
 
-const Signup = () => {
+const Login = () => {
     return (
         <>
             <section className="h-screen">
@@ -22,12 +22,14 @@ const Signup = () => {
                                             />
                                         </div>
                                         <h2 className="text-2xl font-semibold text-gray-700 capitalize text-center mt-3 mb-3">
-                                            Join Zesha today
+                                            Welcome back, Zeshaan
                                         </h2>
                                     </div>
+
                                     {/* Social auth */}
-                                    <SocialLoginBtns signup={true} />
-                                    <div className="flex items-center justify-center mt-4 text-xs text-[#807F88]">
+                                    <SocialLoginBtns signup={false} />
+
+                                    {/* <div className="flex items-center justify-center mt-4 text-xs text-[#807F88]">
                                         <span className="">
                                             By signing up, you agree to our
                                         </span>
@@ -37,16 +39,16 @@ const Signup = () => {
                                         >
                                             Terms of use &amp; service
                                         </Link>
-                                    </div>
+                                    </div> */}
                                     <div className="flex items-center justify-center mt-5">
                                         <span className="text-[#807F88]">
-                                            Already have an account?{" "}
+                                            Don't have an account?{" "}
                                         </span>
                                         <Link
-                                            href="/creator/auth/login"
+                                            href="/individual/auth/signup"
                                             className=" text-[#6457EF] ml-2"
                                         >
-                                            Log in
+                                            Sign up
                                         </Link>
                                     </div>
                                 </div>
@@ -70,4 +72,4 @@ const Signup = () => {
     );
 };
 
-export default Signup;
+export default Login;

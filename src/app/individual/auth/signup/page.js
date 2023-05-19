@@ -43,7 +43,7 @@ const Signup = () => {
                                             Already have an account?{" "}
                                         </span>
                                         <Link
-                                            href="/creator/auth/login"
+                                            href="/individual/auth/login"
                                             className=" text-[#6457EF] ml-2"
                                         >
                                             Log in
