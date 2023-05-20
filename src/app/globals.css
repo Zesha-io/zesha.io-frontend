@@ -51,12 +51,12 @@ a {
 }
 
 /* defualt box-shadow */
-.shadow_main{
+.shadow_main {
   box-shadow: 0px 4px 30px rgba(155, 153, 153, 0.02);
 }
 
 /* filter */
-.filter{
+.filter {
   filter: drop-shadow(0px 3px 6px rgba(11, 10, 29, 0.07));
 }
 
@@ -77,10 +77,9 @@ a {
 }
 
 /* GLOBALLL STYLESS */
-textarea{
+textarea {
   resize: none;
 }
-
 
 /* TABS */
 /* .tabs-header li.react-tabs__tab--selected .tab-icon {
@@ -92,10 +91,10 @@ textarea{
 .tabs-header li.react-tabs__tab--selected {
   color: #344054 !important;
   border-bottom: 1px solid;
-  border-bottom-color: #046ED1;
+  border-bottom-color: #046ed1;
 }
 .tabs-header li {
-  color: #7F8691;
+  color: #7f8691;
 }
 .tabs-header li:hover {
   transition: all 0.3s ease-in-out;
@@ -103,12 +102,12 @@ textarea{
 .tabs-header li:hover {
   color: #344054 !important;
   border-bottom: 1px solid;
-  border-bottom-color: #046ED1;
+  border-bottom-color: #046ed1;
   transition: all 0.3s ease-in-out;
 }
 
-.inner_tab_header li.react-tabs__tab--selected{
-  background: #F6F6F7;
+.inner_tab_header li.react-tabs__tab--selected {
+  background: #f6f6f7;
   border-radius: 8px;
 }
 
@@ -165,8 +164,6 @@ textarea{
     opacity: 1;
   }
 }
-
-
 
 /* ======MODAL===== */
 /* MODAL */
@@ -243,7 +240,6 @@ textarea{
   }
 }
 
-
 /* welcome page */
 .main_unboard_box {
   position: fixed;
@@ -291,7 +287,6 @@ textarea{
   padding: 30px 20px;
 }
 
-
 .main_unboard_box-wrapper.onboard--bx {
   max-width: 400px;
   padding: 30px 30px;
@@ -303,8 +298,6 @@ textarea{
   justify-content: space-between; */
 }
 
-
-
 @media only screen and (max-width: 991px) {
   .main_unboard_box-wrapper {
     max-width: 700px;
@@ -313,5 +306,56 @@ textarea{
 @media only screen and (max-width: 767px) {
   .main_unboard_box-wrapper {
     width: calc(100% - 40px);
+  }
+}
+
+/* accordion */
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root {
+  margin: 16px 0;
+}
+
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root:before {
+  display: none !important;
+}
+
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root.Mui-expanded {
+  background-color: #f3f9ff !important;
+}
+.css-o4b71y-MuiAccordionSummary-content{
+  margin: 16px 0 !important;
+}
+
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root {
+  background-color: #f7f8fa !important;
+  color: #344054;
+  font-size: 16px;
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: none !important;
+  position: relative;
+  -webkit-transition: margin 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: margin 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  overflow-anchor: none;
+  border-radius: 0;
+}
+
+.css-yw020d-MuiAccordionSummary-expandIconWrapper {
+  padding: 10px !important;
+  background: #eff2f6 !important;
+  border-radius: 50%;
+}
+
+.css-15v22id-MuiAccordionDetails-root {
+  padding: 8px 16px 16px 40px !important;
+}
+
+.css-15v22id-MuiAccordionDetails-root .css-ahj2mt-MuiTypography-root{
+  font-size: 14px !important;
+}
+
+@media only screen and (max-width: 991px) {
+  .css-15v22id-MuiAccordionDetails-root {
+    padding: 8px 16px 16px 16px !important;
   }
 }
