@@ -33,7 +33,6 @@ export default function useWeb3Auth(redirectUrl) {
 
     useEffect(() => {
         const user = getCookie("zesha_account");
-        console.log("USER COOKIE: ", user);
         if (user) {
             setAccount(JSON.parse(user));
         }

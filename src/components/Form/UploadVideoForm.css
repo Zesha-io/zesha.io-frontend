@@ -1,0 +1,7 @@
+input#video::file-selector-button {
+    display: none;
+}
+
+input[type="file" i] {
+    width: 150px;
+}
