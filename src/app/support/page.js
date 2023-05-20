@@ -1,3 +1,4 @@
+import SupportAccordion from '@/components/Accordions/SupportAccordion';
 import Layout from '@/components/layout/Layout';
 
 export default function Support() {
@@ -21,6 +22,25 @@ export default function Support() {
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-14 my-5">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="mb-9 mx-auto px-6 max-w-xl">
+              <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-3xl">
+                Before you get in touch, check out our FAQs for any questions
+                you may have.
+              </h2>
+            </div>
+
+            <div className="flex items-center justify-center mx-auto max-w-3xl flex-col gap-4">
+              <SupportAccordion />
+
+              <button className="rounded-lg px-5 py-4 text-md bg-[#046ED1] text-white border border-[#046ED1] mt-2">
+              View all our FAQs
+              </button>
             </div>
           </div>
         </section>
