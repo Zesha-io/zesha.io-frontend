@@ -1,11 +1,44 @@
 import Image from "next/image";
-import DotsDropdown from "../../../components/Dropdowns/DotsDropdown";
-import ThumbsDownIcon from "../../../components/Icons/ThumbsDownIcon";
-import ThumbsUpIcon from "../../../components/Icons/ThumbsUpIcon";
-import Layout from "../../../components/CreatorLayout/Layout";
-import { VideoData } from "../../../utils/data";
+import DotsDropdown from "@/components/Dropdowns/DotsDropdown";
+import ThumbsDownIcon from "@/components/Icons/ThumbsDownIcon";
+import ThumbsUpIcon from "@/components/Icons/ThumbsUpIcon";
+import Layout from "@/components/CreatorLayout/Layout";
+import { cookies } from "next/headers";
 
-export default function Videos() {
+export default async function Videos() {
+    function getUser() {
+        const cookieStore = cookies();
+        const user = JSON.parse(cookieStore.get("zesha_account").value);
+
+        return user;
+    }
+
+    async function getVideoData() {
+        const user = getUser();
+
+        const res = await fetch(
+            `${process.env.BACKEND_API_URL}/api/users/${user.userId}/videos`
+        );
+
+        const data = await res.json();
+
+        if (!res.ok) return [];
+
+        if (data.status) return data.data;
+
+        return [];
+    }
+
+    const VideoData = await getVideoData();
+
+    const dateFormat = (date) => {
+        const d = new Date(date);
+
+        const month = d.toLocaleString("default", { month: "long" });
+
+        return `${d.getDate()} ${month} ${d.getFullYear()}`;
+    };
+
     console.log(VideoData);
     return (
         <Layout>
@@ -83,9 +116,9 @@ export default function Videos() {
                                         return (
                                             <tr key={video.id} id={video.id}>
                                                 <td className="px-5 py-5  text-sm whitespace-nowrap inline-flex items-center gap-2">
-                                                    <Image
+                                                    <img
                                                         src={
-                                                            "/images/demoimage.png"
+                                                            video.videoThumbnail
                                                         }
                                                         width={80}
                                                         height={50}
@@ -100,39 +133,42 @@ export default function Videos() {
                                                     <div className="relative font-normal inline-block leading-tight ">
                                                         <span
                                                             className={`text-xs px-2 py-1 rounded-2xl ${
-                                                                video.status ==
-                                                                0
+                                                                video.publishStatus !=
+                                                                "PUBLISHED"
                                                                     ? "text-[#344054] bg-[#EBECED]"
                                                                     : "text-[#175CD3] bg-[#EFF8FF]"
                                                             }`}
                                                         >
-                                                            {video.status == 0
-                                                                ? "Unpublished"
-                                                                : "Published"}
+                                                            {
+                                                                video.publishStatus
+                                                            }
                                                         </span>
                                                     </div>
                                                 </td>
                                                 <td className="px-5 py-5  text-sm">
-                                                    <p>{video.date_uploaded}</p>
+                                                    <p>
+                                                        {dateFormat(
+                                                            video.createdAt
+                                                        )}
+                                                    </p>
                                                 </td>
                                                 <td className="px-5 py-5  text-sm">
-                                                    <p>{video.views}</p>
+                                                    <p>{0}</p>
                                                 </td>
                                                 <td className="px-5 py-5  text-sm">
-                                                    <p>{video.earnings}</p>
+                                                    <p>{0}</p>
                                                 </td>
                                                 <td className="px-5 py-5  text-sm">
-                                                    <p>{video.tips}</p>
+                                                    <p>{0}</p>
                                                 </td>
                                                 <td className="px-5 py-5  text-sm">
                                                     <div className="flex items-center gap-3">
                                                         <span className="inline-flex  items-center gap-1">
-                                                            <ThumbsUpIcon />{" "}
-                                                            {video.up_votes}
+                                                            <ThumbsUpIcon /> {0}
                                                         </span>
                                                         <span className="inline-flex  items-center gap-1">
                                                             <ThumbsDownIcon />{" "}
-                                                            {video.down_votes}
+                                                            {0}
                                                         </span>
                                                     </div>
                                                 </td>
@@ -148,13 +184,12 @@ export default function Videos() {
                                 {/* </div> */}
                             </table>
                         </div>
-                        <div className="flex items-center justify-between w-full mt-7 py-4 px-5 gap-3 pagination border-t border-gray-200">
-                            {/* <div> */}
-                            <div className="text-neutral700 text-sm">
-                                Page 1 of 10
+                        {/* <div className="flex items-center justify-between w-full mt-7 py-4 px-5 gap-3 pagination border-t border-gray-200">
+                            <div>
+                                <div className="text-neutral700 text-sm">
+                                    Page 1 of 10
+                                </div>
                             </div>
-
-                            {/* </div> */}
                             <div className="space-x-3">
                                 <button
                                     className="bg-white p-2 rounded-lg border border-[#D0D5DD]"
@@ -166,7 +201,7 @@ export default function Videos() {
                                     next
                                 </button>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

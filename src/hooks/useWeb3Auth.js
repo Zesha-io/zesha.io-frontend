@@ -3,7 +3,7 @@ import { Web3AuthNoModal } from "@web3auth/no-modal";
 import { CHAIN_NAMESPACES, WALLET_ADAPTERS } from "@web3auth/base";
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 const clientId =
     "BJgW2unbHXVCrRwtNtmws_f4i8Z32d1mcm4jw3rxa3ieerlQOXsAPhGL97yNWjB_iOheWuxQtZQS-Vo3EQJHhFw";
@@ -29,6 +29,7 @@ export default function useWeb3Auth(redirectUrl) {
     const [provider, setProvider] = useState(null);
     const [account, setAccount] = useState();
     const router = useRouter();
+    const pathname = usePathname();
     const [redirect, setRedirect] = useState(redirectUrl);
 
     useEffect(() => {
@@ -95,14 +96,17 @@ export default function useWeb3Auth(redirectUrl) {
         console.log("WEB3AUTH: ", web3auth);
     }, [web3auth]);
 
-    const logout = () => {
-        web3auth.logout();
+    const logout = async () => {
+        await web3auth.logout();
         document.cookie =
             "authorized=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         document.cookie =
             "zesha_account=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
         router.replace(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/creator/auth/login`
+            `${process.env.NEXT_PUBLIC_BASE_URL}/${
+                pathname.match("creator") ? "creator" : "individual"
+            }/auth/login`
         );
     };
 
@@ -144,6 +148,77 @@ export default function useWeb3Auth(redirectUrl) {
         return user;
     };
 
+    const getUserById = async (
+        email,
+        userType,
+        walletAddress,
+        name,
+        avatar
+    ) => {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/users?by=email&email=${email}`
+        );
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            throw new Error(data.message || "Something went wrong");
+            return null;
+        }
+
+        if (data.status) {
+            return {
+                userId: data.data.id,
+                channelId: data.data?.creatorchannel?.id,
+            };
+        } else {
+            const res2 = await fetch(
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/users`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        userType: userType,
+                        walletAddress: walletAddress,
+                        profileAvatar: avatar,
+                    }),
+                }
+            );
+
+            const data2 = await res2.json();
+
+            if (!res2.ok) {
+                throw new Error(data2.message || "Something went wrong");
+                return {
+                    userId: null,
+                    channelId: null,
+                };
+            }
+
+            if (data2.status) {
+                return {
+                    userId: data2.data.id,
+                    channelId: data2.data?.creatorchannel?.id,
+                };
+            } else {
+                throw new Error(data2.message || "Something went wrong");
+                return {
+                    userId: null,
+                    channelId: null,
+                };
+            }
+        }
+
+        return {
+            userId: null,
+            channelId: null,
+        };
+    };
+
     const login = async (providerName) => {
         if (!web3auth) {
             throw new Error("web3auth not initialized yet");
@@ -165,22 +240,39 @@ export default function useWeb3Auth(redirectUrl) {
             const user = await getUserInfo();
             const address = await getAccount(web3authProvider);
 
-            const profile = {
-                name: user.name,
-                email: user.email,
-                profileImage: user.profileImage,
-                idToken: user.idToken,
-                address: address,
-            };
+            const userType = pathname.match("creator") ? "CREATOR" : "VIEWER";
 
-            setAccount(profile);
+            const { userId, channelId } = await getUserById(
+                user.email,
+                userType,
+                address,
+                user.name,
+                user.profileImage
+            );
 
-            document.cookie = "authorized=true; path=/;";
-            document.cookie = `zesha_account=${JSON.stringify(
-                profile
-            )}; path=/;`;
+            if (userId) {
+                const profile = {
+                    name: user.name,
+                    email: user.email,
+                    profileImage: user.profileImage,
+                    idToken: user.idToken,
+                    address: address,
+                    userType: userType,
+                    userId: userId,
+                    channelId: channelId,
+                };
 
-            router.replace(redirect);
+                setAccount(profile);
+
+                document.cookie = "authorized=true; path=/;";
+                document.cookie = `zesha_account=${JSON.stringify(
+                    profile
+                )}; path=/;`;
+
+                router.replace(redirect);
+            } else {
+                throw new Error("Something went wrong");
+            }
         } catch (error) {
             console.log("AUTH_ERROR: ", error);
         }

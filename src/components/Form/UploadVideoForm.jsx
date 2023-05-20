@@ -23,6 +23,7 @@ export default function UploadVideoForm() {
     const [duration, setDuration] = useState(null);
     const [size, setSize] = useState(null);
     const [statusText, setStatusText] = useState("");
+    const [uploadProgress, setUploadProgress] = useState(0);
 
     const router = useRouter();
     const pathname = usePathname();
@@ -43,39 +44,54 @@ export default function UploadVideoForm() {
                 "Preparing your video upload. Do not refresh this page"
             );
 
-            const videoKey = await uploadVideoToSpace();
+            const _videoKey = await uploadVideoToSpace();
 
             setStatusText(
                 "We are generating a signed url to secure your uplaod"
             );
 
-            const signedUrl = await generateSigendUrl(videoKey);
+            const _signedUrl = await generateSigendUrl(_videoKey);
 
             setStatusText("We are generating metadata for your video");
 
-            const metadata = await generateVideoMetaData(signedUrl);
+            const _metadata = await generateVideoMetaData(_signedUrl);
 
             setStatusText("Transcoding your video. Do not refresh this page");
 
-            const videoID = await uploadVideoToTheta(signedUrl);
-
-            setStatusText(
-                "We are finalizing your upload. Do not refresh this page"
-            );
-
-            const progress = await checkTranscodingStatus(videoID);
-
-            console.log("Progress is completed: ", progress);
-
-            setLoading(false);
-
-            console.log(metadata);
+            console.log(_metadata);
         } catch (error) {
             console.log(error);
             setStatusText("Ohh! looks like there was an error. Try again");
             setLoading(false);
         }
     }
+
+    useEffect(() => {
+        //@Temp
+        setUploadProgress(100);
+        //@EndTemp
+        // if (thumbnail && duration && size) {
+        //     uploadVideoToTheta(signedUrl);
+
+        //     setStatusText(
+        //         "We are finalizing your upload. Do not refresh this page"
+        //     );
+        // }
+    }, [thumbnail]);
+
+    //@Temp until Theta API is back online
+    // useEffect(() => {
+    //     if (videoId) {
+    //         checkTranscodingStatus(videoId);
+    //     }
+    // }, [videoId]);
+
+    useEffect(() => {
+        if (uploadProgress === 100) {
+            storeVideoResponse();
+            setLoading(false);
+        }
+    }, [uploadProgress]);
 
     const clearForm = () => {
         setFormData({
@@ -124,7 +140,7 @@ export default function UploadVideoForm() {
     };
 
     //Step 2. Generate signed url
-    const generateSigendUrl = async (vKey) => {
+    const generateSigendUrl = async (_videoKey) => {
         const response = await fetch(
             `${process.env.NEXT_PUBLIC_VIDEO_API_URL}/api/generate-signed-url`,
             {
@@ -132,7 +148,7 @@ export default function UploadVideoForm() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ key: vKey }),
+                body: JSON.stringify({ key: _videoKey }),
             }
         );
 
@@ -154,7 +170,7 @@ export default function UploadVideoForm() {
     };
 
     //Step 4. Generate metadata
-    const generateVideoMetaData = async (sUrl) => {
+    const generateVideoMetaData = async (_signedUrl) => {
         const response = await fetch(
             `${process.env.NEXT_PUBLIC_VIDEO_API_URL}/api/get-video-metadata`,
             {
@@ -162,7 +178,7 @@ export default function UploadVideoForm() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ url: sUrl }),
+                body: JSON.stringify({ url: _signedUrl }),
             }
         );
 
@@ -192,11 +208,12 @@ export default function UploadVideoForm() {
     };
 
     //Step 4. Upload video to Theta
-    const uploadVideoToTheta = async (sUrl) => {
-        const payload = { url: sUrl };
-        if (formData.nft_collection) {
-            payload.nft_collection = formData.nft_collection;
-        }
+    const uploadVideoToTheta = async (_signedUrl) => {
+        const payload = {
+            url: _signedUrl,
+            nft_collection: formData.nft_collection,
+        };
+
         const response = await fetch(
             `${process.env.NEXT_PUBLIC_VIDEO_API_URL}/api/upload-video-to-theta`,
             {
@@ -226,7 +243,7 @@ export default function UploadVideoForm() {
     };
 
     //Step 5. Check transcoding status until progress = 100
-    const checkTranscodingStatus = async (videoId) => {
+    const checkTranscodingStatus = async () => {
         const response = await fetch(
             `${process.env.NEXT_PUBLIC_VIDEO_API_URL}/api/video-transcoding-status?video_id=${videoId}`
         );
@@ -239,11 +256,12 @@ export default function UploadVideoForm() {
         } else {
             const { progress } = data;
 
+            setUploadProgress(progress);
             // console.log("Progress is: ", progress);
             // if (progress != "") {
             if (progress === 100) {
                 setStatusText(
-                    "Upload is complete. Your video is ready to be streamed on Zesha."
+                    "Upload is complete. Preparing your video to be streamed on Zesha..."
                 );
                 return progress;
             } else {
@@ -262,6 +280,57 @@ export default function UploadVideoForm() {
             //         "Cannot confirm transcoding status on Thata. Try again"
             //     );
             // }
+        }
+    };
+
+    // Final step. Store video response
+    const storeVideoResponse = async () => {
+        const payload = {
+            title: formData.title,
+            description: formData.description,
+            nftColletion: formData.nft_collection,
+            videoUrl: signedUrl, //@Temp until Theta Video API is back
+            // videoUrl: videoId,
+            publishStatus: "PUBLISHED",
+            creatorId: account.userId,
+            channelId: account.channelId,
+            videoThumbnail: thumbnail,
+            videoLength: duration,
+            videoSize: size,
+        };
+
+        const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/videos`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            setStatusText(
+                "We were unable to complete your video upload. Try again"
+            );
+        }
+
+        if (data.status) {
+            console.log(data);
+            setStatusText(
+                "Upload is complete. Your video is ready to be streamed on Zesha."
+            );
+
+            clearForm();
+        } else {
+            setStatusText(
+                "We were unable to complete your video upload. Try again"
+            );
+
+            throw new Error(data.message);
         }
     };
 
@@ -345,7 +414,7 @@ export default function UploadVideoForm() {
                                         className="font-medium mb-3 text-sm"
                                         htmlFor="title"
                                     >
-                                        🔐 Token Gate NFT Address
+                                        🔐 Token Gate NFT Collection (Testnet)
                                     </label>
                                     <input
                                         id="title"

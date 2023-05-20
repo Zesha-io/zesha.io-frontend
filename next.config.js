@@ -8,7 +8,7 @@ const nextConfig = {
     async redirects() {
         return [
             {
-                source: "/creator/auth/login",
+                source: "/:path(creator|individual)/auth/signup",
                 has: [
                     {
                         type: "cookie",
@@ -17,7 +17,19 @@ const nextConfig = {
                     },
                 ],
                 permanent: true,
-                destination: "/creator",
+                destination: "/:path",
+            },
+            {
+                source: "/:path(creator|individual)/auth/login",
+                has: [
+                    {
+                        type: "cookie",
+                        key: "authorized",
+                        value: "true",
+                    },
+                ],
+                permanent: true,
+                destination: "/:path",
             },
             {
                 source: "/:path(creator|individual)",
