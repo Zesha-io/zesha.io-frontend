@@ -239,7 +239,7 @@ const Creators = () => {
                     <div className="px-12">
                       <div className="flex items-center justify-center w-full">
                         <Image
-                          src={'/images/Image12.svg'}
+                          src={'/images/Image15.svg'}
                           width={300}
                           height={250}
                         />
