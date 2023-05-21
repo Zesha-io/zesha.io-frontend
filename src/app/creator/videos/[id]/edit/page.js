@@ -38,7 +38,7 @@ const Edit = ({ params }) => {
         } catch (error) {
             console.log(error);
         }
-    }, []);
+    }, [params.id]);
 
     useEffect(() => {
         getVideo();

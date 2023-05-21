@@ -1,10 +1,11 @@
+"use client";
+
 import Image from 'next/image';
 import React from 'react';
-import EmptyState from '../../../components/EmptyState';
-import CloudConnectionIcon from '../../../components/Icons/CloudConnectionIcon';
-import ConvertIcon from '../../../components/Icons/ConvertIcon';
-import VideoPlayIcon from '../../../components/Icons/VideoPlayIcon';
-import Layout from '../../../components/IndividualLayout/Layout';
+import EmptyState from '@/components/EmptyState';
+import CloudConnectionIcon from '@/components/Icons/CloudConnectionIcon';
+import ConvertIcon from '@/components/Icons/ConvertIcon';
+import Layout from '@/components/IndividualLayout/Layout';
 
 const Connections = () => {
   return (

@@ -1,4 +1,7 @@
+/* eslint-disable react/no-unescaped-entities */
+
 "use client";
+
 import Image from "next/image";
 import React, { useState, useEffect, useCallback } from "react";
 import Layout from "@/components/CreatorLayout/Layout";
@@ -14,21 +17,24 @@ const Settings = () => {
     );
     const [profile, setProfile] = useState(null);
 
-    const getProfile = useCallback(async (userId) => {
-        try {
-            const res = await fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/users?by=id&id=${userId}`
-            );
-            const data = await res.json();
+    const getProfile = useCallback(
+        async (userId) => {
+            try {
+                const res = await fetch(
+                    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/users?by=id&id=${userId}`
+                );
+                const data = await res.json();
 
-            console.log(data);
-            if (res.ok) {
-                setProfile(data.data);
+                console.log(data);
+                if (res.ok) {
+                    setProfile(data.data);
+                }
+            } catch (error) {
+                console.log(error);
             }
-        } catch (error) {
-            console.log(error);
-        }
-    }, []);
+        },
+        [userId]
+    );
 
     useEffect(() => {
         if (account) {

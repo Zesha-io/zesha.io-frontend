@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 
+import { useRouter, usePathname } from "next/navigation";
+
 import classNames from "classnames";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import CloseIcon from "../Icons/CloseIcon";
@@ -18,11 +19,12 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
     const [isCollapsible, setIsCollapsible] = useState(true);
     const [isDropdown, setIsDropdown] = useState(true);
 
+    const router = useRouter();
+    const pathname = usePathname();
+
     const showDropdown = () => {
         setIsDropdown(!isDropdown);
     };
-
-    const router = useRouter();
 
     const wrapperClasses = classNames(
         "h-full sidebar pb-4 flex justify-between scrollbar-change flex-col overflow-y-auto overflow-x-hidden fixed z-40 md:relative bg-white",
@@ -100,7 +102,7 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
                                     <Link
                                         href="/individual"
                                         className={`menu-item w-full font-thin ${
-                                            router.asPath === "/individual"
+                                            pathname === "/individual"
                                                 ? "bg-[#F3F9FF] text-[#046ED1]"
                                                 : "text-[#7F8691]"
                                         }  flex items-center p-3 px-3  my-2  transition-colors duration-200 ease-in-out hover:bg-[#F3F9FF] hover:text-[#046ED1]  rounded-lg ${
@@ -125,11 +127,8 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
                                     <Link
                                         href="/individual/recommendations"
                                         className={`menu-item w-full font-thin ${
-                                            router.asPath ===
-                                                "/individual/recommendations" ||
-                                            router.pathname.startsWith(
-                                                "/individual/recommendations"
-                                            )
+                                            pathname ===
+                                            "/individual/recommendations"
                                                 ? "bg-[#F3F9FF] text-[#046ED1]"
                                                 : "text-[#7F8691]"
                                         }  flex items-center p-3 px-3  my-2  transition-colors duration-200 ease-in-out hover:bg-[#F3F9FF] hover:text-[#046ED1]  rounded-lg ${
@@ -157,11 +156,7 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
                                     <Link
                                         href="/individual/payout"
                                         className={`menu-item w-full font-thin ${
-                                            router.asPath ===
-                                                "/individual/payout" ||
-                                            router.pathname.startsWith(
-                                                "/individual/payout"
-                                            )
+                                            pathname === "/individual/payout"
                                                 ? "bg-[#F3F9FF] text-[#046ED1]"
                                                 : "text-[#7F8691]"
                                         }  flex items-center p-3 px-3  my-2  transition-colors duration-200 ease-in-out hover:bg-[#F3F9FF] hover:text-[#046ED1]  rounded-lg ${
@@ -186,11 +181,8 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
                                     <Link
                                         href="/individual/connections"
                                         className={`menu-item w-full font-thin ${
-                                            router.asPath ===
-                                                "/individual/connections" ||
-                                            router.pathname.startsWith(
-                                                "/individual/connections"
-                                            )
+                                            pathname ===
+                                            "/individual/connections"
                                                 ? "bg-[#F3F9FF] text-[#046ED1]"
                                                 : "text-[#7F8691] "
                                         }  flex  items-center p-3 px-3 my-2  hover:bg-[#F3F9FF] hover:text-[#046ED1] transition-colors duration-200 ease-in-out rounded-lg ${
@@ -214,11 +206,7 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
                                     <Link
                                         href="/individual/referral"
                                         className={`menu-item w-full font-thin ${
-                                            router.asPath ===
-                                                "/individual/referral" ||
-                                            router.pathname.startsWith(
-                                                "/individual/referral"
-                                            )
+                                            pathname === "/individual/referral"
                                                 ? "bg-[#F3F9FF] text-[#046ED1]"
                                                 : "text-[#7F8691]"
                                         }  flex  items-center p-3 px-3 my-2  hover:bg-[#F3F9FF] hover:text-[#046ED1]   transition-colors duration-200 ease-in-out rounded-lg ${
@@ -242,11 +230,7 @@ const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar }) => {
                                     <Link
                                         href="/individual/settings"
                                         className={`menu-item w-full font-thin ${
-                                            router.asPath ===
-                                                "/individual/settings" ||
-                                            router.pathname.startsWith(
-                                                "/individual/settings"
-                                            )
+                                            pathname === "/individual/settings"
                                                 ? "bg-[#F3F9FF] text-[#046ED1]"
                                                 : "text-[#7F8691]"
                                         }  flex  items-center p-3 px-3 my-2  hover:bg-[#F3F9FF] hover:text-[#046ED1]   transition-colors duration-200 ease-in-out rounded-lg ${

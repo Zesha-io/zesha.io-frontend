@@ -459,12 +459,14 @@ export default function VideoAnalyticChart() {
                             height={350}
                         />
                     )} */}
-                    <ApexCharts
-                        options={options}
-                        series={series}
-                        type="area"
-                        height={350}
-                    />
+                    {typeof window !== undefined && (
+                        <ApexCharts
+                            options={options}
+                            series={series}
+                            type="area"
+                            height={350}
+                        />
+                    )}
                 </div>
             ) : (
                 ""

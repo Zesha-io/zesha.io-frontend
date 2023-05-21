@@ -91,9 +91,9 @@ export default function DotsDropdown({ video }) {
 
     // console.log(item, 'screen in dropdown');
 
-    React.useEffect(() => {
-        router.prefetch("/");
-    }, []);
+    // React.useEffect(() => {
+    //     router.prefetch("/");
+    // }, []);
 
     const handleConfirmDeleteModal = () => {
         handleClose();
