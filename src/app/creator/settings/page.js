@@ -3,7 +3,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "@/components/CreatorLayout/Layout";
 import useWeb3Auth from "@/hooks/useWeb3Auth";
 import { usePathname } from "next/navigation";
@@ -17,24 +17,21 @@ const Settings = () => {
     );
     const [profile, setProfile] = useState(null);
 
-    const getProfile = useCallback(
-        async (userId) => {
-            try {
-                const res = await fetch(
-                    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/users?by=id&id=${userId}`
-                );
-                const data = await res.json();
+    const getProfile = async (userId) => {
+        try {
+            const res = await fetch(
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/users?by=id&id=${userId}`
+            );
+            const data = await res.json();
 
-                console.log(data);
-                if (res.ok) {
-                    setProfile(data.data);
-                }
-            } catch (error) {
-                console.log(error);
+            console.log(data);
+            if (res.ok) {
+                setProfile(data.data);
             }
-        },
-        [userId]
-    );
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     useEffect(() => {
         if (account) {

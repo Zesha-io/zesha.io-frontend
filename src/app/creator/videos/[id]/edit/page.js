@@ -1,7 +1,7 @@
 "use client";
 
 import Layout from "@/components/CreatorLayout/Layout";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import GalleryImportIcon from "@/components/Icons/GalleryImportIcon";
 import Loader from "@/components/Utils/Loader";
 import useWeb3Auth from "@/hooks/useWeb3Auth";
@@ -24,7 +24,7 @@ const Edit = ({ params }) => {
             pathname.match("creator") ? "creator" : "individual"
         }}`
     );
-    const getVideo = useCallback(async () => {
+    const getVideo = async () => {
         try {
             const res = await fetch(
                 `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/videos/${params.id}`
@@ -38,7 +38,7 @@ const Edit = ({ params }) => {
         } catch (error) {
             console.log(error);
         }
-    }, [params.id]);
+    };
 
     useEffect(() => {
         getVideo();
