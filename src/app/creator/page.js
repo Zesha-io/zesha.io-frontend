@@ -13,6 +13,7 @@ import TabPanel from "react-tabs/lib/components/TabPanel";
 import EyeIcon from "../../components/Icons/EyeIcon";
 import VideoTimeIcon from "../../components/Icons/VideoTimeIcon";
 
+/* eslint-disable react/no-unescaped-entities */
 const Dashboard = () => {
     return (
         <Layout>

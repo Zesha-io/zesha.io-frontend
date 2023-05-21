@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import SocialLoginBtns from "@/components/Buttons/SocialLoginBtns";
 
+/* eslint-disable react/no-unescaped-entities */
 const Login = () => {
-
     return (
         <>
             <section className="h-screen">
