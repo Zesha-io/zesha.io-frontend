@@ -2,15 +2,28 @@
 
 import Layout from "@/components/CreatorLayout/Layout";
 import React, { useState, useEffect, useCallback } from "react";
-import ThumbsDownIcon from "@/components/Icons/ThumbsDownIcon";
-import ThumbsUpIcon from "@/components/Icons/ThumbsUpIcon";
 import GalleryImportIcon from "@/components/Icons/GalleryImportIcon";
+import Loader from "@/components/Utils/Loader";
+import useWeb3Auth from "@/hooks/useWeb3Auth";
+import { usePathname } from "next/navigation";
 
 import VideoAnalytics from "@/components/Tabs/VideoAnalytics";
 
 const Edit = ({ params }) => {
+    const pathname = usePathname();
     const [video, setVideo] = useState(null);
-
+    const [statusText, setStatusText] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [newData, setNewData] = useState({
+        title: "",
+        description: "",
+        thumbnail: "",
+    });
+    const { account } = useWeb3Auth(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/${
+            pathname.match("creator") ? "creator" : "individual"
+        }}`
+    );
     const getVideo = useCallback(async () => {
         try {
             const res = await fetch(
@@ -31,7 +44,101 @@ const Edit = ({ params }) => {
         getVideo();
     }, []);
 
-    const updateVideo = () => {};
+    useEffect(() => {
+        if (video) {
+            setNewData({
+                title: video.title,
+                description: video.description,
+                thumbnail: video.videoThumbnail,
+            });
+        }
+    }, [video]);
+
+    const updateVideo = async (e) => {
+        e.preventDefault();
+
+        setLoading(true);
+        setStatusText("Updating video. Do not close this tab");
+
+        let newThumbnail;
+
+        try {
+            const formData = new FormData();
+            const upload = document.getElementById("thumbnail");
+            if (upload.files[0]) {
+                formData.append("thumbnail", upload.files[0]);
+
+                const response = await fetch(
+                    `${process.env.NEXT_PUBLIC_VIDEO_API_URL}/api/upload-thumbnail`,
+                    {
+                        method: "POST",
+                        body: formData,
+                    }
+                );
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    setStatusText(
+                        "Ohh! looks like there was an error. Try again"
+                    );
+                    setLoading(false);
+                } else {
+                    const { name } = data;
+
+                    newThumbnail = `${process.env.NEXT_PUBLIC_VIDEO_API_URL}/${name}`;
+                    console.log(name);
+                }
+            }
+
+            const response2 = await fetch(
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/videos/${video.id}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        title: newData.title,
+                        description: newData.description,
+                        videoThumbnail: newThumbnail || newData.thumbnail,
+                        creatorId: account.userId,
+                    }),
+                }
+            );
+
+            if (!response2.ok) {
+                setStatusText("Ohh! looks like there was an error. Try again");
+                setLoading(false);
+            } else {
+                const data2 = await response2.json();
+
+                if (data2.status) {
+                    setStatusText("Video updated successfully");
+                } else {
+                    console.log(data2.message);
+                    setStatusText(
+                        "Ohh! looks like there was an error. Try again"
+                    );
+                }
+            }
+            setLoading(false);
+        } catch (error) {
+            setStatusText("Ohh! looks like there was an error. Try again");
+            setLoading(false);
+        }
+    };
+
+    const showPreview = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            document.getElementById("avatarImg").src = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    };
 
     return (
         <Layout>
@@ -48,6 +155,20 @@ const Edit = ({ params }) => {
                         </p>
                     </div>
                     <div className="h-full w-full mb-6 py-6 ">
+                        {statusText && (
+                            <div className="w-full text-center py-4">
+                                <div
+                                    className="w-full p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
+                                    role="alert"
+                                >
+                                    {loading && <Loader />}
+                                    <span className="font-semibold mr-2 text-left flex-auto">
+                                        {" "}
+                                        {statusText}
+                                    </span>
+                                </div>
+                            </div>
+                        )}
                         <div className="flex flex-wrap lg:flex-nowrap w-full gap-6 relative">
                             <div className="w-full lg:w-8/12 space-detail">
                                 <div>
@@ -67,6 +188,13 @@ const Edit = ({ params }) => {
                                                     name="title"
                                                     autoComplete="off"
                                                     defaultValue={video?.title}
+                                                    onChange={(e) =>
+                                                        setNewData({
+                                                            ...newData,
+                                                            title: e.target
+                                                                .value,
+                                                        })
+                                                    }
                                                 />
                                             </div>
 
@@ -81,6 +209,13 @@ const Edit = ({ params }) => {
                                                     rows={5}
                                                     defaultValue={
                                                         video?.description
+                                                    }
+                                                    onChange={(e) =>
+                                                        setNewData({
+                                                            ...newData,
+                                                            description:
+                                                                e.target.value,
+                                                        })
                                                     }
                                                     className="w-full px-4 mt-1 py-2 bg-white border border-gray-200 transition duration-150 ease-in-out focus:border-gray-300 rounded-md focus:outline-none"
                                                 ></textarea>
@@ -109,6 +244,9 @@ const Edit = ({ params }) => {
                                                                 <GalleryImportIcon />
                                                             </span>
                                                             <input
+                                                                onChange={
+                                                                    showPreview
+                                                                }
                                                                 type="file"
                                                                 name="thumbnail"
                                                                 className="hidden"
@@ -140,12 +278,14 @@ const Edit = ({ params }) => {
                                             {/* <a href="#" className="text-[#344054] bg-[#E8E8E9] px-7 py-3 rounded-lg text-sm transition duration-150 ease-in-out">
                                                 Cancel
                                             </a> */}
-                                            <button
-                                                type="submit"
-                                                className="inline-block px-7 py-3 bg-secondary text-white bg-[#046ED1] font-medium text-sm leading-snug capitalize rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                            >
-                                                Update Video
-                                            </button>
+                                            {!loading && (
+                                                <button
+                                                    type="submit"
+                                                    className="inline-block px-7 py-3 bg-secondary text-white bg-[#046ED1] font-medium text-sm leading-snug capitalize rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                                >
+                                                    Update Video
+                                                </button>
+                                            )}
                                         </div>
                                     </form>
                                 </div>

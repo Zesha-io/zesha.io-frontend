@@ -5,6 +5,7 @@ import { styled, alpha } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ProfileIcon from "../Icons/ProfileIcon";
+import Link from "next/link";
 
 const StyledMenu = styled((props) => (
     <Menu
@@ -50,7 +51,7 @@ const StyledMenu = styled((props) => (
     },
 }));
 
-export default function UserProfileDropdown({ account, logout }) {
+export default function UserProfileDropdown({ account, logout, userType }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -95,7 +96,7 @@ export default function UserProfileDropdown({ account, logout }) {
             >
                 <MenuItem disableRipple className=" mt-3">
                     <span className="text-[#7F8691] text-sm flex items-center gap-3">
-                        Profile
+                        <Link href={`/${userType}/settings`}>Profile</Link>
                     </span>
                 </MenuItem>
                 <MenuItem onClick={logout} disableRipple className=" mt-3">

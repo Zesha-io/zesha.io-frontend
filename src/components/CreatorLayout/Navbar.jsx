@@ -56,6 +56,7 @@ const Navbar = ({ handleSidebarToggle, toggleSidebar, account, logout }) => {
                         <UserProfileDropdown
                             account={account}
                             logout={logout}
+                            userType={'creator'}
                         />
                     </div>
                 </div>

@@ -7,10 +7,11 @@ import useWeb3Auth from "@/hooks/useWeb3Auth";
 import Link from "next/link";
 import slugify from "slugify";
 import "./UploadVideoForm.css";
+import Loader from "@/components/Utils/Loader";
 
 export default function UploadVideoForm() {
     const [formData, setFormData] = useState({
-        title: "How I use chicken pop to power my life",
+        title: "How I use chicken manure to power my life",
         description:
             "Using biogas, he powers his home, car and boiler in order to shower and refill his fish pond. He showed us how and why he doesn't just use his chickens for eggs.",
         nft_collection: "",
@@ -68,7 +69,7 @@ export default function UploadVideoForm() {
 
     useEffect(() => {
         //@Temp
-        setUploadProgress(100);
+        if(thumbnail) setUploadProgress(100);
         //@EndTemp
         // if (thumbnail && duration && size) {
         //     uploadVideoToTheta(signedUrl);
@@ -339,30 +340,7 @@ export default function UploadVideoForm() {
         if (pathname.match("individual")) setRedirectPage("/individual");
     }, []);
 
-    const Loader = () => {
-        return (
-            <svg
-                className="animate-spin h-5 w-5 text-white mr-2"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-            >
-                <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                ></circle>
-                <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-            </svg>
-        );
-    };
+
     return (
         <div className="h-full w-full mb-6 py-6 ">
             {statusText && (
