@@ -54,7 +54,28 @@ export default function Home() {
                                     </Link>
                                 </div>
                             </div>
-                            <div className="hidden md:block">
+                            <div className="hidden md:block relative">
+                            <Image
+                                src={'/images/des.svg'}
+                                height={50}
+                                width={50}
+                                className='absolute bottom-44 left-0'
+                            />
+                            <Image
+                                src={'/images/tran2.svg'}
+                                height={250}
+                                width={350}
+                                
+                                className='absolute bottom-10 left-0'
+                            />
+
+                            <Image
+                                src={'/images/tran3.svg'}
+                                height={250}
+                                width={250}
+                                
+                                className='absolute top-32 -right-10'
+                            />
                                 <div className="flex items-center justify-end">
                                     <Image
                                         src={"/images/main-homeimage.png"}
@@ -290,7 +311,7 @@ export default function Home() {
                                             style={{ height: "250px" }}
                                         >
                                             <Lotie
-                                                src={"/lotiefiles/eve.json"}
+                                                src={"/lotiefiles/time.json"}
                                             />
                                         </div>
                                     </div>
@@ -344,7 +365,7 @@ export default function Home() {
                                             style={{ height: "250px" }}
                                         >
                                             <Lotie
-                                                src={"/lotiefiles/eve.json"}
+                                                src={"/lotiefiles/j-dr-01.json"}
                                             />
                                         </div>
                                     </div>
@@ -373,7 +394,7 @@ export default function Home() {
                                             style={{ height: "250px" }}
                                         >
                                             <Lotie
-                                                src={"/lotiefiles/eve.json"}
+                                                src={"/lotiefiles/gift-card.json"}
                                             />
                                         </div>
                                     </div>
