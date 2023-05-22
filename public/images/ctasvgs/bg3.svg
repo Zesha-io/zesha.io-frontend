@@ -2,10 +2,10 @@
 <circle cx="56.7422" cy="56.7419" r="56.5" transform="rotate(153.572 56.7422 56.7419)" fill="url(#paint0_linear_217_2397)"/>
 <defs>
 <linearGradient id="paint0_linear_217_2397" x1="56.7422" y1="0.241905" x2="56.7422" y2="113.242" gradientUnits="userSpaceOnUse">
-<stop offset="0.234375" stop-color="#FAD361"/>
-<stop offset="0.5625" stop-color="#D0BA51"/>
-<stop offset="1" stop-color="#77B5EF"/>
-<stop offset="1" stop-color="#77B5EF"/>
+<stop offset="0.234375" stopColor="#FAD361"/>
+<stop offset="0.5625" stopColor="#D0BA51"/>
+<stop offset="1" stopColor="#77B5EF"/>
+<stop offset="1" stopColor="#77B5EF"/>
 </linearGradient>
 </defs>
 </svg>

@@ -81,6 +81,7 @@ export default function useWeb3Auth(redirectUrl) {
 
                 await web3auth.init();
 
+                console.log(web3auth, "3Auth");
                 if (web3auth.provider) {
                     setProvider(web3auth.provider);
                 }
@@ -92,12 +93,10 @@ export default function useWeb3Auth(redirectUrl) {
         init();
     }, []);
 
-    useEffect(() => {
-        console.log("WEB3AUTH: ", web3auth);
-    }, [web3auth]);
-
     const logout = async () => {
-        await web3auth.logout();
+        try {
+            await web3auth.logout();
+        } catch (error) {}
         document.cookie =
             "authorized=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         document.cookie =
@@ -224,6 +223,11 @@ export default function useWeb3Auth(redirectUrl) {
             throw new Error("web3auth not initialized yet");
             return;
         }
+
+        //If session exists, logout
+        try {
+            await web3auth.logout();
+        } catch (error) {}
 
         const web3authProvider = await web3auth.connectTo(
             WALLET_ADAPTERS.OPENLOGIN,

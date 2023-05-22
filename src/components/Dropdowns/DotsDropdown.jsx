@@ -14,6 +14,7 @@ import VideoIcon2 from "../Icons/VideoIcon2";
 import LinkIcon from "../Icons/LinkIcon";
 import ConfirmDeleteModal from "../Modals/ConfirmDeleteModal";
 import ShareLinkModal from "../Modals/ShareLinkModal";
+import Link from "next/link";
 // import { ArrowRightAlt } from '@mui/icons-material';
 
 const StyledMenu = styled((props) => (
@@ -89,12 +90,6 @@ export default function DotsDropdown({ video }) {
         router.push(`/creator/videos/${video?.id}/edit`);
     };
 
-    // console.log(item, 'screen in dropdown');
-
-    // React.useEffect(() => {
-    //     router.prefetch("/");
-    // }, []);
-
     const handleConfirmDeleteModal = () => {
         handleClose();
         setConfirmDeleteModal(!confirmDeleteModal);
@@ -106,66 +101,70 @@ export default function DotsDropdown({ video }) {
     };
 
     return (
-        <>
-            <button
-                id="demo-customized-button"
-                aria-controls={open ? "demo-customized-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-                onClick={handleClick}
-                className="text-[#344054] rounded-full p-2 hover:bg-[#F3F3FE] border-0"
-            >
-                <span className="">
-                    <MoreVertIcon />
-                </span>
-            </button>
-            <StyledMenu
-                id="demo-customized-menu"
-                MenuListProps={{
-                    "aria-labelledby": "demo-customized-button",
-                }}
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-            >
-                <MenuItem onClick={handleEdit} disableRipple href="/">
-                    <span className="text-[#344054] text-xs flex items-center gap-2">
-                        <EditIcon />
-                        Edit
+        video && (
+            <>
+                <button
+                    id="demo-customized-button"
+                    aria-controls={open ? "demo-customized-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    onClick={handleClick}
+                    className="text-[#344054] rounded-full p-2 hover:bg-[#F3F3FE] border-0"
+                >
+                    <span className="">
+                        <MoreVertIcon />
                     </span>
-                </MenuItem>
+                </button>
+                <StyledMenu
+                    id="demo-customized-menu"
+                    MenuListProps={{
+                        "aria-labelledby": "demo-customized-button",
+                    }}
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                >
+                    <MenuItem disableRipple>
+                        <Link
+                            href={`/creator/videos/${video._id}/edit`}
+                            className="text-[#344054] text-xs flex items-center gap-2"
+                        >
+                            <EditIcon />
+                            Edit
+                        </Link>
+                    </MenuItem>
 
-                <MenuItem onClick={handleClose} disableRipple>
-                    <span className="text-[#344054] text-xs flex items-center gap-2">
-                        <VideoIcon2 />
-                        View public video
-                    </span>
-                </MenuItem>
-                <MenuItem onClick={handleShareLinkModal} disableRipple>
-                    <span className="text-[#344054] text-xs flex items-center gap-2">
-                        <LinkIcon />
-                        Share link
-                    </span>
-                </MenuItem>
-                <MenuItem onClick={handleConfirmDeleteModal} disableRipple>
-                    <button className="text-[#E92005] text-xs flex items-center gap-2">
-                        <TrashIcon />
-                        Delete
-                    </button>
-                </MenuItem>
-            </StyledMenu>
+                    <MenuItem onClick={handleClose} disableRipple>
+                        <span className="text-[#344054] text-xs flex items-center gap-2">
+                            <VideoIcon2 />
+                            View public video
+                        </span>
+                    </MenuItem>
+                    <MenuItem onClick={handleShareLinkModal} disableRipple>
+                        <span className="text-[#344054] text-xs flex items-center gap-2">
+                            <LinkIcon />
+                            Share link
+                        </span>
+                    </MenuItem>
+                    <MenuItem onClick={handleConfirmDeleteModal} disableRipple>
+                        <button className="text-[#E92005] text-xs flex items-center gap-2">
+                            <TrashIcon />
+                            Delete
+                        </button>
+                    </MenuItem>
+                </StyledMenu>
 
-            <ConfirmDeleteModal
-                show={confirmDeleteModal}
-                dismiss={handleConfirmDeleteModal}
-                item={video}
-            />
-            <ShareLinkModal
-                show={shareLinkModal}
-                dismiss={handleShareLinkModal}
-                item={video}
-            />
-        </>
+                <ConfirmDeleteModal
+                    show={confirmDeleteModal}
+                    dismiss={handleConfirmDeleteModal}
+                    item={video}
+                />
+                <ShareLinkModal
+                    show={shareLinkModal}
+                    dismiss={handleShareLinkModal}
+                    item={video}
+                />
+            </>
+        )
     );
-    VideoDropdown;
 }

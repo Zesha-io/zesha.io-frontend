@@ -2,20 +2,27 @@
 
 "use client";
 
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import Layout from "@/components/CreatorLayout/Layout";
 import useWeb3Auth from "@/hooks/useWeb3Auth";
 import { usePathname } from "next/navigation";
+import Loader from "@/components/Utils/Loader";
 
 const Settings = () => {
     const pathname = usePathname();
     const { account } = useWeb3Auth(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/${
-            pathname.match("creator") ? "creator" : "individual"
-        }}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/creator`
     );
     const [profile, setProfile] = useState(null);
+    const [statusText, setStatusText] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [newData, setNewData] = useState({
+        name: "",
+        email: "",
+        channelName: "",
+        channelDescription: "",
+        channelLogo: "",
+    });
 
     const getProfile = async (userId) => {
         try {
@@ -24,7 +31,6 @@ const Settings = () => {
             );
             const data = await res.json();
 
-            console.log(data);
             if (res.ok) {
                 setProfile(data.data);
             }
@@ -39,7 +45,99 @@ const Settings = () => {
         }
     }, [account]);
 
-    const updateChannel = async () => {};
+    useEffect(() => {
+        if (profile) {
+            setNewData({
+                name: profile.name,
+                channelName: profile?.creatorchannel?.name,
+                channelDescription: profile?.creatorchannel?.description,
+                channelLogo: profile?.creatorchannel?.channelAvatar,
+            });
+        }
+    }, [profile]);
+
+    const updateChannel = async (e) => {
+        e.preventDefault();
+
+        setLoading(true);
+        setStatusText("Updating profile. Do not close this tab");
+
+        let newThumbnail;
+
+        try {
+            const formData = new FormData();
+            const upload = document.getElementById("thumbnail");
+            if (upload.files[0]) {
+                formData.append("thumbnail", upload.files[0]);
+
+                const response = await fetch(
+                    `${process.env.NEXT_PUBLIC_VIDEO_API_URL}/api/upload-thumbnail`,
+                    {
+                        method: "POST",
+                        body: formData,
+                    }
+                );
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    setStatusText(
+                        "Ohh! looks like there was an error. Try again"
+                    );
+                    setLoading(false);
+                } else {
+                    const { name } = data;
+
+                    newThumbnail = `${process.env.NEXT_PUBLIC_VIDEO_API_URL}/${name}`;
+                }
+            }
+
+            const response2 = await fetch(
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/users/${profile.id}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        ...newData,
+                        channelLogo: newThumbnail,
+                    }),
+                }
+            );
+
+            if (!response2.ok) {
+                setStatusText("Ohh! looks like there was an error. Try again");
+                setLoading(false);
+            } else {
+                const data2 = await response2.json();
+
+                if (data2.status) {
+                    setStatusText("Channel updated successfully");
+                } else {
+                    console.log(data2.message);
+                    setStatusText(
+                        "Ohh! looks like there was an error. Try again"
+                    );
+                }
+            }
+            setLoading(false);
+        } catch (error) {
+            setStatusText("Ohh! looks like there was an error. Try again");
+            setLoading(false);
+        }
+    };
+
+    const showPreview = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            document.getElementById("avatarImg").src = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    };
 
     return (
         <Layout>
@@ -53,6 +151,20 @@ const Settings = () => {
                     </div>
 
                     <div className=" max-w-auto w-full xl:max-w-[600px] settings_form bg-white rounded-lg">
+                        {statusText && (
+                            <div className="w-full text-center py-4">
+                                <div
+                                    className="w-full p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
+                                    role="alert"
+                                >
+                                    {loading && <Loader />}
+                                    <span className="font-semibold mr-2 text-left flex-auto">
+                                        {" "}
+                                        {statusText}
+                                    </span>
+                                </div>
+                            </div>
+                        )}
                         <div className="p-8   w-full md:w-4/5">
                             <form onSubmit={updateChannel}>
                                 <div className="w-full">
@@ -75,6 +187,12 @@ const Settings = () => {
                                             name="name"
                                             autoComplete="off"
                                             defaultValue={profile.name}
+                                            onChange={(e) =>
+                                                setNewData({
+                                                    ...newData,
+                                                    name: e.target.value,
+                                                })
+                                            }
                                         />
                                     </div>
 
@@ -120,6 +238,12 @@ const Settings = () => {
                                             defaultValue={
                                                 profile?.creatorchannel?.name
                                             }
+                                            onChange={(e) =>
+                                                setNewData({
+                                                    ...newData,
+                                                    channelName: e.target.value,
+                                                })
+                                            }
                                         />
                                     </div>
 
@@ -135,6 +259,13 @@ const Settings = () => {
                                             defaultValue={
                                                 profile?.creatorchannel
                                                     ?.description
+                                            }
+                                            onChange={(e) =>
+                                                setNewData({
+                                                    ...newData,
+                                                    channelDescription:
+                                                        e.target.value,
+                                                })
                                             }
                                             className="w-full px-4 mt-1 py-2 bg-white border border-gray-200 transition duration-150 ease-in-out focus:border-gray-300 rounded-md focus:outline-none"
                                         ></textarea>
@@ -153,29 +284,50 @@ const Settings = () => {
                                                         ?.channelAvatar
                                                 }
                                                 alt={"channel logo"}
+                                                id="avatarImg"
                                                 height={100}
                                                 width={90}
                                             />
 
                                             <div className="flex items-start flex-col ml-5 gap-2">
-                                                <button className="text-[#046ED1] text-sm">
+                                                <input
+                                                    onChange={showPreview}
+                                                    type="file"
+                                                    name="thumbnail"
+                                                    className="hidden"
+                                                    id="thumbnail"
+                                                    accept="image/*"
+                                                />
+                                                <span
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        document
+                                                            .getElementById(
+                                                                "thumbnail"
+                                                            )
+                                                            .click();
+                                                    }}
+                                                    className="text-[#046ED1] text-sm cursor-pointer"
+                                                >
                                                     Edit photo
-                                                </button>
-                                                <button className="text-[#7F8691] text-sm">
+                                                </span>
+                                                {/* <button className="text-[#7F8691] text-sm">
                                                     Delete photo
-                                                </button>
+                                                </button> */}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="flex items-end justify-end">
-                                    <button
-                                        //   type="submit"
-                                        className="inline-block px-7 py-3 bg-secondary text-white bg-[#046ED1] font-medium text-sm leading-snug capitalize rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                    >
-                                        Update
-                                    </button>
+                                    {!loading && (
+                                        <button
+                                            type="submit"
+                                            className="inline-block px-7 py-3 bg-secondary text-white bg-[#046ED1] font-medium text-sm leading-snug capitalize rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                        >
+                                            Update Video
+                                        </button>
+                                    )}
                                 </div>
 
                                 <div className="w-full py-5 mt-5">
@@ -190,7 +342,7 @@ const Settings = () => {
                                                 Email
                                             </h5>
                                             <p className="text-[#334155] text-[13px]">
-                                                Get notifications, whenever;
+                                                Get notifications, whenever:
                                             </p>
                                         </div>
 
@@ -228,7 +380,7 @@ const Settings = () => {
 
                                 <div className="flex items-end justify-end">
                                     <button
-                                        //   type="submit"
+                                        // type="submit"
                                         className="inline-block px-7 py-3 bg-secondary text-white bg-[#046ED1] font-medium text-sm leading-snug capitalize rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                                     >
                                         Update
