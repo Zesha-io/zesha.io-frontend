@@ -92,10 +92,6 @@ export default function useWeb3Auth(redirectUrl) {
         init();
     }, []);
 
-    useEffect(() => {
-        console.log("WEB3AUTH: ", web3auth);
-    }, [web3auth]);
-
     const logout = async () => {
         await web3auth.logout();
         document.cookie =
