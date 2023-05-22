@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import ApexCharts from "react-apexcharts";
+// import ApexCharts from "react-apexcharts";
 
 // import { ApexCharts } from "@/components/Charts/ApexBaseChart";
 
-// const ReactApexChart = dynamic(() => import("react-apexcharts"), {
-//     ssr: false,
-// });
+const ApexCharts = dynamic(() => import("react-apexcharts"), {
+    ssr: false,
+});
 
 export default function VideoAnalyticChart({ data }) {
     const srs = [

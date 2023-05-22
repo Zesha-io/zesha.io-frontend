@@ -73,12 +73,6 @@ export default function VideoDropdown({ screen, id }) {
         }
     };
 
-    // console.log(screen, "screen in dropdown")
-
-    // React.useEffect(() => {
-    //     router.prefetch("/");
-    // }, []);
-
     return (
         <>
             <button
