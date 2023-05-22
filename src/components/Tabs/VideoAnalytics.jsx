@@ -9,10 +9,12 @@ import TabPanel from "react-tabs/lib/components/TabPanel";
 import MoneyIcon from "@/components/Icons/MoneyIcon";
 import EyeIcon from "@/components/Icons/EyeIcon";
 import VideoTimeIcon from "@/components/Icons/VideoTimeIcon";
+import ThumbsDownIcon from "@/components/Icons/ThumbsDownIcon";
+import ThumbsUpIcon from "@/components/Icons/ThumbsUpIcon";
 
 import VideoAnalyticChart from "@/components/Charts/VideoAnalyticChart";
 
-export default function VideoAnalytics() {
+export default function VideoAnalytics({ analytics }) {
     return (
         <div className="h-full pb-24 px-4 md:px-8 py-10 bg-white mb-4 rounded-lg">
             <Tabs>
@@ -49,7 +51,9 @@ export default function VideoAnalytics() {
                                                         <EyeIcon />
                                                     </span>
                                                     <b className="text-lg">
-                                                        200
+                                                        {
+                                                            analytics?.totalvideoviews
+                                                        }
                                                     </b>{" "}
                                                     <span className="text-xs">
                                                         Views
@@ -62,7 +66,9 @@ export default function VideoAnalytics() {
                                                         <VideoTimeIcon />
                                                     </span>
                                                     <b className="text-lg">
-                                                        200
+                                                        {
+                                                            analytics?.totaltimewatched
+                                                        }
                                                     </b>{" "}
                                                     <span className="text-xs">
                                                         Hours watched
@@ -75,10 +81,12 @@ export default function VideoAnalytics() {
                                                         <MoneyIcon />
                                                     </span>
                                                     <b className="text-lg">
-                                                        $8,000{" "}
+                                                        {
+                                                            analytics.creatorearnings
+                                                        }{" "}
                                                     </b>
                                                     <span className="text-xs">
-                                                        Earnings
+                                                        Earnings (TFuel)
                                                     </span>
                                                 </button>
                                             </Tab>
@@ -88,17 +96,29 @@ export default function VideoAnalytics() {
                                     <div className="flex flex-col lg:w-3/4 w-fulls">
                                         <TabPanel>
                                             <div>
-                                                <VideoAnalyticChart />
+                                                <VideoAnalyticChart
+                                                    data={
+                                                        analytics.viewsgroupedbydate
+                                                    }
+                                                />
                                             </div>
                                         </TabPanel>
                                         <TabPanel>
                                             <div>
-                                                <VideoAnalyticChart />
+                                                <VideoAnalyticChart
+                                                    data={
+                                                        analytics.timewatchedgroupedbydate
+                                                    }
+                                                />
                                             </div>
                                         </TabPanel>
                                         <TabPanel>
                                             <div>
-                                                <VideoAnalyticChart />
+                                                <VideoAnalyticChart
+                                                    data={
+                                                        analytics.totalearningsgroupedbydate
+                                                    }
+                                                />
                                             </div>
                                         </TabPanel>
                                     </div>

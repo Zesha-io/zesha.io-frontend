@@ -25,24 +25,25 @@ const Edit = ({ params }) => {
         }}`
     );
     const getVideo = async () => {
-        try {
-            const res = await fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/videos/${params.id}`
-            );
-            const data = await res.json();
+        if (params) {
+            try {
+                const res = await fetch(
+                    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/videos/${params.id}`
+                );
+                const data = await res.json();
 
-            console.log(data);
-            if (res.ok) {
-                setVideo(data.data);
+                if (res.ok) {
+                    setVideo(data.data);
+                }
+            } catch (error) {
+                console.log(error);
             }
-        } catch (error) {
-            console.log(error);
         }
     };
 
     useEffect(() => {
         getVideo();
-    }, []);
+    }, [account]);
 
     useEffect(() => {
         if (video) {
@@ -142,7 +143,7 @@ const Edit = ({ params }) => {
 
     return (
         <Layout>
-            {video && (
+            {video && account ? (
                 <div className="pb-20">
                     <div className="grow py-2 mb-3">
                         <div className="flex items-center justify-start gap-3">
@@ -329,8 +330,10 @@ const Edit = ({ params }) => {
                         </div>
                     </div>
 
-                    <VideoAnalytics />
+                    <VideoAnalytics analytics={video.analytics} />
                 </div>
+            ) : (
+                ""
             )}
         </Layout>
     );

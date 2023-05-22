@@ -153,10 +153,18 @@ export default async function Videos() {
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5  text-sm">
-                                                    <p>{0}</p>
+                                                    <p>
+                                                        {video?.analytics
+                                                            ?.totalvideoviews ||
+                                                            0}
+                                                    </p>
                                                 </td>
                                                 <td className="px-5 py-5  text-sm">
-                                                    <p>{0}</p>
+                                                    <p>
+                                                        {video?.analytics
+                                                            ?.creatorearnings ||
+                                                            0}
+                                                    </p>
                                                 </td>
                                                 <td className="px-5 py-5  text-sm">
                                                     <p>{0}</p>
@@ -164,11 +172,16 @@ export default async function Videos() {
                                                 <td className="px-5 py-5  text-sm">
                                                     <div className="flex items-center gap-3">
                                                         <span className="inline-flex  items-center gap-1">
-                                                            <ThumbsUpIcon /> {0}
+                                                            <ThumbsUpIcon />{" "}
+                                                            {video?.analytics
+                                                                ?.totallikes ||
+                                                                0}
                                                         </span>
                                                         <span className="inline-flex  items-center gap-1">
                                                             <ThumbsDownIcon />{" "}
-                                                            {0}
+                                                            {video?.analytics
+                                                                ?.totaldislikes ||
+                                                                0}
                                                         </span>
                                                     </div>
                                                 </td>
