@@ -1,157 +1,250 @@
 "use client";
 
-import React from "react";
-import Layout from "../../components/IndividualLayout/Layout";
+import React, { useState, useEffect } from "react";
+import Layout from "@/components/IndividualLayout/Layout";
 import { Tabs } from "react-tabs";
 import Tab from "react-tabs/lib/components/Tab";
 import TabList from "react-tabs/lib/components/TabList";
 import TabPanel from "react-tabs/lib/components/TabPanel";
 
-import MoneyIcon from "../../components/Icons/MoneyIcon";
-import VideoPlayIcon from "../../components/Icons/VideoPlayIcon";
-import WalletIcon from "../../components/Icons/WalletIcon";
+import MoneyIcon from "@/components/Icons/MoneyIcon";
+import VideoPlayIcon from "@/components/Icons/VideoPlayIcon";
+import WalletIcon from "@/components/Icons/WalletIcon";
 
-import EyeIcon from "../../components/Icons/EyeIcon";
-import VideoTimeIcon from "../../components/Icons/VideoTimeIcon";
+import EyeIcon from "@/components/Icons/EyeIcon";
+import VideoTimeIcon from "@/components/Icons/VideoTimeIcon";
+import VideoAnalyticChart from "@/components/Charts/VideoAnalyticChart";
+
+import useWeb3Auth from "@/hooks/useWeb3Auth";
 
 const Dashboard = () => {
+    const { account } = useWeb3Auth(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/individual`
+    );
+
+    const [analytics, setAnalytics] = useState(null);
+    const [tfuelUsd, setTfuelUsd] = useState(0);
+
+    const getAnalytics = async () => {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/users/${account.userId}/analytics?type=VIEWER`
+        );
+
+        const data = await res.json();
+
+        if (res.ok) {
+            setAnalytics(data.data);
+        } else {
+            setAnalytics({
+                totalviewerviews: 0,
+                totaltimewatched: 0,
+                totalviewerearnings: 0,
+                totalviewerearningsgroupedbydate: [],
+                walletbalance: 0,
+            });
+        }
+    };
+
+    const getTfuelPrice = async () => {
+        const res2 = await fetch(
+            "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=TFUEL&tsyms=USD"
+        );
+
+        const data2 = await res2.json();
+
+        if (res2.ok) {
+            const price = data2.RAW.TFUEL.USD.PRICE;
+
+            setTfuelUsd(price * analytics.walletbalance);
+        }
+    };
+
+    useEffect(() => {
+        if (analytics?.walletbalance) {
+            getTfuelPrice();
+        }
+    }, [analytics]);
+
+    useEffect(() => {
+        if (account) {
+            getAnalytics();
+        }
+    }, [account]);
+
     return (
         <Layout>
-            <div className="pb-20">
-                <div className="grow py-2 mb-3">
-                    <h1 className="text-xl font-medium">Dashboard</h1>
-                    <p className="text-[#7F8691] text-base">
-                        View all activities on zesha
-                    </p>
-                </div>
+            {analytics && (
+                <div className="pb-20">
+                    <div className="grow py-2 mb-3">
+                        <h1 className="text-xl font-medium">Dashboard</h1>
+                        <p className="text-[#7F8691] text-base">
+                            View all activities on zesha
+                        </p>
+                    </div>
 
-                <div className="mb-7">
-                    <div className="grid grids-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                        <div className="shadow_main w-full bg-white relative py-8 rounded-lg flex flex-col justify-between">
-                            <div className="px-6 flex items-center justify-start gap-3 w-full">
-                                <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-3 transition duration-200 ease">
-                                    <WalletIcon />
-                                </span>
-                                <div className="flex items-start justify-start flex-col w-full">
-                                    <h5 className="text-[#344054] text-xl font-bold">
-                                        2,560 TFUEL{" "}
-                                        <span className="text-[#7F8691] text-sm font-normal">
-                                            ~ $2,560
+                    <div className="mb-7">
+                        <div className="grid grids-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                            <div className="shadow_main w-full bg-white relative py-8 rounded-lg flex flex-col justify-between">
+                                <div className="px-6 flex items-center justify-start gap-3 w-full">
+                                    <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-3 transition duration-200 ease">
+                                        <WalletIcon />
+                                    </span>
+                                    <div className="flex items-start justify-start flex-col w-full">
+                                        <h5 className="text-[#344054] text-xl font-bold">
+                                            {analytics?.walletbalance || 0}{" "}
+                                            <span className="text-[#7F8691] text-sm font-normal">
+                                                ~ ${tfuelUsd.toFixed(2)}
+                                            </span>
+                                        </h5>
+                                        <span className="text-[#7F8691] text-sm">
+                                            Wallet balance
                                         </span>
-                                    </h5>
-                                    <span className="text-[#7F8691] text-sm">
-                                        Wallet balance
-                                    </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="shadow_main w-full bg-white relative py-8 rounded-lg flex flex-col justify-between">
-                            <div className="px-6 flex items-center justify-start gap-3 w-full">
-                                <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-3 transition duration-200 ease">
-                                    <MoneyIcon />
-                                </span>
-                                <div className="flex items-start justify-start flex-col w-full">
-                                    <h5 className="text-[#344054] text-xl font-bold">
-                                        9,500 TFUEL{" "}
-                                        <span className="text-[#7F8691] text-sm font-normal">
-                                            ~ $2,560
+                            <div className="shadow_main w-full bg-white relative py-8 rounded-lg flex flex-col justify-between">
+                                <div className="px-6 flex items-center justify-start gap-3 w-full">
+                                    <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-3 transition duration-200 ease">
+                                        <MoneyIcon />
+                                    </span>
+                                    <div className="flex items-start justify-start flex-col w-full">
+                                        <h5 className="text-[#344054] text-xl font-bold">
+                                            {analytics?.totalviewerearnings ||
+                                                0}{" "}
+                                            <span className="text-[#7F8691] text-sm font-normal">
+                                                ~ $
+                                                {analytics?.totalviewerearnings *
+                                                    tfuelUsd}
+                                            </span>
+                                        </h5>
+                                        <span className="text-[#7F8691] text-sm">
+                                            Wallet balance
                                         </span>
-                                    </h5>
-                                    <span className="text-[#7F8691] text-sm">
-                                        Wallet balance
-                                    </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="shadow_main w-full bg-white relative py-8 rounded-lg  flex flex-col justify-between">
-                            <div className="px-6 flex items-center justify-start gap-3 w-full">
-                                <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-3 transition duration-200 ease">
-                                    <VideoPlayIcon />
-                                </span>
-                                <div className="flex items-start justify-start flex-col w-full">
-                                    <h5 className="text-[#344054] text-xl font-bold">
-                                        800
-                                    </h5>
-                                    <span className="text-[#7F8691] text-sm">
-                                        Video views
+                            <div className="shadow_main w-full bg-white relative py-8 rounded-lg  flex flex-col justify-between">
+                                <div className="px-6 flex items-center justify-start gap-3 w-full">
+                                    <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-3 transition duration-200 ease">
+                                        <VideoPlayIcon />
                                     </span>
+                                    <div className="flex items-start justify-start flex-col w-full">
+                                        <h5 className="text-[#344054] text-xl font-bold">
+                                            {analytics?.totalviewerviews || 0}
+                                        </h5>
+                                        <span className="text-[#7F8691] text-sm">
+                                            Video views
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="h-full pb-24 px-4 md:px-6  bg-white mb-7 rounded-lg">
-                    <div className="border-b border-[#EEEFF0] w-full mb-5 py-3">
-                        <h4 className="text-[#344054] font-medium text-xl text-center py-2">
-                            Videos watched analysis
-                        </h4>
-                    </div>
-                    <div className=" w-full  mt-3 md:mt-0 rounded fade-in relative py-6">
-                        <Tabs>
-                            <div className="flex gap-4 flex-wrap">
-                                <div className="flex items-center mb-3 flex-col lg:w-1/4 w-full">
-                                    <TabList className="flex flex-col items-start justify-start flex-wrap inner_tab_header  rounded-md gap-3 w-full ">
-                                        <Tab className="w-full">
-                                            <button className="flex items-center justify-start text-sm p-2 px-3 w-full transition-colors duration-200 ease-in-out hover:bg-[#F6F6F7] hover:text-[#344054]  rounded-lg gap-2">
-                                                <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
-                                                    <EyeIcon />
-                                                </span>
-                                                <b className="text-lg">200</b>{" "}
-                                                Views
-                                            </button>
-                                        </Tab>
-                                        <Tab className="w-full">
-                                            <button className="flex items-center justify-start text-sm p-2 px-3 w-full transition-colors duration-200 ease-in-out hover:bg-[#F6F6F7] hover:text-[#344054]  rounded-lg gap-2">
-                                                <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
-                                                    <VideoTimeIcon />
-                                                </span>
-                                                <b className="text-lg">200</b>{" "}
-                                                Hours watched
-                                            </button>
-                                        </Tab>
-                                        <Tab className="w-full">
-                                            <button className="flex items-center justify-start text-sm p-2 px-3 w-full transition-colors duration-200 ease-in-out hover:bg-[#F6F6F7] hover:text-[#344054]  rounded-lg gap-2">
-                                                <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
-                                                    <MoneyIcon />
-                                                </span>
-                                                <b className="text-lg">
-                                                    $8,000{" "}
-                                                </b>
-                                                Earnings
-                                            </button>
-                                        </Tab>
-                                    </TabList>
+                    <div className="h-full pb-24 px-4 md:px-6  bg-white mb-7 rounded-lg">
+                        <div className="border-b border-[#EEEFF0] w-full mb-5 py-3">
+                            <h4 className="text-[#344054] font-medium text-xl text-center py-2">
+                                Videos watched analysis
+                            </h4>
+                        </div>
+                        <div className="w-full  mt-3 md:mt-0 rounded fade-in relative py-6">
+                            <Tabs>
+                                <div className="flex gap-4 flex-wraps">
+                                    <div className="flex items-center mb-3 flex-col lg:w-1/4 w-full">
+                                        <TabList className="flex flex-col items-start justify-start flex-wrap inner_tab_header  rounded-md gap-3 w-full ">
+                                            <Tab className="w-full">
+                                                <button className="flex items-center justify-start text-sm p-2 px-3 w-full transition-colors duration-200 ease-in-out hover:bg-[#F6F6F7] hover:text-[#344054]  rounded-lg gap-2">
+                                                    <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
+                                                        <EyeIcon />
+                                                    </span>
+                                                    <b className="text-lg">
+                                                        {
+                                                            analytics.totalviewerviews
+                                                        }
+                                                    </b>{" "}
+                                                    <span className="text-sm">
+                                                        Views
+                                                    </span>
+                                                </button>
+                                            </Tab>
+                                            <Tab className="w-full">
+                                                <button className="flex items-center justify-start text-sm p-2 px-3 w-full transition-colors duration-200 ease-in-out hover:bg-[#F6F6F7] hover:text-[#344054]  rounded-lg gap-2">
+                                                    <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
+                                                        <VideoTimeIcon />
+                                                    </span>
+                                                    <b className="text-lg">
+                                                        {" "}
+                                                        {
+                                                            analytics.totaltimewatched
+                                                        }
+                                                    </b>{" "}
+                                                    <span className="text-sm">
+                                                        Hours watched
+                                                    </span>
+                                                </button>
+                                            </Tab>
+                                            <Tab className="w-full">
+                                                <button className="flex items-center justify-start text-sm p-2 px-3 w-full transition-colors duration-200 ease-in-out hover:bg-[#F6F6F7] hover:text-[#344054]  rounded-lg gap-2">
+                                                    <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
+                                                        <MoneyIcon />
+                                                    </span>
+                                                    <b className="text-lg">
+                                                        ${" "}
+                                                        {
+                                                            analytics.totalviewerearnings
+                                                        }{" "}
+                                                    </b>
+                                                    <span className="text-sm">
+                                                        Earnings
+                                                    </span>
+                                                </button>
+                                            </Tab>
+                                        </TabList>
+                                    </div>
+
+                                    <div className="w-full">
+                                        <TabPanel>
+                                            <div>
+                                                <VideoAnalyticChart
+                                                    data={
+                                                        analytics.totalviewerearningsgroupedbydate
+                                                    }
+                                                />
+                                            </div>
+                                        </TabPanel>
+                                        <TabPanel>
+                                            <div>
+                                                <VideoAnalyticChart
+                                                    data={
+                                                        analytics.totalviewerearningsgroupedbydate
+                                                    }
+                                                />
+                                            </div>
+                                        </TabPanel>
+                                        <TabPanel>
+                                            <div>
+                                                <VideoAnalyticChart
+                                                    data={
+                                                        analytics.totalviewerearningsgroupedbydate
+                                                    }
+                                                />
+                                            </div>
+                                        </TabPanel>
+                                    </div>
                                 </div>
-
-                                <div>
-                                    <TabPanel>
-                                        <div>200 Views</div>
-                                    </TabPanel>
-                                    <TabPanel>
-                                        <div>200 Hours watched</div>
-                                    </TabPanel>
-                                    <TabPanel>
-                                        <div>$8,000 Earnings</div>
-                                    </TabPanel>
-                                </div>
-                            </div>
-                        </Tabs>
+                            </Tabs>
+                        </div>
                     </div>
-                </div>
 
-                <div>
-                    <div className="flex items-center justify-between mb-4">
+                    <div>
+                        {/* <div className="flex items-center justify-between mb-4">
                         <h4 className="text-[#344054] text-base font-medium">
                             Transaction history
                         </h4>
 
-                        {/* <Link href="/" className="text-[#046ED1] text-xs">
-              View all
-            </Link> */}
-                    </div>
+                    </div> */}
 
-                    <div className="bg-white rounded-lg">
+                        {/* <div className="bg-white rounded-lg">
                         <div className="px-6 divide-y divide-[#EEEFF2] py-6">
                             <div className="flex items-center justify-start gap-3 w-full py-4 ">
                                 <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
@@ -203,9 +296,10 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
+                    </div> */}
                     </div>
                 </div>
-            </div>
+            )}
         </Layout>
     );
 };

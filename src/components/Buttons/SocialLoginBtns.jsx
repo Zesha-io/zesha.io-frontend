@@ -3,10 +3,14 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import useWeb3Auth from "@/hooks/useWeb3Auth";
+import { usePathname } from "next/navigation";
 
 export default function SocialLoginBtns({ signup }) {
+    const pathname = usePathname();
     const { login } = useWeb3Auth(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/creator`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/${
+            pathname.match("creator") ? "creator" : "individual"
+        }`
     );
 
     return (

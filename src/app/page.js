@@ -3,14 +3,12 @@
 "use client";
 
 import React from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import ChromeIcon from "@/components/Icons/ChromeIcon";
 import Lotie from "@/components/lottie";
 import HomeAccordion from "@/components/Accordions/HomeAccordion";
 import Image from "next/image";
-// import 'react-tabs/style/react-tabs.css';
 
 export default function Home() {
     return (
@@ -55,27 +53,25 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="hidden md:block relative">
-                            <Image
-                                src={'/images/des.svg'}
-                                height={50}
-                                width={50}
-                                className='absolute bottom-44 left-0'
-                            />
-                            <Image
-                                src={'/images/tran2.svg'}
-                                height={250}
-                                width={350}
-                                
-                                className='absolute bottom-10 left-0'
-                            />
+                                <Image
+                                    src={"/images/des.svg"}
+                                    height={50}
+                                    width={50}
+                                    className="absolute bottom-44 left-0"
+                                />
+                                <Image
+                                    src={"/images/tran2.svg"}
+                                    height={250}
+                                    width={350}
+                                    className="absolute bottom-10 left-0"
+                                />
 
-                            <Image
-                                src={'/images/tran3.svg'}
-                                height={250}
-                                width={250}
-                                
-                                className='absolute top-32 -right-10'
-                            />
+                                <Image
+                                    src={"/images/tran3.svg"}
+                                    height={250}
+                                    width={250}
+                                    className="absolute top-32 -right-10"
+                                />
                                 <div className="flex items-center justify-end">
                                     <Image
                                         src={"/images/main-homeimage.png"}
@@ -110,11 +106,11 @@ export default function Home() {
                                     y2="0"
                                 >
                                     <stop
-                                        stop-color="rgba(252, 230, 175, 1)"
+                                        stopColor="rgba(252, 230, 175, 1)"
                                         offset="0%"
                                     ></stop>
                                     <stop
-                                        stop-color="rgba(252, 230, 175, 1)"
+                                        stopColor="rgba(252, 230, 175, 1)"
                                         offset="100%"
                                     ></stop>
                                 </linearGradient>
@@ -163,7 +159,7 @@ export default function Home() {
                         >
                             <path
                                 fill="#FCE6AF"
-                                fill-opacity="1"
+                                fillOpacity="1"
                                 d="M0,32L60,69.3C120,107,240,181,360,186.7C480,192,600,128,720,112C840,96,960,128,1080,133.3C1200,139,1320,117,1380,106.7L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
                             ></path>
                         </svg>
@@ -394,7 +390,9 @@ export default function Home() {
                                             style={{ height: "250px" }}
                                         >
                                             <Lotie
-                                                src={"/lotiefiles/gift-card.json"}
+                                                src={
+                                                    "/lotiefiles/gift-card.json"
+                                                }
                                             />
                                         </div>
                                     </div>

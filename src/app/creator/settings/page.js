@@ -2,7 +2,6 @@
 
 "use client";
 
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import Layout from "@/components/CreatorLayout/Layout";
 import useWeb3Auth from "@/hooks/useWeb3Auth";
@@ -12,9 +11,7 @@ import Loader from "@/components/Utils/Loader";
 const Settings = () => {
     const pathname = usePathname();
     const { account } = useWeb3Auth(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/${
-            pathname.match("creator") ? "creator" : "individual"
-        }}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/creator`
     );
     const [profile, setProfile] = useState(null);
     const [statusText, setStatusText] = useState("");
@@ -345,7 +342,7 @@ const Settings = () => {
                                                 Email
                                             </h5>
                                             <p className="text-[#334155] text-[13px]">
-                                                Get notifications, whenever;
+                                                Get notifications, whenever:
                                             </p>
                                         </div>
 

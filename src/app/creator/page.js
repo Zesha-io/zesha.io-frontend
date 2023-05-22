@@ -35,14 +35,13 @@ const Dashboard = () => {
         if (res.ok) {
             setAnalytics(data.data);
         } else {
-            console.log(res);
             setAnalytics({
                 totalcreatorviews: 0,
                 totalcreatorviewers: 0,
                 totaltimewatched: 0,
                 totalcreatorearnings: 0,
                 totalcreatorearningsgroupedbydate: [],
-                walletbalance: "0.0",
+                walletbalance: 0.0,
             });
         }
     };
