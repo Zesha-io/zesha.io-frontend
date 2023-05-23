@@ -237,14 +237,14 @@ const Dashboard = () => {
                     </div>
 
                     <div>
-                        {/* <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center justify-between mb-4">
                         <h4 className="text-[#344054] text-base font-medium">
                             Transaction history
                         </h4>
 
-                    </div> */}
+                    </div>
 
-                        {/* <div className="bg-white rounded-lg">
+                        <div className="bg-white rounded-lg">
                         <div className="px-6 divide-y divide-[#EEEFF2] py-6">
                             <div className="flex items-center justify-start gap-3 w-full py-4 ">
                                 <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
@@ -296,7 +296,7 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
-                    </div> */}
+                    </div>
                     </div>
                 </div>
             )}

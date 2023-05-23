@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import useWeb3Auth from "@/hooks/useWeb3Auth";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, pagePadding }) => {
     const { account, logout } = useWeb3Auth(
         `${process.env.NEXT_PUBLIC_BASE_URL}/individual`
     );
@@ -39,7 +39,11 @@ const Layout = ({ children }) => {
                         />
 
                         <div className="main-wrapper ">
-                            <div className="h-screen py-10 px-4 md:px-12">
+                            <div
+                                className={`h-screen ${
+                                    pagePadding ?? "py-10"
+                                } px-4 md:px-12`}
+                            >
                                 {children}
                             </div>
                         </div>

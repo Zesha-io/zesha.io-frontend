@@ -48,15 +48,15 @@ export default function useWeb3Auth(redirectUrl) {
                     clientId,
                     chainConfig: {
                         chainNamespace: CHAIN_NAMESPACES.EIP155,
-                        chainId: "0x13881",
-                        rpcTarget: "https://rpc.ankr.com/polygon_mumbai",
+                        chainId: "0x1",
+                        rpcTarget: "https://rpc.ankr.com/eth",
                         // chainId: "0x16d",
                         // rpcTarget:
                         // "https://eth-rpc-api-testnet.thetatoken.org/rpc",
                         // tickerName: "TFUEL",
                     },
-                    // web3AuthNetwork: "testnet",
-                    web3AuthNetwork: "cyan",
+                    // web3AuthNetwork: "cyan",
+                    web3AuthNetwork: "testnet",
                 });
 
                 const openloginAdapter = new OpenloginAdapter({
