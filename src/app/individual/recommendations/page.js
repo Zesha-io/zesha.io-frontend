@@ -30,7 +30,6 @@ const Recommendations = () => {
         }
     };
 
-    //https://media.thetavideoapi.com/video_naikps4fmw9zx40yyr2bpbkhpz/master.m3u8
     useEffect(() => {
         getRecommendations();
     }, []);
@@ -41,17 +40,6 @@ const Recommendations = () => {
     }, [recommendations]);
 
     const convertTimeToVideoTime = (seconds) => {
-        // let minutes = Math.floor(time / 60);
-        // if (minutes < 10) {
-        //     minutes = `0${minutes}`;
-        // }
-        // let seconds = Number((time % 60).toFixed(0));
-        // if (seconds < 10) {
-        //     seconds = `0${seconds}`;
-        // }
-
-        // return `${minutes}:${seconds}`;
-
         const hours = Math.floor(seconds / 3600);
         const minutes = Math.floor((seconds % 3600) / 60);
         const remainingSeconds = Math.ceil(seconds % 60);
@@ -74,13 +62,7 @@ const Recommendations = () => {
         controls: true,
         responsive: true,
         techOrder: ["theta_hlsjs", "html5"],
-        sources: [
-            {
-                src: `https://media.thetavideoapi.com/${videoId}/master.m3u8`,
-                type: "application/vnd.apple.mpegurl",
-                label: "auto",
-            },
-        ],
+
         theta_hlsjs: {
             walletUrl: "wss://api-wallet-service.thetatoken.org/theta/ws",
             onWalletAccessToken: null,
@@ -105,6 +87,27 @@ const Recommendations = () => {
 
     const handlePlayerReady = (player) => {
         playerRef.current = player;
+
+        player.playlist([
+            {
+                sources: [
+                    {
+                        src: `https://media.thetavideoapi.com/${videoId}/master.m3u8`,
+                    },
+                ],
+                poster: "http://localhost:8090/thumbnail-285c31bd-4ac9-40a0-8b2a-89be587daad0.jpg",
+            },
+            {
+                sources: [
+                    {
+                        src: `https://media.thetavideoapi.com/video_naikps4fmw9zx40yyr2bpbkhpz/master.m3u8`,
+                    },
+                ],
+                poster: "http://localhost:8090/thumbnail-56472734-3d70-42b4-b5f5-1b9d6f7a31b1.jpg",
+            },
+        ]);
+
+        player.playlist.autoadvance(0);
 
         const requestAds = function () {
             player.trigger("adsready");
