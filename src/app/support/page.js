@@ -1,6 +1,7 @@
 "use client";
 import SupportAccordion from "@/components/Accordions/SupportAccordion";
 import Layout from "@/components/layout/Layout";
+import Link from "next/link";
 
 export default function Support() {
     return (
@@ -41,9 +42,9 @@ export default function Support() {
                         <div className="flex items-center justify-center mx-auto max-w-3xl flex-col gap-4">
                             <SupportAccordion />
 
-                            <button className="rounded-lg px-5 py-4 text-md bg-[#046ED1] text-white border border-[#046ED1] mt-2">
+                            {/* <button className="rounded-lg px-5 py-4 text-md bg-[#046ED1] text-white border border-[#046ED1] mt-2">
                                 View all our FAQs
-                            </button>
+                            </button> */}
                         </div>
                     </div>
                 </section>
@@ -56,9 +57,9 @@ export default function Support() {
                             </h1>
                         </div>
 
-                        <button className="rounded-lg px-5 py-4 text-md bg-[#046ED1] text-white border border-[#046ED1]">
+                        <Link href={'https://www.notion.so/Report-a-Problem-17f2f2662a31409184bc2a3638291b81?pvs=4'} target='_blank' className="rounded-lg px-5 py-4 text-md bg-[#046ED1] text-white border border-[#046ED1]">
                             Suggest a feature
-                        </button>
+                        </Link>
                     </div>
 
                     <div className="flex items-center justify-between w-full py-8 px-8 max-w-7xl mx-auto container flex-wrap shadow-md gap-2">
@@ -68,9 +69,9 @@ export default function Support() {
                             </h1>
                         </div>
 
-                        <button className="rounded-lg px-5 py-4 text-md bg-[#046ED1] text-white border border-[#046ED1]">
+                        <Link href={'https://www.notion.so/Report-a-Problem-17f2f2662a31409184bc2a3638291b81?pvs=4'} target='_blank' className="rounded-lg px-5 py-4 text-md bg-[#046ED1] text-white border border-[#046ED1]">
                             Report a problem
-                        </button>
+                        </Link>
                     </div>
                     <div className="flex items-center justify-between w-full py-8 px-8 max-w-7xl mx-auto container flex-wrap shadow-md gap-2">
                         <div className="">
