@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 
-export default function Lotie({ src }) {
+export default function Lottie({ src }) {
     const ref = React.useRef();
     const [lottie, setLottie] = React.useState(null);
 
