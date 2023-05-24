@@ -6,7 +6,7 @@ import React from "react";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import ChromeIcon from "@/components/Icons/ChromeIcon";
-import Lotie from "@/components/lottie";
+import Lotie from "@/components/Lottie";
 import HomeAccordion from "@/components/Accordions/HomeAccordion";
 import Image from "next/image";
 
