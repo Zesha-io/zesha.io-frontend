@@ -2,9 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-// import ApexCharts from "react-apexcharts";
-
-// import { ApexCharts } from "@/components/Charts/ApexBaseChart";
 
 const ApexCharts = dynamic(() => import("react-apexcharts"), {
     ssr: false,

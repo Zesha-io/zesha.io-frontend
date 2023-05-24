@@ -5,12 +5,13 @@ import EmptyState from "@/components/EmptyState";
 import VideoAddIcon from "@/components/Icons/VideoAddIcon";
 import VideoPlayIcon from "@/components/Icons/VideoPlayIcon";
 import Layout from "@/components/IndividualLayout/Layout";
-import Script from "next/script";
+// import Script from "next/script";
 // This imports the functional component from the previous sample.
 import VideoJS from "@/components/Player/VideoJS";
 
 const Recommendations = () => {
     const [recommendations, setRecommendations] = useState([]);
+    const [videojsPlayer, setVideojsPlayer] = useState(null);
 
     const getRecommendations = async () => {
         const res = await fetch(
@@ -33,11 +34,6 @@ const Recommendations = () => {
     useEffect(() => {
         getRecommendations();
     }, []);
-
-    useEffect(() => {
-        if (recommendations) {
-        }
-    }, [recommendations]);
 
     const convertTimeToVideoTime = (seconds) => {
         const hours = Math.floor(seconds / 3600);
@@ -62,7 +58,13 @@ const Recommendations = () => {
         controls: true,
         responsive: true,
         techOrder: ["theta_hlsjs", "html5"],
-
+        sources: [
+            {
+                src: `https://media.thetavideoapi.com/${videoId}/master.m3u8`,
+                type: "application/vnd.apple.mpegurl",
+                label: "auto",
+            },
+        ],
         theta_hlsjs: {
             walletUrl: "wss://api-wallet-service.thetatoken.org/theta/ws",
             onWalletAccessToken: null,
@@ -85,29 +87,44 @@ const Recommendations = () => {
         adPlaying: false,
     });
 
+    const changePlayerSrc = (url) => {
+        if (videojsPlayer) {
+            videojsPlayer.src(
+                "https://media.thetavideoapi.com/video_naikps4fmw9zx40yyr2bpbkhpz/master.m3u8"
+            );
+        }
+    };
+
     const handlePlayerReady = (player) => {
+        setVideojsPlayer(player);
         playerRef.current = player;
 
-        player.playlist([
-            {
-                sources: [
-                    {
-                        src: `https://media.thetavideoapi.com/${videoId}/master.m3u8`,
-                    },
-                ],
-                poster: "http://localhost:8090/thumbnail-285c31bd-4ac9-40a0-8b2a-89be587daad0.jpg",
-            },
-            {
-                sources: [
-                    {
-                        src: `https://media.thetavideoapi.com/video_naikps4fmw9zx40yyr2bpbkhpz/master.m3u8`,
-                    },
-                ],
-                poster: "http://localhost:8090/thumbnail-56472734-3d70-42b4-b5f5-1b9d6f7a31b1.jpg",
-            },
-        ]);
+        player.on("ended", function () {
+            console.log("player ended");
+        });
 
-        player.playlist.autoadvance(0);
+        console.log("player", player);
+
+        // player.playlist([
+        //     {
+        //         sources: [
+        //             {
+        //                 src: `https://media.thetavideoapi.com/${videoId}/master.m3u8`,
+        //             },
+        //         ],
+        //         poster: "http://localhost:8090/thumbnail-285c31bd-4ac9-40a0-8b2a-89be587daad0.jpg",
+        //     },
+        //     {
+        //         sources: [
+        //             {
+        //                 src: `https://media.thetavideoapi.com/video_naikps4fmw9zx40yyr2bpbkhpz/master.m3u8`,
+        //             },
+        //         ],
+        //         poster: "http://localhost:8090/thumbnail-56472734-3d70-42b4-b5f5-1b9d6f7a31b1.jpg",
+        //     },
+        // ]);
+
+        // player.playlist.autoadvance(0);
 
         const requestAds = function () {
             player.trigger("adsready");
@@ -200,10 +217,24 @@ const Recommendations = () => {
                     {recommendations ? (
                         <>
                             <div className="py-5">
-                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                                <div
+                                    className="flex gap-5"
+                                    style={{
+                                        width: "75.6vw",
+                                        overflowX: "scroll",
+                                    }}
+                                >
                                     {recommendations.map((video) => (
                                         <div key={video._id}>
-                                            <div className="h-32 block relative w-full object-cover">
+                                            <div
+                                                onClick={() =>
+                                                    changePlayerSrc(
+                                                        video.videoUrl
+                                                    )
+                                                }
+                                                className="h-32 block relative w-full object-cover each-item cursor-pointer"
+                                                style={{ minWidth: "200px" }}
+                                            >
                                                 <Image
                                                     src={video.videoThumbnail}
                                                     loader={({ src }) =>
