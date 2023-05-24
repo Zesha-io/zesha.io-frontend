@@ -28,8 +28,8 @@ import dynamic from "next/dynamic";
 import "video.js/dist/video-js.css";
 import "@videojs/themes/dist/sea/index.css";
 import "videojs-contrib-ads/dist/videojs-contrib-ads.css";
-// import "videojs-preroll-v2/dist/videojs-preroll.css";
 import "./VideoJS.css";
+// import "videojs-preroll-v2/dist/videojs-preroll.css";
 
 export const VideoJS = (props) => {
     const videoRef = React.useRef(null);
