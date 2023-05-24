@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import SocialLoginBtns from "@/components/Buttons/SocialLoginBtns";
-import Lotie from "@/components/Lottie";
+import Lotie from "@/components/Lottie/Lottie";
 
 const Login = () => {
     return (

@@ -6,7 +6,7 @@ import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
-import Lotie from "@/components/Lottie";
+import Lotie from "@/components/Lottie/Lottie";
 import CreatorsAccordion from "@/components/Accordions/CreatorsAccordion";
 import Image from "next/image";
 
