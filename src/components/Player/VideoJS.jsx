@@ -28,7 +28,7 @@ import dynamic from "next/dynamic";
 import "video.js/dist/video-js.css";
 import "@videojs/themes/dist/sea/index.css";
 import "videojs-contrib-ads/dist/videojs-contrib-ads.css";
-import "@/components/Player/videojs.css";
+import styles from "./VideoJS.module.css";
 // import "videojs-preroll-v2/dist/videojs-preroll.css";
 
 export const VideoJS = (props) => {
