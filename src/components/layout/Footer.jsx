@@ -6,6 +6,7 @@ import React from "react";
 import ChromeIcon from "../Icons/ChromeIcon";
 
 const Footer = () => {
+    const currentYear = new Date().getFullYear();
     return (
         <>
             <div className="bg-[#071B34] w-full">
@@ -34,13 +35,10 @@ const Footer = () => {
                                     <Link href={"/"}>Extension</Link>
                                 </li>
                                 <li>
-                                    <Link href={"/"}>FAQs</Link>
-                                </li>
-                                <li>
                                     <Link href={"/creators"}>Creators</Link>
                                 </li>
                                 <li>
-                                    <Link href={"/"}>Advertise</Link>
+                                    <Link href={"https://forms.gle/dXkqhv8UhZvaCKRK9"} target={'_blank'}>Advertise</Link>
                                 </li>
                             </ul>
                         </div>
@@ -50,15 +48,12 @@ const Footer = () => {
                             </h4>
                             <ul className="space-y-2 text-white font-normal text-sm">
                                 <li>
-                                    <Link href={"/"}>
+                                    <Link href={"https://pauloladimeji.notion.site/Zesha-io-Terms-Conditions-684d9038a890429ea0a9ddd652d19dc4"} target={'_blank'}>
                                         Terms &amp; Conditions
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href={"/"}>Privacy Policy</Link>
-                                </li>
-                                <li>
-                                    <Link href={"/"}>Creator Terms</Link>
+                                    <Link href={"https://pauloladimeji.notion.site/Zesha-io-Privacy-Policy-c230556486bb42f8b5a37df1481e715b"} target={'_blank'}>Privacy Policy</Link>
                                 </li>
                             </ul>
                         </div>
@@ -78,7 +73,7 @@ const Footer = () => {
 
                     <div className="bottom-footer border-t border-[#96949458] pt-5">
                         <p className="text-[#D9D4D4]">
-                            Copyright &copy; by Zesha
+                            Copyright &copy; {currentYear} by Zesha
                         </p>
                     </div>
                 </div>

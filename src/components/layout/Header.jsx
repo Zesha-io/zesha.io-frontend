@@ -77,17 +77,10 @@ const Header = () => {
                         <div className="hidden lg:order-2 lg:block w-full lg:w-auto lg:text-center">
                             <div className="navbar-menu flex items-center justify-end gap-4  ">
                                 <Link
-                                    href="/extension"
+                                    href="/"
                                     className="block lg:inline-block mt-4 lg:mt-0 text-[#344054] hover:text-indigo-600 px-5"
                                 >
                                     Extension
-                                </Link>
-
-                                <Link
-                                    className="block lg:inline-block mt-4 lg:mt-0 text-[#344054] hover:text-indigo-600 px-5 "
-                                    href="/faqs"
-                                >
-                                    FAQs
                                 </Link>
 
                                 <Link
@@ -98,7 +91,7 @@ const Header = () => {
                                 </Link>
                                 <Link
                                     className="block lg:inline-block mt-4 lg:mt-0 text-[#344054] hover:text-indigo-600 px-5 "
-                                    href="#"
+                                    href={"https://forms.gle/dXkqhv8UhZvaCKRK9"} target={'_blank'}
                                 >
                                     Advertise
                                 </Link>
@@ -110,6 +103,12 @@ const Header = () => {
                                 </Link>
 
                                 <Link
+                                    href={`/individual/auth/signup`}
+                                    className="block lg:inline-block mt-4 lg:mt-0 text-white bg-[#046ED1] rounded-lg px-7 py-2 transition duration-300 ease"
+                                >
+                                    Sign Up
+                                </Link>
+                                {/* <Link
                                     href={`${
                                         pathname != "/"
                                             ? pathname == "/creators"
@@ -120,6 +119,13 @@ const Header = () => {
                                     className="block lg:inline-block mt-4 lg:mt-0 text-white bg-[#046ED1] rounded-lg px-7 py-2 transition duration-300 ease"
                                 >
                                     Sign Up
+                                </Link> */}
+
+                                <Link
+                                    href={`/creator/auth/signup`}
+                                    className="block lg:inline-block mt-4 lg:mt-0 text-[#046ED1] border border-[#046ED1] rounded-lg px-7 py-2 transition duration-300 ease"
+                                >
+                                    For Creators
                                 </Link>
                             </div>
                         </div>
