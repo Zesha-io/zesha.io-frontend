@@ -69,23 +69,24 @@ export default function UploadVideoForm() {
 
     useEffect(() => {
         //@Temp
-        if(thumbnail) setUploadProgress(100);
+        // if(thumbnail) setUploadProgress(100);
         //@EndTemp
-        // if (thumbnail && duration && size) {
-        //     uploadVideoToTheta(signedUrl);
 
-        //     setStatusText(
-        //         "We are finalizing your upload. Do not refresh this page"
-        //     );
-        // }
+        if (thumbnail && duration && size) {
+            uploadVideoToTheta(signedUrl);
+
+            setStatusText(
+                "We are finalizing your upload. Do not refresh this page"
+            );
+        }
     }, [thumbnail]);
 
-    //@Temp until Theta API is back online
-    // useEffect(() => {
-    //     if (videoId) {
-    //         checkTranscodingStatus(videoId);
-    //     }
-    // }, [videoId]);
+    //@Temp comment out until Theta API is back online
+    useEffect(() => {
+        if (videoId) {
+            checkTranscodingStatus(videoId);
+        }
+    }, [videoId]);
 
     useEffect(() => {
         if (uploadProgress === 100) {
@@ -339,7 +340,6 @@ export default function UploadVideoForm() {
         if (pathname.match("creator")) setRedirectPage("/creator");
         if (pathname.match("individual")) setRedirectPage("/individual");
     }, []);
-
 
     return (
         <div className="h-full w-full mb-6 py-6 ">
