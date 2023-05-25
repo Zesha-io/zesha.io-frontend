@@ -8,13 +8,23 @@ const ApexCharts = dynamic(() => import("react-apexcharts"), {
 });
 
 export default function VideoAnalyticChart({ data }) {
+    // console.log("data", data);
+
     const srs = [
         {
-            data: data,
+            data: data
+                ? data.map((item) => [[new Date().getTime(), 0]])
+                : [[new Date().getTime(), 0]],
         },
     ];
 
     const opt = {
+        series: [
+            {
+                name: "Video Analytics",
+                data: [[new Date().getTime(), 0]],
+            },
+        ],
         chart: {
             id: "area-datetime",
             type: "area",
@@ -32,13 +42,8 @@ export default function VideoAnalyticChart({ data }) {
         },
         xaxis: {
             type: "datetime",
-            min: new Date("01 Mar 2012").getTime(),
+            min: new Date("01 Mar 2023").getTime(),
             tickAmount: 6,
-        },
-        tooltip: {
-            x: {
-                format: "dd MMM yyyy",
-            },
         },
         fill: {
             type: "gradient",
@@ -51,57 +56,58 @@ export default function VideoAnalyticChart({ data }) {
         },
     };
 
-    const [series, setSeries] = useState(srs);
-    const [options, setOptions] = useState(opt);
+    // const [series, setSeries] = useState(srs);
+    // const [options, setOptions] = useState(opt);
     const [selection, setSelection] = useState("one_month");
-    const [timeline, setTimeline] = useState({ selection: "one_month" });
-    const [chart, setChart] = useState(null);
+    // const [timeline, setTimeline] = useState({ selection: "one_month" });
+    // const [chart, setChart] = useState(null);
 
-    useEffect(() => {
-        switch (timeline) {
-            case "one_month":
-                ApexCharts.exec(
-                    "area-datetime",
-                    "zoomX",
-                    new Date("28 Jan 2013").getTime(),
-                    new Date("27 Feb 2013").getTime()
-                );
-                break;
-            case "six_months":
-                ApexCharts.exec(
-                    "area-datetime",
-                    "zoomX",
-                    new Date("27 Sep 2012").getTime(),
-                    new Date("27 Feb 2013").getTime()
-                );
-                break;
-            case "one_year":
-                ApexCharts.exec(
-                    "area-datetime",
-                    "zoomX",
-                    new Date("27 Feb 2012").getTime(),
-                    new Date("27 Feb 2013").getTime()
-                );
-                break;
-            case "ytd":
-                ApexCharts.exec(
-                    "area-datetime",
-                    "zoomX",
-                    new Date("01 Jan 2013").getTime(),
-                    new Date("27 Feb 2013").getTime()
-                );
-                break;
-            case "all":
-                ApexCharts.exec(
-                    "area-datetime",
-                    "zoomX",
-                    new Date("23 Jan 2012").getTime(),
-                    new Date("27 Feb 2013").getTime()
-                );
-                break;
-            default:
-        }
-    }, [selection]);
+    // useEffect(() => {
+    //     return;
+    //     switch (timeline) {
+    //         case "one_month":
+    //             ApexCharts.exec(
+    //                 "area-datetime",
+    //                 "zoomX",
+    //                 new Date("28 Jan 2013").getTime(),
+    //                 new Date("27 Feb 2013").getTime()
+    //             );
+    //             break;
+    //         case "six_months":
+    //             ApexCharts.exec(
+    //                 "area-datetime",
+    //                 "zoomX",
+    //                 new Date("27 Sep 2012").getTime(),
+    //                 new Date("27 Feb 2013").getTime()
+    //             );
+    //             break;
+    //         case "one_year":
+    //             ApexCharts.exec(
+    //                 "area-datetime",
+    //                 "zoomX",
+    //                 new Date("27 Feb 2012").getTime(),
+    //                 new Date("27 Feb 2013").getTime()
+    //             );
+    //             break;
+    //         case "ytd":
+    //             ApexCharts.exec(
+    //                 "area-datetime",
+    //                 "zoomX",
+    //                 new Date("01 Jan 2013").getTime(),
+    //                 new Date("27 Feb 2013").getTime()
+    //             );
+    //             break;
+    //         case "all":
+    //             ApexCharts.exec(
+    //                 "area-datetime",
+    //                 "zoomX",
+    //                 new Date("23 Jan 2012").getTime(),
+    //                 new Date("27 Feb 2013").getTime()
+    //             );
+    //             break;
+    //         default:
+    //     }
+    // }, [selection]);
 
     const globalClass =
         "inline-block px-3 py-1 mr-2 bg-secondary text-white bg-[#046ED1] font-medium text-sm";
@@ -170,14 +176,15 @@ export default function VideoAnalyticChart({ data }) {
                 </button>
             </div>
 
-            {series && options ? (
+            {opt ? (
                 <div id="chart-timeline">
                     {typeof window !== undefined && (
                         <ApexCharts
-                            options={options}
-                            series={series}
+                            options={opt}
+                            series={opt.series}
                             type="area"
                             height={350}
+                            width={"100%"}
                         />
                     )}
                 </div>

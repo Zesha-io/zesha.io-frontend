@@ -24,6 +24,7 @@ const Dashboard = () => {
 
     const [analytics, setAnalytics] = useState(null);
     const [tfuelUsd, setTfuelUsd] = useState(0);
+    const [earningHistory, setEarningHistory] = useState(null);
 
     const getAnalytics = async () => {
         const res = await fetch(
@@ -46,6 +47,18 @@ const Dashboard = () => {
         }
     };
 
+    const getEarningHistory = async () => {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/users/${account.userId}/earnings`
+        );
+
+        const data = await res.json();
+
+        if (res.ok) {
+            setEarningHistory(data.data);
+        }
+    };
+
     const getTfuelPrice = async () => {
         const res2 = await fetch(
             "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=TFUEL&tsyms=USD"
@@ -63,6 +76,7 @@ const Dashboard = () => {
     useEffect(() => {
         if (analytics?.walletbalance) {
             getTfuelPrice();
+            getEarningHistory();
         }
     }, [analytics]);
 
@@ -71,6 +85,16 @@ const Dashboard = () => {
             getAnalytics();
         }
     }, [account]);
+
+    const toMinutes = (seconds) => {
+        return Math.floor(seconds / 60);
+    };
+
+    const toDate = (date) => {
+        const d = new Date(date);
+
+        return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+    };
 
     return (
         <Layout>
@@ -231,6 +255,75 @@ const Dashboard = () => {
                                 </div>
                             </Tabs>
                         </div>
+                    </div>
+                    <div>
+                        {earningHistory && (
+                            <>
+                                <div className="flex items-center justify-between mb-4">
+                                    <h4 className="text-[#344054] text-base font-medium">
+                                        Transaction history
+                                    </h4>
+                                </div>
+
+                                <div className="bg-white rounded-lg">
+                                    <div className="px-6 divide-y divide-[#EEEFF2] py-6">
+                                        {earningHistory.map(
+                                            (earning, index) => (
+                                                <div
+                                                    className="flex items-center justify-start gap-3 w-full py-4 "
+                                                    key={earning.id}
+                                                >
+                                                    <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
+                                                        <VideoPlayIcon />
+                                                    </span>
+
+                                                    <div className="flex items-start justify-start flex-col w-full">
+                                                        <div className="flex items-center justify-between w-full">
+                                                            <h5 className="text-[#344054] text-sm font-medium">
+                                                                Someone viewed{" "}
+                                                                {
+                                                                    earning
+                                                                        ?.video
+                                                                        ?.title
+                                                                }
+                                                                {toMinutes(
+                                                                    earning
+                                                                        .video
+                                                                        .length
+                                                                )}{" "}
+                                                                mins
+                                                            </h5>
+                                                            <span className="text-[#344054] text-sm font-medium">
+                                                                {
+                                                                    earning.creatorAmount
+                                                                }{" "}
+                                                                TFUEL
+                                                            </span>
+                                                        </div>
+
+                                                        <div className="flex items-center justify-between w-full">
+                                                            <span className="text-[#7F8691] text-xs">
+                                                                {toDate(
+                                                                    earning
+                                                                        ?.video
+                                                                        ?.createdAt
+                                                                )}
+                                                            </span>
+                                                            <span className="text-[#7F8691] text-xs font-normal">
+                                                                ~$
+                                                                {
+                                                                    earning.creatorAmountUSD
+                                                                }
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        )}
+                                    </div>
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
             )}

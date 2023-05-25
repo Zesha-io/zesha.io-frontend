@@ -24,6 +24,7 @@ const Dashboard = () => {
 
     const [analytics, setAnalytics] = useState(null);
     const [tfuelUsd, setTfuelUsd] = useState(0);
+    const [earningHistory, setEarningHistory] = useState(null);
 
     const getAnalytics = async () => {
         const res = await fetch(
@@ -42,6 +43,18 @@ const Dashboard = () => {
                 totalviewerearningsgroupedbydate: [],
                 walletbalance: 0,
             });
+        }
+    };
+
+    const getEarningHistory = async () => {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/users/${account.userId}/earnings`
+        );
+
+        const data = await res.json();
+
+        if (res.ok) {
+            setEarningHistory(data.data);
         }
     };
 
@@ -68,8 +81,19 @@ const Dashboard = () => {
     useEffect(() => {
         if (account) {
             getAnalytics();
+            getEarningHistory();
         }
     }, [account]);
+
+    const toMinutes = (seconds) => {
+        return Math.floor(seconds / 60);
+    };
+
+    const toDate = (date) => {
+        const d = new Date(date);
+
+        return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+    };
 
     return (
         <Layout>
@@ -113,12 +137,14 @@ const Dashboard = () => {
                                                 0}{" "}
                                             <span className="text-[#7F8691] text-sm font-normal">
                                                 ~ $
-                                                {analytics?.totalviewerearnings *
-                                                    tfuelUsd}
+                                                {Number(
+                                                    analytics?.totalviewerearnings *
+                                                        tfuelUsd
+                                                ).toFixed(2)}
                                             </span>
                                         </h5>
                                         <span className="text-[#7F8691] text-sm">
-                                            Wallet balance
+                                            Total earnings
                                         </span>
                                     </div>
                                 </div>
@@ -236,68 +262,69 @@ const Dashboard = () => {
                         </div>
                     </div>
 
-                    <div>
-                        <div className="flex items-center justify-between mb-4">
-                        <h4 className="text-[#344054] text-base font-medium">
-                            Transaction history
-                        </h4>
-
-                    </div>
-
-                        <div className="bg-white rounded-lg">
-                        <div className="px-6 divide-y divide-[#EEEFF2] py-6">
-                            <div className="flex items-center justify-start gap-3 w-full py-4 ">
-                                <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
-                                    <VideoPlayIcon />
-                                </span>
-                                <div className="flex items-start justify-start flex-col w-full">
-                                    <div className="flex items-center justify-between w-full">
-                                        <h5 className="text-[#344054] text-sm font-medium">
-                                            You viewed 2 videos for 30 mins
-                                        </h5>
-                                        <span className="text-[#344054] text-sm font-medium">
-                                            24 TFUEL
-                                        </span>
-                                    </div>
-
-                                    <div className="flex items-center justify-between w-full">
-                                        <span className="text-[#7F8691] text-xs">
-                                            Jan 05, 12:50
-                                        </span>
-                                        <span className="text-[#7F8691] text-xs font-normal">
-                                            ~$12
-                                        </span>
-                                    </div>
-                                </div>
+                    {earningHistory && (
+                        <div>
+                            <div className="flex items-center justify-between mb-4">
+                                <h4 className="text-[#344054] text-base font-medium">
+                                    Transaction history
+                                </h4>
                             </div>
 
-                            <div className="flex items-center justify-start gap-3 w-full py-4 ">
-                                <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
-                                    <MoneyIcon />
-                                </span>
-                                <div className="flex items-start justify-start flex-col w-full">
-                                    <div className="flex items-center justify-between w-full">
-                                        <h5 className="text-[#344054] text-sm font-medium">
-                                            You tipped The Incessant{" "}
-                                        </h5>
-                                        <span className="text-[#344054] text-sm font-medium">
-                                            2 TFUEL
-                                        </span>
-                                    </div>
+                            <div className="bg-white rounded-lg">
+                                <div className="px-6 divide-y divide-[#EEEFF2] py-6">
+                                    {earningHistory &&
+                                        earningHistory.map((earning, index) => (
+                                            <div
+                                                className="flex items-center justify-start gap-3 w-full py-4 "
+                                                key={earning.id}
+                                            >
+                                                <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
+                                                    <VideoPlayIcon />
+                                                </span>
 
-                                    <div className="flex items-center justify-between w-full">
-                                        <span className="text-[#7F8691] text-xs">
-                                            Jan 05, 12:50
-                                        </span>
-                                        <span className="text-[#7F8691] text-xs font-normal">
-                                            ~$12
-                                        </span>
-                                    </div>
+                                                <div className="flex items-start justify-start flex-col w-full">
+                                                    <div className="flex items-center justify-between w-full">
+                                                        <h5 className="text-[#344054] text-sm font-medium">
+                                                            You viewed{" "}
+                                                            {
+                                                                earning?.video
+                                                                    ?.title
+                                                            }
+                                                            {toMinutes(
+                                                                earning.video
+                                                                    .length
+                                                            )}{" "}
+                                                            mins
+                                                        </h5>
+                                                        <span className="text-[#344054] text-sm font-medium">
+                                                            {
+                                                                earning.viewerAmount
+                                                            }{" "}
+                                                            TFUEL
+                                                        </span>
+                                                    </div>
+
+                                                    <div className="flex items-center justify-between w-full">
+                                                        <span className="text-[#7F8691] text-xs">
+                                                            {toDate(
+                                                                earning?.video
+                                                                    ?.createdAt
+                                                            )}
+                                                        </span>
+                                                        <span className="text-[#7F8691] text-xs font-normal">
+                                                            ~$
+                                                            {
+                                                                earning.viewerAmountUSD
+                                                            }
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    </div>
+                    )}
                 </div>
             )}
         </Layout>

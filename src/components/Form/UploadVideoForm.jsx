@@ -11,9 +11,8 @@ import Loader from "@/components/Utils/Loader";
 
 export default function UploadVideoForm() {
     const [formData, setFormData] = useState({
-        title: "How I use chicken manure to power my life",
-        description:
-            "Using biogas, he powers his home, car and boiler in order to shower and refill his fish pond. He showed us how and why he doesn't just use his chickens for eggs.",
+        title: "", //How I use chicken manure to power my life
+        description: "", //Using biogas, he powers his home, car and boiler in order to shower and refill his fish pond. He showed us how and why he doesn't just use his chickens for eggs.
         nft_collection: "",
     });
 
