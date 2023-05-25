@@ -3,6 +3,12 @@ import Image from "next/image";
 import SocialLoginBtns from "@/components/Buttons/SocialLoginBtns";
 import Lotie from "@/components/Lottie/Lottie";
 
+export async function generateMetadata({ params }) {
+    return {
+        title: "Creator Login",
+    };
+}
+
 /* eslint-disable react/no-unescaped-entities */
 const Login = () => {
     return (

@@ -1,7 +1,12 @@
-"use client";
 import SupportAccordion from "@/components/Accordions/SupportAccordion";
 import Layout from "@/components/layout/Layout";
 import Link from "next/link";
+
+export async function generateMetadata({ params }) {
+    return {
+        title: "Zesha - FAQs & Support",
+    };
+}
 
 export default function Support() {
     return (
@@ -57,7 +62,13 @@ export default function Support() {
                             </h1>
                         </div>
 
-                        <Link href={'https://www.notion.so/Report-a-Problem-17f2f2662a31409184bc2a3638291b81?pvs=4'} target='_blank' className="rounded-lg px-5 py-4 text-md bg-[#046ED1] text-white border border-[#046ED1]">
+                        <Link
+                            href={
+                                "https://www.notion.so/Report-a-Problem-17f2f2662a31409184bc2a3638291b81?pvs=4"
+                            }
+                            target="_blank"
+                            className="rounded-lg px-5 py-4 text-md bg-[#046ED1] text-white border border-[#046ED1]"
+                        >
                             Suggest a feature
                         </Link>
                     </div>
@@ -69,7 +80,13 @@ export default function Support() {
                             </h1>
                         </div>
 
-                        <Link href={'https://www.notion.so/Report-a-Problem-17f2f2662a31409184bc2a3638291b81?pvs=4'} target='_blank' className="rounded-lg px-5 py-4 text-md bg-[#046ED1] text-white border border-[#046ED1]">
+                        <Link
+                            href={
+                                "https://www.notion.so/Report-a-Problem-17f2f2662a31409184bc2a3638291b81?pvs=4"
+                            }
+                            target="_blank"
+                            className="rounded-lg px-5 py-4 text-md bg-[#046ED1] text-white border border-[#046ED1]"
+                        >
                             Report a problem
                         </Link>
                     </div>

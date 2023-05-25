@@ -5,6 +5,12 @@ import Image from "next/image";
 import SocialLoginBtns from "@/components/Buttons/SocialLoginBtns";
 import Lotie from "@/components/Lottie/Lottie";
 
+export async function generateMetadata({ params }) {
+    return {
+        title: "Viewer Login",
+    };
+}
+
 const Login = () => {
     return (
         <>
