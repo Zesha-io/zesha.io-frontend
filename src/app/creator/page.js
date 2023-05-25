@@ -69,7 +69,7 @@ const Dashboard = () => {
         if (res2.ok) {
             const price = data2.RAW.TFUEL.USD.PRICE;
 
-            setTfuelUsd(price * analytics.walletbalance);
+            setTfuelUsd(price);
         }
     };
 
@@ -119,7 +119,11 @@ const Dashboard = () => {
                                             {analytics?.walletbalance || 0}{" "}
                                             TFUEL{" "}
                                             <span className="text-[#7F8691] text-sm font-normal">
-                                                ~ ${tfuelUsd.toFixed(2)}
+                                                ~ $
+                                                {Number(
+                                                    tfuelUsd *
+                                                        analytics?.walletbalance
+                                                ).toFixed(3)}
                                             </span>
                                         </h5>
                                         <span className="text-[#7F8691] text-sm">
@@ -140,8 +144,10 @@ const Dashboard = () => {
                                             TFUEL{" "}
                                             <span className="text-[#7F8691] text-sm font-normal">
                                                 ~ $
-                                                {analytics?.totalcreatorearnings *
-                                                    tfuelUsd}
+                                                {Number(
+                                                    analytics?.totalcreatorearnings *
+                                                        tfuelUsd
+                                                ).toFixed(3)}
                                             </span>
                                         </h5>
                                         <span className="text-[#7F8691] text-sm">
@@ -199,9 +205,10 @@ const Dashboard = () => {
                                                         <VideoTimeIcon />
                                                     </span>
                                                     <b className="text-lg">
-                                                        {
-                                                            analytics.totaltimewatched
-                                                        }
+                                                        {Number(
+                                                            analytics.totaltimewatched /
+                                                                3.6e6
+                                                        ).toFixed(3)}
                                                     </b>{" "}
                                                     Hours watched
                                                 </button>
@@ -213,9 +220,10 @@ const Dashboard = () => {
                                                     </span>
                                                     <b className="text-lg">
                                                         $
-                                                        {
-                                                            analytics.totalcreatorearnings
-                                                        }{" "}
+                                                        {Number(
+                                                            analytics.totalcreatorearnings *
+                                                                tfuelUsd
+                                                        ).toFixed(1)}{" "}
                                                     </b>
                                                     Earnings
                                                 </button>

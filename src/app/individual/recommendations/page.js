@@ -181,7 +181,7 @@ const Recommendations = () => {
     const payForAds = async (player, src) => {
         const payload = {
             watchedAt: new Date().toISOString(),
-            watchedDuration: player.duration(),
+            watchDuration: player.duration(),
             exitedAt: new Date().toISOString(),
             viewerId: account.userId,
         };
