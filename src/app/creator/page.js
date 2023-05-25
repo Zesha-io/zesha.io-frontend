@@ -41,7 +41,9 @@ const Dashboard = () => {
                 totalcreatorviewers: 0,
                 totaltimewatched: 0,
                 totalcreatorearnings: 0,
-                totalcreatorearningsgroupedbydate: [],
+                creatorviewsgroupedbydate: [],
+                creatortimewatchedgroupedbydate: [],
+                creatorearningsgroupedbydate: [],
                 walletbalance: 0.0,
             });
         }
@@ -94,6 +96,20 @@ const Dashboard = () => {
         const d = new Date(date);
 
         return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+    };
+
+    const convertTimeToVideoTime = (seconds) => {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const remainingSeconds = Math.ceil(seconds % 60);
+
+        return (
+            hours
+                ? [hours, minutes, remainingSeconds]
+                : [minutes, remainingSeconds]
+        )
+            .map((value) => value.toString().padStart(2, "0"))
+            .join(":");
     };
 
     return (
@@ -196,7 +212,9 @@ const Dashboard = () => {
                                                             analytics.totalcreatorviews
                                                         }
                                                     </b>{" "}
-                                                    Views
+                                                    <span className="text-xs">
+                                                        Views{" "}
+                                                    </span>
                                                 </button>
                                             </Tab>
                                             <Tab className="w-full">
@@ -205,12 +223,13 @@ const Dashboard = () => {
                                                         <VideoTimeIcon />
                                                     </span>
                                                     <b className="text-lg">
-                                                        {Number(
-                                                            analytics.totaltimewatched /
-                                                                60000
-                                                        ).toFixed(3)}
+                                                        {convertTimeToVideoTime(
+                                                            analytics.totaltimewatched
+                                                        )}
                                                     </b>{" "}
-                                                    Hours watched
+                                                    <span className="text-xs">
+                                                        Time consumed{" "}
+                                                    </span>
                                                 </button>
                                             </Tab>
                                             <Tab className="w-full">
@@ -225,7 +244,9 @@ const Dashboard = () => {
                                                                 tfuelUsd
                                                         ).toFixed(1)}{" "}
                                                     </b>
-                                                    Earnings
+                                                    <span className="text-xs">
+                                                        Earnings{" "}
+                                                    </span>
                                                 </button>
                                             </Tab>
                                         </TabList>
@@ -236,7 +257,7 @@ const Dashboard = () => {
                                             <div>
                                                 <VideoAnalyticChart
                                                     data={
-                                                        analytics.totalcreatorearningsgroupedbydate
+                                                        analytics.creatorviewsgroupedbydate
                                                     }
                                                 />
                                             </div>
@@ -245,7 +266,7 @@ const Dashboard = () => {
                                             <div>
                                                 <VideoAnalyticChart
                                                     data={
-                                                        analytics.totalcreatorearningsgroupedbydate
+                                                        analytics.creatortimewatchedgroupedbydate
                                                     }
                                                 />
                                             </div>
@@ -254,7 +275,7 @@ const Dashboard = () => {
                                             <div>
                                                 <VideoAnalyticChart
                                                     data={
-                                                        analytics.totalcreatorearningsgroupedbydate
+                                                        analytics.creatorearningsgroupedbydate
                                                     }
                                                 />
                                             </div>

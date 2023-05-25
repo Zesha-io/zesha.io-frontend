@@ -14,6 +14,18 @@ import ThumbsUpIcon from "@/components/Icons/ThumbsUpIcon";
 
 import VideoAnalyticChart from "@/components/Charts/VideoAnalyticChart";
 
+const convertTimeToVideoTime = (seconds) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = Math.ceil(seconds % 60);
+
+    return (
+        hours ? [hours, minutes, remainingSeconds] : [minutes, remainingSeconds]
+    )
+        .map((value) => value.toString().padStart(2, "0"))
+        .join(":");
+};
+
 export default function VideoAnalytics({ analytics }) {
     return (
         <div className="h-full pb-24 px-4 md:px-8 py-10 bg-white mb-4 rounded-lg">
@@ -66,12 +78,12 @@ export default function VideoAnalytics({ analytics }) {
                                                         <VideoTimeIcon />
                                                     </span>
                                                     <b className="text-lg">
-                                                        {
+                                                        {convertTimeToVideoTime(
                                                             analytics?.totaltimewatched
-                                                        }
+                                                        )}
                                                     </b>{" "}
                                                     <span className="text-xs">
-                                                        Hours watched
+                                                        Time consumed
                                                     </span>
                                                 </button>
                                             </Tab>

@@ -8,21 +8,13 @@ const ApexCharts = dynamic(() => import("react-apexcharts"), {
 });
 
 export default function VideoAnalyticChart({ data }) {
-    // console.log("data", data);
-
-    const srs = [
-        {
-            data: data
-                ? data.map((item) => [[new Date().getTime(), 0]])
-                : [[new Date().getTime(), 0]],
-        },
-    ];
+    console.log("data", data);
 
     const opt = {
         series: [
             {
                 name: "Video Analytics",
-                data: [[new Date().getTime(), 0]],
+                data: data ? data : [[new Date().getTime(), 0]],
             },
         ],
         chart: {

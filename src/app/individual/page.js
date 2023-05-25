@@ -40,10 +40,26 @@ const Dashboard = () => {
                 totalviewerviews: 0,
                 totaltimewatched: 0,
                 totalviewerearnings: 0,
-                totalviewerearningsgroupedbydate: [],
+                viewerviewsgroupedbydate: [],
+                viewertimewatchedgroupedbydate: [],
+                viewerearningsgroupedbydate: [],
                 walletbalance: 0,
             });
         }
+    };
+
+    const convertTimeToVideoTime = (seconds) => {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const remainingSeconds = Math.ceil(seconds % 60);
+
+        return (
+            hours
+                ? [hours, minutes, remainingSeconds]
+                : [minutes, remainingSeconds]
+        )
+            .map((value) => value.toString().padStart(2, "0"))
+            .join(":");
     };
 
     const getEarningHistory = async () => {
@@ -188,7 +204,7 @@ const Dashboard = () => {
                                                             analytics.totalviewerviews
                                                         }
                                                     </b>{" "}
-                                                    <span className="text-sm">
+                                                    <span className="text-xs">
                                                         Views
                                                     </span>
                                                 </button>
@@ -200,13 +216,12 @@ const Dashboard = () => {
                                                     </span>
                                                     <b className="text-lg">
                                                         {" "}
-                                                        {Number(
-                                                            analytics.totaltimewatched /
-                                                                60000
-                                                        ).toFixed(3)}
+                                                        {convertTimeToVideoTime(
+                                                            analytics.totaltimewatched
+                                                        )}
                                                     </b>{" "}
-                                                    <span className="text-sm">
-                                                        Hours watched
+                                                    <span className="text-xs">
+                                                        Time Spent
                                                     </span>
                                                 </button>
                                             </Tab>
@@ -221,7 +236,7 @@ const Dashboard = () => {
                                                             analytics.totalviewerearnings
                                                         }{" "}
                                                     </b>
-                                                    <span className="text-sm">
+                                                    <span className="text-xs">
                                                         Earnings
                                                     </span>
                                                 </button>
@@ -234,7 +249,7 @@ const Dashboard = () => {
                                             <div>
                                                 <VideoAnalyticChart
                                                     data={
-                                                        analytics.totalviewerearningsgroupedbydate
+                                                        analytics.viewerviewsgroupedbydate
                                                     }
                                                 />
                                             </div>
@@ -243,7 +258,7 @@ const Dashboard = () => {
                                             <div>
                                                 <VideoAnalyticChart
                                                     data={
-                                                        analytics.totalviewerearningsgroupedbydate
+                                                        analytics.viewertimewatchedgroupedbydate
                                                     }
                                                 />
                                             </div>
@@ -252,7 +267,7 @@ const Dashboard = () => {
                                             <div>
                                                 <VideoAnalyticChart
                                                     data={
-                                                        analytics.totalviewerearningsgroupedbydate
+                                                        analytics.viewerearningsgroupedbydate
                                                     }
                                                 />
                                             </div>
