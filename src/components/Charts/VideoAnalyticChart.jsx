@@ -8,7 +8,6 @@ const ApexCharts = dynamic(() => import("react-apexcharts"), {
 });
 
 export default function VideoAnalyticChart({ data }) {
-    console.log("data", data);
 
     const opt = {
         series: [
