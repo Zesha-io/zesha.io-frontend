@@ -70,21 +70,37 @@ export default function DotsDropdown({ video }) {
         setAnchorEl(null);
     };
 
-    const handleDelete = () => {
-        console.log("deleting...");
+    const handleDelete = async () => {
+        // console.log("deleting...");
         // alert(item.name);
         // console.log(item.id, 'item.id');
 
         // return;
-        const index = VideoData.findIndex((x) => x.id == video.id);
-        if (index !== -1) {
-            ScreenData.splice(index, 1);
-            console.log("deleted...");
-            // console.log(ScreenData, 'ScreenData');
-            handleClose();
-            router.push("/");
-        }
+        // const index = VideoData.findIndex((x) => x.id == video.id);
+        // if (index !== -1) {
+        //     ScreenData.splice(index, 1);
+        //     console.log("deleted...");
+        //     // console.log(ScreenData, 'ScreenData');
+        //     handleClose();
+        //     router.push("/");
+        // }
+
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/videos/${video._id}`,
+            {
+                method: "DELETE",
+            }
+        );
+
+        await res.json();
+
+        if (!res.ok) return;
+
+        handleClose();
+
+        window.location.reload();
     };
+
     const handleEdit = () => {
         console.log("going to edit...");
         router.push(`/creator/videos/${video?.id}/edit`);
@@ -156,7 +172,7 @@ export default function DotsDropdown({ video }) {
 
                 <ConfirmDeleteModal
                     show={confirmDeleteModal}
-                    dismiss={handleConfirmDeleteModal}
+                    dismiss={handleDelete}
                     item={video}
                 />
                 <ShareLinkModal

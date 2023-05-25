@@ -39,7 +39,13 @@ export default async function Videos() {
         return `${d.getDate()} ${month} ${d.getFullYear()}`;
     };
 
-    console.log(VideoData);
+    const onDeleteVideo = async (id) => {
+        const index = VideoData.findIndex((x) => x.id == id);
+        if (index !== -1) {
+            VideoData.splice(index, 1);
+        }
+    };
+
     return (
         <Layout>
             <div className="pb-20">

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }) {
     return {
-        title: "Zesha - FAQs & Support",
+        title: "FAQs & Support",
     };
 }
 
