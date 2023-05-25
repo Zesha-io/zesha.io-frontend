@@ -200,9 +200,10 @@ const Dashboard = () => {
                                                     </span>
                                                     <b className="text-lg">
                                                         {" "}
-                                                        {
-                                                            analytics.totaltimewatched
-                                                        }
+                                                        {Number(
+                                                            analytics.totaltimewatched /
+                                                                60000
+                                                        ).toFixed(3)}
                                                     </b>{" "}
                                                     <span className="text-sm">
                                                         Hours watched

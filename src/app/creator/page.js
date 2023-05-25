@@ -207,7 +207,7 @@ const Dashboard = () => {
                                                     <b className="text-lg">
                                                         {Number(
                                                             analytics.totaltimewatched /
-                                                                3.6e6
+                                                                60000
                                                         ).toFixed(3)}
                                                     </b>{" "}
                                                     Hours watched
