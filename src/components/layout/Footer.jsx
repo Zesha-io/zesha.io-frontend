@@ -11,8 +11,8 @@ const Footer = () => {
         <>
             <div className="bg-[#071B34] w-full">
                 <div className="max-w-7xl container mx-auto px-6 py-8">
-                    <div className="top-footer grid grid-cols-5 py-12">
-                        <div className="col-span-2">
+                    <div className="top-footer grid grid-cols-1 md:grid-cols-5 py-12 gap-y-5">
+                        <div className="col-span-1 md:col-span-2">
                             <Link
                                 href="/"
                                 className="text-xl text-white font-semibold font-heading"
@@ -20,7 +20,7 @@ const Footer = () => {
                                 <Image
                                     src={"/images/Logo-white.svg"}
                                     alt={"logo"}
-                                    width={100}
+                                    width={130}
                                     height={100}
                                     priority
                                 />
