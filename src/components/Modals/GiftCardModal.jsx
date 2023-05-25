@@ -63,8 +63,6 @@ const GiftCardModal = ({ show, dismiss, max, tfuelUsd }) => {
 
             let signer = new ethers.Wallet(privateKey, p);
 
-            console.log(privateKey);
-
             const tx = await signer.sendTransaction({
                 to: payout.address,
                 value: ethers.utils.parseEther(payout.amount.toString()),

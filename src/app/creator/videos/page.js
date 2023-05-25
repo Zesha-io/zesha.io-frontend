@@ -3,6 +3,9 @@ import DotsDropdown from "@/components/Dropdowns/DotsDropdown";
 import ThumbsDownIcon from "@/components/Icons/ThumbsDownIcon";
 import ThumbsUpIcon from "@/components/Icons/ThumbsUpIcon";
 import Layout from "@/components/CreatorLayout/Layout";
+import VideoAddIcon from "@/components/Icons/VideoAddIcon";
+import EmptyState from "@/components/EmptyState";
+
 import { cookies } from "next/headers";
 
 export default async function Videos() {
@@ -48,162 +51,168 @@ export default async function Videos() {
 
     return (
         <Layout>
-            <div className="pb-20">
-                <div className="grow py-2 mb-3">
-                    <h1 className="text-xl font-medium">Videos</h1>
-                    <p className="text-[#7F8691] text-base">
-                        All your uploaded videos
-                    </p>
-                </div>
+            {VideoData.length ? (
+                <div className="pb-20">
+                    <div className="grow py-2 mb-3">
+                        <h1 className="text-xl font-medium">Videos</h1>
+                        <p className="text-[#7F8691] text-base">
+                            All your uploaded videos
+                        </p>
+                    </div>
 
-                <div>
-                    <div className="my-3 w-full space-y-4 md:space-y-0 bg-white">
-                        <div className=" overflow-x-auto ">
-                            <table className="max-w-full w-full leading-normal table-auto overflow-x-auto relative order-table ">
-                                {/* <div className="inline-block min-w-full table-auto "> */}
-                                <thead className="bg-neutral50 font-semibold ">
-                                    <tr>
-                                        <th
-                                            scope="col"
-                                            className="px-5 py-3  border-b border-gray-200 text-[#667085] text-left text-sm whitespace-nowrap flex-nowrap"
-                                        >
-                                            Title
-                                        </th>
+                    <div>
+                        <div className="my-3 w-full space-y-4 md:space-y-0 bg-white">
+                            <div className=" overflow-x-auto ">
+                                <table className="max-w-full w-full leading-normal table-auto overflow-x-auto relative order-table ">
+                                    {/* <div className="inline-block min-w-full table-auto "> */}
+                                    <thead className="bg-neutral50 font-semibold ">
+                                        <tr>
+                                            <th
+                                                scope="col"
+                                                className="px-5 py-3  border-b border-gray-200 text-[#667085] text-left text-sm whitespace-nowrap flex-nowrap"
+                                            >
+                                                Title
+                                            </th>
 
-                                        <th
-                                            scope="col"
-                                            className="px-5 py-3 border-b border-gray-200 text-[#667085] text-left text-sm  whitespace-nowrap flex-nowrap"
-                                        >
-                                            Status
-                                        </th>
+                                            <th
+                                                scope="col"
+                                                className="px-5 py-3 border-b border-gray-200 text-[#667085] text-left text-sm  whitespace-nowrap flex-nowrap"
+                                            >
+                                                Status
+                                            </th>
 
-                                        <th
-                                            scope="col"
-                                            className="px-5 py-3 border-b border-gray-200 text-[#667085] text-left text-sm  whitespace-nowrap flex-nowrap"
-                                        >
-                                            Date uploaded
-                                        </th>
+                                            <th
+                                                scope="col"
+                                                className="px-5 py-3 border-b border-gray-200 text-[#667085] text-left text-sm  whitespace-nowrap flex-nowrap"
+                                            >
+                                                Date uploaded
+                                            </th>
 
-                                        <th
-                                            scope="col"
-                                            className="px-5 py-3 border-b border-gray-200 text-[#667085] text-left text-sm whitespace-nowrap flex-nowrap"
-                                        >
-                                            Views
-                                        </th>
+                                            <th
+                                                scope="col"
+                                                className="px-5 py-3 border-b border-gray-200 text-[#667085] text-left text-sm whitespace-nowrap flex-nowrap"
+                                            >
+                                                Views
+                                            </th>
 
-                                        <th
-                                            scope="col"
-                                            className="px-5 py-3 border-b border-gray-200 text-[#667085]  text-left text-sm  whitespace-nowrap flex-nowrap"
-                                        >
-                                            Earnings ($)
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            className="px-5 py-3 border-b border-gray-200 text-[#667085]  text-left text-sm whitespace-nowrap flex-nowrap"
-                                        >
-                                            Tips ($)
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            className="px-5 py-3 border-b border-gray-200 text-[#667085]  text-left text-sm whitespace-nowrap flex-nowrap"
-                                        >
-                                            Likes (vs Dislikes)
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            className="px-5 py-3 border-b border-gray-200 text-[#667085]  text-left text-sm whitespace-nowrap flex-nowrap"
-                                        >
-                                            Actions
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-gray-20">
-                                    {VideoData.map((video, i) => {
-                                        return (
-                                            <tr key={video.id} id={video.id}>
-                                                <td className="px-5 py-5  text-sm whitespace-nowrap inline-flex items-center gap-2">
-                                                    <img
-                                                        src={
-                                                            video.videoThumbnail
-                                                        }
-                                                        width={80}
-                                                        height={50}
-                                                        alt=""
-                                                        className="rounded-lg"
-                                                    />
-                                                    <p className="text-[#101828] font-medium">
-                                                        {video.title}
-                                                    </p>
-                                                </td>
-                                                <td className="px-5 py-5 text-sm">
-                                                    <div className="relative font-normal inline-block leading-tight ">
-                                                        <span
-                                                            className={`text-xs px-2 py-1 rounded-2xl ${
-                                                                video.publishStatus !=
-                                                                "PUBLISHED"
-                                                                    ? "text-[#344054] bg-[#EBECED]"
-                                                                    : "text-[#175CD3] bg-[#EFF8FF]"
-                                                            }`}
-                                                        >
-                                                            {
-                                                                video.publishStatus
+                                            <th
+                                                scope="col"
+                                                className="px-5 py-3 border-b border-gray-200 text-[#667085]  text-left text-sm  whitespace-nowrap flex-nowrap"
+                                            >
+                                                Earnings ($)
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                className="px-5 py-3 border-b border-gray-200 text-[#667085]  text-left text-sm whitespace-nowrap flex-nowrap"
+                                            >
+                                                Tips ($)
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                className="px-5 py-3 border-b border-gray-200 text-[#667085]  text-left text-sm whitespace-nowrap flex-nowrap"
+                                            >
+                                                Likes (vs Dislikes)
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                className="px-5 py-3 border-b border-gray-200 text-[#667085]  text-left text-sm whitespace-nowrap flex-nowrap"
+                                            >
+                                                Actions
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-20">
+                                        {VideoData.map((video, i) => {
+                                            return (
+                                                <tr
+                                                    key={video.id}
+                                                    id={video.id}
+                                                >
+                                                    <td className="px-5 py-5  text-sm whitespace-nowrap inline-flex items-center gap-2">
+                                                        <img
+                                                            src={
+                                                                video.videoThumbnail
                                                             }
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                                <td className="px-5 py-5  text-sm">
-                                                    <p>
-                                                        {dateFormat(
-                                                            video.createdAt
-                                                        )}
-                                                    </p>
-                                                </td>
-                                                <td className="px-5 py-5  text-sm">
-                                                    <p>
-                                                        {video?.analytics
-                                                            ?.totalvideoviews ||
-                                                            0}
-                                                    </p>
-                                                </td>
-                                                <td className="px-5 py-5  text-sm">
-                                                    <p>
-                                                        {video?.analytics
-                                                            ?.creatorearnings ||
-                                                            0}
-                                                    </p>
-                                                </td>
-                                                <td className="px-5 py-5  text-sm">
-                                                    <p>{0}</p>
-                                                </td>
-                                                <td className="px-5 py-5  text-sm">
-                                                    <div className="flex items-center gap-3">
-                                                        <span className="inline-flex  items-center gap-1">
-                                                            <ThumbsUpIcon />{" "}
+                                                            width={80}
+                                                            height={50}
+                                                            alt=""
+                                                            className="rounded-lg"
+                                                        />
+                                                        <p className="text-[#101828] font-medium">
+                                                            {video.title}
+                                                        </p>
+                                                    </td>
+                                                    <td className="px-5 py-5 text-sm">
+                                                        <div className="relative font-normal inline-block leading-tight ">
+                                                            <span
+                                                                className={`text-xs px-2 py-1 rounded-2xl ${
+                                                                    video.publishStatus !=
+                                                                    "PUBLISHED"
+                                                                        ? "text-[#344054] bg-[#EBECED]"
+                                                                        : "text-[#175CD3] bg-[#EFF8FF]"
+                                                                }`}
+                                                            >
+                                                                {
+                                                                    video.publishStatus
+                                                                }
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td className="px-5 py-5  text-sm">
+                                                        <p>
+                                                            {dateFormat(
+                                                                video.createdAt
+                                                            )}
+                                                        </p>
+                                                    </td>
+                                                    <td className="px-5 py-5  text-sm">
+                                                        <p>
                                                             {video?.analytics
-                                                                ?.totallikes ||
+                                                                ?.totalvideoviews ||
                                                                 0}
-                                                        </span>
-                                                        <span className="inline-flex  items-center gap-1">
-                                                            <ThumbsDownIcon />{" "}
+                                                        </p>
+                                                    </td>
+                                                    <td className="px-5 py-5  text-sm">
+                                                        <p>
                                                             {video?.analytics
-                                                                ?.totaldislikes ||
+                                                                ?.creatorearnings ||
                                                                 0}
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                                <td className="px-5 py-5  text-sm">
-                                                    <DotsDropdown
-                                                        video={video}
-                                                    />
-                                                </td>
-                                            </tr>
-                                        );
-                                    })}
-                                </tbody>
-                                {/* </div> */}
-                            </table>
-                        </div>
-                        {/* <div className="flex items-center justify-between w-full mt-7 py-4 px-5 gap-3 pagination border-t border-gray-200">
+                                                        </p>
+                                                    </td>
+                                                    <td className="px-5 py-5  text-sm">
+                                                        <p>{0}</p>
+                                                    </td>
+                                                    <td className="px-5 py-5  text-sm">
+                                                        <div className="flex items-center gap-3">
+                                                            <span className="inline-flex  items-center gap-1">
+                                                                <ThumbsUpIcon />{" "}
+                                                                {video
+                                                                    ?.analytics
+                                                                    ?.totallikes ||
+                                                                    0}
+                                                            </span>
+                                                            <span className="inline-flex  items-center gap-1">
+                                                                <ThumbsDownIcon />{" "}
+                                                                {video
+                                                                    ?.analytics
+                                                                    ?.totaldislikes ||
+                                                                    0}
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td className="px-5 py-5  text-sm">
+                                                        <DotsDropdown
+                                                            video={video}
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
+                                    {/* </div> */}
+                                </table>
+                            </div>
+                            {/* <div className="flex items-center justify-between w-full mt-7 py-4 px-5 gap-3 pagination border-t border-gray-200">
                             <div>
                                 <div className="text-neutral700 text-sm">
                                     Page 1 of 10
@@ -221,9 +230,15 @@ export default async function Videos() {
                                 </button>
                             </div>
                         </div> */}
+                        </div>
                     </div>
                 </div>
-            </div>
+            ) : (
+                <EmptyState
+                    icon={<VideoAddIcon />}
+                    text="Start uploading videos on Zesha today"
+                />
+            )}
         </Layout>
     );
 }

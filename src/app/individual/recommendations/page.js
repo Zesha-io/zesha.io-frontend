@@ -4,14 +4,27 @@ import React, { useEffect, useState } from "react";
 import EmptyState from "@/components/EmptyState";
 import VideoAddIcon from "@/components/Icons/VideoAddIcon";
 import VideoPlayIcon from "@/components/Icons/VideoPlayIcon";
+import ThumbsDownIcon from "@/components/Icons/ThumbsDownIcon";
+import ThumbsUpIcon from "@/components/Icons/ThumbsUpIcon";
+import EyeIcon from "@/components/Icons/EyeIcon";
 import Layout from "@/components/IndividualLayout/Layout";
-// import Script from "next/script";
+import Script from "next/script";
 // This imports the functional component from the previous sample.
 import VideoJS from "@/components/Player/VideoJS";
+import useWeb3Auth from "@/hooks/useWeb3Auth";
 
 const Recommendations = () => {
     const [recommendations, setRecommendations] = useState([]);
     const [videojsPlayer, setVideojsPlayer] = useState(null);
+    const [currentTrack, setCurrentTrack] = useState(null);
+    const [sources, setSources] = useState([]);
+    const [videoJsOptions, setVideoJsOptions] = useState(null);
+    const { account } = useWeb3Auth(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/individual`
+    );
+    const [playing, setPlaying] = useState(false);
+    const [liking, setLiking] = useState(false);
+    const [disliking, setDisliking] = useState(false);
 
     const getRecommendations = async () => {
         const res = await fetch(
@@ -27,7 +40,6 @@ const Recommendations = () => {
 
         if (res.ok) {
             setRecommendations(data.data);
-            console.log(data);
         }
     };
 
@@ -49,153 +61,274 @@ const Recommendations = () => {
             .join(":");
     };
 
-    const videoId = "video_qzmh5awsre1xm6r5skngxmscvs";
-
     const playerRef = React.useRef(null);
 
-    const videoJsOptions = {
-        autoplay: true,
-        controls: true,
-        responsive: true,
-        techOrder: ["theta_hlsjs", "html5"],
-        sources: [
-            {
-                src: `https://media.thetavideoapi.com/${videoId}/master.m3u8`,
-                type: "application/vnd.apple.mpegurl",
-                label: "auto",
-            },
-        ],
-        theta_hlsjs: {
-            walletUrl: "wss://api-wallet-service.thetatoken.org/theta/ws",
-            onWalletAccessToken: null,
-            hlsOpts: null,
-            thetaOpts: {
-                allowRangeRequests: true, // false if cdn does not support range headers
-            },
-        },
+    useEffect(() => {
+        if (recommendations.length > 0) {
+            const srcs = recommendations.map((video) => {
+                return {
+                    src: `https://media.thetavideoapi.com/${video.videoUrl}/master.m3u8`,
+                    poster: video.videoThumbnail,
+                    key: video.videoUrl,
+                    id: video._id,
+                    creatorId: video.creator.id,
+                };
+            });
+
+            setSources(srcs);
+            setPlaying(recommendations[0]);
+
+            const current = srcs[0];
+            setCurrentTrack(0);
+
+            setVideoJsOptions({
+                autoplay: true,
+                controls: true,
+                responsive: true,
+                techOrder: ["theta_hlsjs", "html5"],
+                sources: [
+                    {
+                        src: current.src,
+                        poster: current.poster,
+                        type: "application/vnd.apple.mpegurl",
+                        label: "auto",
+                    },
+                ],
+                theta_hlsjs: {
+                    videoId: current.id,
+                    walletUrl:
+                        "wss://api-wallet-service.thetatoken.org/theta/ws",
+                    onWalletAccessToken: null,
+                    hlsOpts: null,
+                    thetaOpts: {
+                        allowRangeRequests: true, // false if cdn does not support range headers
+                    },
+                },
+            });
+        }
+    }, [recommendations]);
+
+    useEffect(() => {
+        if (videojsPlayer) {
+            console.log("Currently playing", playing, videojsPlayer.state);
+        }
+    }, [playing]);
+
+    const changePlayerSrc = (vSrc, i) => {
+        if (videojsPlayer) {
+            videojsPlayer.src(vSrc.src);
+            videojsPlayer.poster(vSrc.poster);
+            setPlaying(recommendations[i]);
+        }
     };
 
-    // - lasTime - the last time ad was played
-    // - prerollplayed - if the preroll was played
-    // - midrollplayed - if the midroll was played
-    // - adPlaying - if the ad is playing
-    const [adState, setAdState] = useState({
-        ad: "https://zesha.nyc3.cdn.digitaloceanspaces.com/pre-roll-short.mp4",
-        lastTime: 0,
-        prerollPlayed: false,
-        midrollPlayed: false,
-        adPlaying: false,
-    });
+    const likePlaying = async () => {
+        setLiking(true);
+        setTimeout(() => {
+            setLiking(false);
+        }, 1000);
+        const video = playing;
+        video.analytics.totallikes += 1;
 
-    const changePlayerSrc = (url) => {
-        if (videojsPlayer) {
-            videojsPlayer.src(
-                "https://media.thetavideoapi.com/video_naikps4fmw9zx40yyr2bpbkhpz/master.m3u8"
-            );
+        const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/videos/${video._id}/likesdislikes`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+
+                body: JSON.stringify({
+                    viewerId: account.userId,
+                    actionType: "LIKE",
+                }),
+            }
+        );
+
+        await response.json();
+
+        setPlaying({ ...playing, video });
+    };
+
+    const dislikePlaying = async () => {
+        setDisliking(true);
+        setTimeout(() => {
+            setDisliking(false);
+        }, 1000);
+        const video = playing;
+        video.analytics.totaldislikes += 1;
+
+        const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/videos/${video._id}/likesdislikes`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+
+                body: JSON.stringify({
+                    viewerId: account.userId,
+                    actionType: "DISLIKE",
+                }),
+            }
+        );
+
+        await response.json();
+
+        setPlaying({ ...playing, video });
+    };
+
+    const payForAds = async (player, src) => {
+        const payload = {
+            watchedAt: new Date().toISOString(),
+            watchedDuration: player.duration(),
+            exitedAt: new Date().toISOString(),
+            viewerId: account.userId,
+        };
+
+        const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/videos/${src.id}/views`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            }
+        );
+
+        const payback = await response.json();
+
+        const { id } = payback.data;
+
+        const payload2 = {
+            adId: "zeshagroup",
+            videoId: src.id,
+            creatorId: src.creatorId,
+            viewerId: account.userId,
+            viewId: id,
+        };
+
+        const response2 = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/earnings`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload2),
+            }
+        );
+
+        await response2.json();
+
+        if (!response2.ok) {
+            console.log("unable to pay earnings");
+        } else {
+            console.log("paid earnings");
         }
     };
 
     const handlePlayerReady = (player) => {
+        console.log("player", player);
+
+        player.ads({});
+
         setVideojsPlayer(player);
+        player.setState({
+            ...player.state,
+            track: 0,
+        });
+        // player.setState({
+        //     ...player.state,
+        //     ad: "https://zesha.nyc3.cdn.digitaloceanspaces.com/pre-roll-short.mp4",
+        // });
+
         playerRef.current = player;
 
         player.on("ended", function () {
-            console.log("player ended");
+            let nextTrack = player.state.track + 1;
+            if (nextTrack > sources.length - 1) nextTrack = 0;
+            setPlaying(recommendations[nextTrack]);
+            player.setState({
+                ...player.state,
+                track: nextTrack,
+            });
+
+            player.poster(sources[nextTrack].poster);
+            player.src(sources[nextTrack].src);
         });
-
-        console.log("player", player);
-
-        // player.playlist([
-        //     {
-        //         sources: [
-        //             {
-        //                 src: `https://media.thetavideoapi.com/${videoId}/master.m3u8`,
-        //             },
-        //         ],
-        //         poster: "http://localhost:8090/thumbnail-285c31bd-4ac9-40a0-8b2a-89be587daad0.jpg",
-        //     },
-        //     {
-        //         sources: [
-        //             {
-        //                 src: `https://media.thetavideoapi.com/video_naikps4fmw9zx40yyr2bpbkhpz/master.m3u8`,
-        //             },
-        //         ],
-        //         poster: "http://localhost:8090/thumbnail-56472734-3d70-42b4-b5f5-1b9d6f7a31b1.jpg",
-        //     },
-        // ]);
-
-        // player.playlist.autoadvance(0);
 
         const requestAds = function () {
             player.trigger("adsready");
         };
 
-        if (player.preroll) {
-            player.preroll({
-                src: "https://zesha.nyc3.cdn.digitaloceanspaces.com/pre-roll-short.mp4",
-            });
-        }
         const playAd = function () {
             player.ads.startLinearAdMode();
-            adState.adPlaying = true;
+            // player.setState({ ...player.state, adPlaying: true });
 
-            const url = adState.ad;
-
-            player.src(url);
+            player.src(
+                "https://zesha.nyc3.cdn.digitaloceanspaces.com/pre-roll-short.mp4"
+            );
 
             player.one("adplaying", function () {
                 player.trigger("ads-ad-started");
             });
 
-            player.one("durationchange", function () {
-                console.log("durationchange");
-                player.play();
-            });
+            // player.one("durationchange", function () {
+            //     console.log("durationchange");
+            //     player.play();
+            // });
 
             player.one("adended", function () {
                 // play your linear ad content, then when it's finished ...
-                adState.adPlaying = false;
+                // player.setState({ ...player.state, adPlaying: false });
+
                 player.ads.endLinearAdMode();
 
-                console.log("ended");
+                payForAds(player, sources[player.state.track]);
+                console.log("ad ended", player.state);
             });
         };
 
-        player.ads({});
-
         if (player.currentSrc()) {
-            console.log("player.currentSrc", player.currentSrc());
-
             requestAds();
         }
 
-        player.on("contentupdate", requestAds);
+        player.on("contentupdate", () => {
+            if (player.currentSrc() !== player.state.ad) {
+                requestAds();
+            }
+        });
 
         player.on("readyforpreroll", function () {
-            if (!adState.prerollPlayed) {
-                adState.prerollPlayed = true;
-                playAd();
-            }
+            // if (!player.state?.prerollPlayed) {
+            // player.setState({ ...player.state, prerollPlayed: true });
+
+            playAd();
+            // }
         });
 
-        player.on("timeupdate", function (event) {
-            if (adState.midrollPlayed) {
-                return;
-            }
+        // player.on("timeupdate", function (event) {
+        //     if (player.state.midrollPlayed) {
+        //         return;
+        //     }
 
-            var currentTime = player.currentTime(),
-                opportunity;
+        //     var currentTime = player.currentTime(),
+        //         opportunity;
 
-            if ("lastTime" in adState) {
-                opportunity = currentTime > 15 && adState.lastTime < 15;
-            }
+        //     if ("lastTime" in player.state) {
+        //         opportunity = currentTime > 15 && player.state.lastTime < 15;
+        //     }
 
-            adState.lastTime = currentTime;
-            if (opportunity) {
-                adState.midrollPlayed = true;
-                playAd();
-            }
-        });
+        //     player.setState({ ...player.state, lastTime: currentTime });
+
+        //     if (opportunity) {
+        //         player.setState({ ...player.state, midrollPlayed: true });
+
+        //         playAd();
+        //     }
+        // });
     };
 
     return (
@@ -208,14 +341,58 @@ const Recommendations = () => {
                             Watch your recommended videos for the day
                         </p>
                     </div>
-                    <div className="w-full">
-                        <VideoJS
-                            options={videoJsOptions}
-                            onReady={handlePlayerReady}
-                        />
-                    </div>
+
                     {recommendations ? (
                         <>
+                            <div className="w-full">
+                                {videoJsOptions && (
+                                    <VideoJS
+                                        options={videoJsOptions}
+                                        onReady={handlePlayerReady}
+                                    />
+                                )}
+                            </div>
+                            {playing && (
+                                <>
+                                    <div className="flex inline-flex items-center gap p-4 mt-3  bg-[#f2f2f2] px-2 py-1 rounded-full">
+                                        <span
+                                            className={`inline-flex  items-center cursor-pointer ${
+                                                liking ? "animate-ping" : ""
+                                            }`}
+                                            onClick={likePlaying}
+                                        >
+                                            <ThumbsUpIcon />{" "}
+                                            <span className="font-bold pl-2">
+                                                {playing?.analytics
+                                                    ?.totallikes || 0}
+                                            </span>
+                                        </span>
+                                        <span className="ml-2 mr-2">|</span>
+                                        <span
+                                            className={`inline-flex  gap-1 items-center cursor-pointer ${
+                                                disliking ? "animate-ping" : ""
+                                            }`}
+                                            onClick={dislikePlaying}
+                                        >
+                                            <ThumbsDownIcon />{" "}
+                                            <span className="font-bold pl-2">
+                                                {playing?.analytics
+                                                    ?.totaldislikes || 0}
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div className="ml-4 flex inline-flex items-center gap p-4 mt-3  bg-[#f2f2f2] px-2 py-1 rounded-full">
+                                        <span className="inline-flex  items-center">
+                                            <EyeIcon />{" "}
+                                            <span className="font-bold pl-2">
+                                                {playing?.analytics
+                                                    ?.totalvideoviews || 0}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </>
+                            )}
+
                             <div className="py-5">
                                 <div
                                     className="flex gap-5"
@@ -224,12 +401,13 @@ const Recommendations = () => {
                                         overflowX: "scroll",
                                     }}
                                 >
-                                    {recommendations.map((video) => (
+                                    {recommendations.map((video, index) => (
                                         <div key={video._id}>
                                             <div
                                                 onClick={() =>
                                                     changePlayerSrc(
-                                                        video.videoUrl
+                                                        sources[index],
+                                                        index
                                                     )
                                                 }
                                                 className="h-32 block relative w-full object-cover each-item cursor-pointer"
@@ -291,10 +469,10 @@ const Recommendations = () => {
                     )}
                 </div>
             </Layout>
-            {/* <Script src="https://cdn.jsdelivr.net/npm/hls.js@0.12.4" />
+            <Script src="https://cdn.jsdelivr.net/npm/hls.js@0.12.4" />
             <Script src="https://d1ktbyo67sh8fw.cloudfront.net/js/theta.umd.min.js" />
             <Script src="https://d1ktbyo67sh8fw.cloudfront.net/js/theta-hls-plugin.umd.min.js" />
-            <Script src="https://d1ktbyo67sh8fw.cloudfront.net/js/videojs-theta-plugin.min.js" /> */}
+            <Script src="https://d1ktbyo67sh8fw.cloudfront.net/js/videojs-theta-plugin.min.js" />
         </>
     );
 };

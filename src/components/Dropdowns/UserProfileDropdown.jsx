@@ -71,7 +71,10 @@ export default function UserProfileDropdown({ account, logout, userType }) {
                 onClick={handleClick}
             >
                 {account.profileImage != "" ? (
-                    <span className="bg-[#F2F2F4] p-1 rounded-full h-12 w-12 flex items-center justify-center text-[#046ED1]">
+                    <span
+                        className="bg-[#F2F2F4] p-1 rounded-full h-12 w-12 flex items-center justify-center text-[#046ED1]"
+                        style={{ overflow: "overlay", padding: "0" }}
+                    >
                         <img src={account.profileImage} alt="profile" />
                     </span>
                 ) : (

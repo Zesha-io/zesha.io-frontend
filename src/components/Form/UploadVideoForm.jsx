@@ -291,8 +291,8 @@ export default function UploadVideoForm() {
             title: formData.title,
             description: formData.description,
             nftColletion: formData.nft_collection,
-            videoUrl: signedUrl, //@Temp until Theta Video API is back
-            // videoUrl: videoId,
+            // videoUrl: signedUrl, //@Temp until Theta Video API is back
+            videoUrl: videoId,
             publishStatus: "PUBLISHED",
             creatorId: account.userId,
             channelId: account.channelId,

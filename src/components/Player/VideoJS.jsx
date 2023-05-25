@@ -3,33 +3,9 @@
 import React, { useEffect } from "react";
 import videojs from "video.js";
 
-// import videojs from "video.js";
-// import "videojs-contrib-ads/dist/videojs-contrib-ads.js";
-// import "videojs-ads/libs/video-js-4.1.0/video.js";
-// import "videojs-playlist/dist/videojs-playlist.js";
-
-import dynamic from "next/dynamic";
-
-// const videojs = dynamic(() => import("video.js"), {
-//     ssr: false,
-// });
-// dynamic(() => import("videojs-contrib-ads/dist/videojs-contrib-ads.js"), {
-//     ssr: false,
-// });
-// dynamic(() => import("videojs-ads/libs/video-js-4.1.0/video.js"), {
-//     ssr: false,
-// });
-// dynamic(() => import("videojs-playlist/dist/videojs-playlist.js"), {
-//     ssr: false,
-// });
-
-// import "videojs-preroll-v2/dist/videojs-preroll-v2.js";
-
 import "video.js/dist/video-js.css";
 import "@videojs/themes/dist/sea/index.css";
 import "videojs-contrib-ads/dist/videojs-contrib-ads.css";
-import styles from "./VideoJS.module.css";
-// import "videojs-preroll-v2/dist/videojs-preroll.css";
 
 export const VideoJS = (props) => {
     const videoRef = React.useRef(null);
@@ -49,7 +25,7 @@ export const VideoJS = (props) => {
                 const videoElement = document.createElement("video-js");
 
                 videoElement.classList.add("vjs-big-play-centered");
-                // videoElement.classList.add("vjs-theme-sea");
+                videoElement.classList.add("vjs-theme-sea");
                 videoRef.current.appendChild(videoElement);
 
                 const player = (playerRef.current = videojs(
