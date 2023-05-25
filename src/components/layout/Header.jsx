@@ -3,9 +3,11 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import MobileMenu from "./MobileMenu";
 
 const Header = () => {
     const [dropdown, setDropdown] = useState(false);
+    const [mobMenu, setMobMenu] = useState(false);
     const [getstarted, setGetStarted] = useState(0);
     const ref = useRef();
     const testref = useRef();
@@ -43,6 +45,16 @@ const Header = () => {
         window.innerWidth > 960 && setDropdown(false);
     };
 
+    const handleMobileMenu = () => {
+
+        console.log('clickedddd')
+    // function (){
+        // setMobMenu(!mobMenu)
+        setMobMenu((prev) => !prev)
+        console.log(mobMenu, 'mobmenu')
+
+    }
+
     return (
         <>
             <header className="shadow-header w-full bg-[#FAF9F4]">
@@ -63,7 +75,7 @@ const Header = () => {
                             </Link>
                         </div>
                         <div className="block lg:hidden">
-                            <button className="navbar-burger flex items-center py-2 px-3 text-indigo-500 rounded border border-indigo-500">
+                            <button className="navbar-burger flex items-center py-2 px-3 text-indigo-500 rounded border border-indigo-500"  onClick={handleMobileMenu}>
                                 <svg
                                     className="fill-current h-3 w-3"
                                     viewBox="0 0 20 20"
@@ -132,6 +144,16 @@ const Header = () => {
                     </nav>
                 </div>
             </header>
+
+{/* {
+    mobMenu ? ( */}
+    <div className="block lg:hidden">
+        <MobileMenu show={mobMenu} dismiss={handleMobileMenu}/>
+    </div>
+        
+    {/* ) : ''
+} */}
+            
         </>
     );
 };

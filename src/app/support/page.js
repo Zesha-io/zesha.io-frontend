@@ -12,7 +12,7 @@ export default function Support() {
                         <div className="items-center justify-center flex max-w-xl mx-auto">
                             <div className="w-full text-center">
                                 <div>
-                                    <h1 className="text-7xl font-bold font-['Recoleta'] text-[#0B0A1D]">
+                                    <h1 className="text-[76px] font-bold font-['Recoleta'] text-[#0B0A1D] leading-[103.36px]">
                                         Let&apos;s start earning{" "}
                                         <span className="text-[#F93D3D]">
                                             together
@@ -20,7 +20,7 @@ export default function Support() {
                                     </h1>
                                 </div>
                                 <div className="mb-10 mt-5">
-                                    <p className="text-md">
+                                    <p className="text-xl font-medium">
                                         Need some help with your Zesha account,
                                         or just want to say hi to our team?
                                     </p>
@@ -32,8 +32,8 @@ export default function Support() {
 
                 <section className="py-14 my-5">
                     <div className="container mx-auto px-6 max-w-6xl">
-                        <div className="mb-9 mx-auto px-6 max-w-xl">
-                            <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-3xl">
+                        <div className="mb-9 mx-auto px-6 max-w-2xl">
+                            <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-[32px] leading-[43.52px]">
                                 Before you get in touch, check out our FAQs for
                                 any questions you may have.
                             </h2>

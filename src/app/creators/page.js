@@ -17,9 +17,9 @@ const Creators = () => {
                 <section className=" py-12 lg:pt-20 lg:pb-12 ">
                     <div className="container mx-auto px-6 max-w-7xl w-full">
                         <div className="grid grid-cols-1 md:grid-cols-2 items-center ">
-                            <div className="w-3/2">
+                            <div className="w-full md:w-3/2">
                                 <div>
-                                    <h1 className="text-7xl font-bold font-['Recoleta'] text-[#0B0A1D]">
+                                    <h1 className="text-[76px] font-bold font-['Recoleta'] text-[#0B0A1D] leading-[103.36px]">
                                         <span className="text-[#F93D3D]">
                                             Earn
                                         </span>{" "}
@@ -30,7 +30,7 @@ const Creators = () => {
                                     </h1>
                                 </div>
                                 <div className="mb-10 mt-5">
-                                    <p className="text-md">
+                                    <p className="text-xl font-medium">
                                         Zesha allows you to monetize your
                                         videos, get paid for ads and premium
                                         content you create, and collect tips and
@@ -133,7 +133,7 @@ const Creators = () => {
                     <div className="container mx-auto px-6 max-w-7xl ">
                         <div>
                             <div className="mb-9 text-center max-w-2xl mx-auto">
-                                <h2 className="text-4xl font-bold font-['Recoleta'] text-[#1E2428]">
+                                <h2 className="text-5xl font-bold font-['Recoleta'] text-[#1E2428]">
                                     Imagine a world where creators{" "}
                                     <span className="text-[#F93D3D]">earn</span>{" "}
                                     from creating and engaging with the content
@@ -142,7 +142,7 @@ const Creators = () => {
                                 </h2>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 py-10 gap-10 items-center">
+                            <div className="grid grid-cols-1 md:grid-cols-2 py-12 gap-10 items-center">
                                 <div className="flex items-center justify-center relative">
                                     <div
                                         className="features-img"
@@ -163,7 +163,7 @@ const Creators = () => {
                                 </div>
                                 <div>
                                     <div className="pl-0 md:pl-0 lg:pl-16">
-                                        <h3 className="text-xl font-semibold font-['Recoleta'] text-[#1E2428] mb-2">
+                                        <h3 className="text-[28px] font-semibold font-['Recoleta'] text-[#1E2428] mb-2">
                                             Earn from your first view
                                         </h3>
                                         <p className="text-base">
@@ -177,10 +177,10 @@ const Creators = () => {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 py-10 gap-10 items-center">
+                            <div className="grid grid-cols-1 md:grid-cols-2 py-12 gap-10 items-center">
                                 <div className="order-last md:order-first">
                                     <div className="pr-0 lg:pr-16">
-                                        <h3 className="text-xl font-semibold font-['Recoleta'] text-[#1E2428] mb-2">
+                                        <h3 className="text-[28px] font-semibold font-['Recoleta'] text-[#1E2428] mb-2">
                                             Get a bigger slice of the pie
                                         </h3>
                                         <p className="text-base">
@@ -204,7 +204,7 @@ const Creators = () => {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 py-10 gap-10 items-center">
+                            <div className="grid grid-cols-1 md:grid-cols-2 py-12 gap-10 items-center">
                                 <div className="flex items-center justify-center relative">
                                     <div
                                         className="features-img "
@@ -225,7 +225,7 @@ const Creators = () => {
                                 </div>
                                 <div>
                                     <div className="pl-0 md:pl-0 lg:pl-16">
-                                        <h3 className="text-xl font-semibold font-['Recoleta'] text-[#1E2428] mb-2">
+                                        <h3 className="text-[28px] font-semibold font-['Recoleta'] text-[#1E2428] mb-2">
                                             Monetization tools you won&apos;t
                                             find elsewhere
                                         </h3>
@@ -240,10 +240,10 @@ const Creators = () => {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 py-10 gap-10 items-center">
+                            <div className="grid grid-cols-1 md:grid-cols-2 py-12 gap-10 items-center">
                                 <div className="order-last md:order-first">
                                     <div className="pr-0 lg:pr-16">
-                                        <h3 className="text-xl font-semibold font-['Recoleta'] text-[#1E2428] mb-2">
+                                        <h3 className="text-[28px] font-semibold  font-['Recoleta'] text-[#1E2428] mb-2">
                                             Redeem your earnings for cash
                                         </h3>
                                         <p className="text-base">
@@ -319,27 +319,27 @@ const Creators = () => {
                     <div className="container mx-auto px-6 max-w-7xl ">
                         <div className="py-4">
                             <div className="mb-9">
-                                <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-3xl">
+                                <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-[44px]">
                                     How it Works
                                 </h2>
-                                <p className=" text-center text-xl my-2">
+                                <p className=" text-center text-[22px] font-medium my-2">
                                     How to start earning from Zesha
                                 </p>
                             </div>
 
                             <div>
-                                <div className="grid grid-cols-1 md:grid-cols-2 py-14 gap-10 items-center justify-center gap-y-12">
+                                <div className="grid grid-cols-1 md:grid-cols-2 py-14 gap-10 items-center justify-center gap-y-12 lg:gap-y-28">
                                     <div className="text-center py-4">
                                         <div className="px-12">
                                             <div className="flex items-center justify-center w-full">
                                                 <Image
                                                     src={"/images/Image12.svg"}
-                                                    width={300}
+                                                    width={350}
                                                     height={250}
                                                 />
                                             </div>
 
-                                            <h3 className="text-xl font-semibold font-['Recoleta'] text-[#1E2428] my-3">
+                                            <h3 className="text-[28px] font-semibold font-['Recoleta'] text-[#1E2428] mt-4 mb-3">
                                                 Create an account
                                             </h3>
                                             <p className="mb-3 text-base">
@@ -355,11 +355,11 @@ const Creators = () => {
                                             <div className="flex items-center justify-center w-full">
                                                 <Image
                                                     src={"/images/Image15.svg"}
-                                                    width={300}
+                                                    width={350}
                                                     height={250}
                                                 />
                                             </div>
-                                            <h3 className="text-xl font-semibold font-['Recoleta'] text-[#1E2428] my-3">
+                                            <h3 className="text-[28px] font-semibold font-['Recoleta'] text-[#1E2428] mt-4 mb-3">
                                                 Add your channel details
                                             </h3>
                                             <p className="mb-3 text-base">
@@ -375,11 +375,11 @@ const Creators = () => {
                                             <div className="flex items-center justify-center w-full">
                                                 <Image
                                                     src={"/images/Image13.svg"}
-                                                    width={300}
+                                                    width={350}
                                                     height={250}
                                                 />
                                             </div>
-                                            <h3 className="text-xl font-semibold font-['Recoleta'] text-[#1E2428] my-3">
+                                            <h3 className="text-[28px] font-semibold font-['Recoleta'] text-[#1E2428] mt-4 mb-3">
                                                 Payout to
                                             </h3>
                                             <p className="mb-3 text-base">
@@ -395,11 +395,11 @@ const Creators = () => {
                                             <div className="flex items-center justify-center w-full">
                                                 <Image
                                                     src={"/images/Image14.svg"}
-                                                    width={300}
+                                                    width={350}
                                                     height={250}
                                                 />
                                             </div>
-                                            <h3 className="text-xl font-semibold font-['Recoleta'] text-[#1E2428] my-3">
+                                            <h3 className="text-[28px] font-semibold font-['Recoleta'] text-[#1E2428] mt-4 mb-3">
                                                 Start earning
                                             </h3>
                                             <p className="mb-3 text-base">
@@ -418,8 +418,8 @@ const Creators = () => {
 
                 <section className="py-14">
                     <div className="container mx-auto px-6 max-w-6xl">
-                        <div className="mb-9 mx-auto px-6 max-w-lg">
-                            <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-3xl">
+                        <div className="mb-9 mx-auto px-6 max-w-xl">
+                            <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-[44px]">
                                 Questions we frequently get asked
                             </h2>
                         </div>

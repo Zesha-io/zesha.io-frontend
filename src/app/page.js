@@ -17,9 +17,9 @@ export default function Home() {
                 <section className=" py-12 lg:py-20 bg-[#FAF9F4]">
                     <div className="container mx-auto px-6 max-w-7xl w-full">
                         <div className="grid grid-cols-1 md:grid-cols-2 items-center ">
-                            <div className="w-3/2">
+                            <div className="w-full md:w-3/2">
                                 <div>
-                                    <h1 className="text-7xl font-bold font-['Recoleta'] text-[#0B0A1D]">
+                                    <h1 className="text-[76px] font-bold font-['Recoleta'] text-[#0B0A1D] leading-[103.36px]">
                                         <span className="text-[#F93D3D]">
                                             Earn
                                         </span>{" "}
@@ -30,7 +30,7 @@ export default function Home() {
                                     </h1>
                                 </div>
                                 <div className="mb-10 mt-5">
-                                    <p className="text-md">
+                                    <p className="text-xl font-medium">
                                         With Zesha, you can earn rewards while
                                         enjoying the content you love.
                                     </p>
@@ -86,7 +86,7 @@ export default function Home() {
                 </section>
 
                 <section className="pt-12 mt-12 rounded-lg">
-                    <div className="container mx-auto max-w-3xl rounded-lg">
+                    <div className="container mx-auto max-w-6xl rounded-lg">
                         <svg
                             id="wave"
                             style={{
@@ -126,19 +126,19 @@ export default function Home() {
                         </svg>
                     </div>
 
-                    <div className="container mx-auto px-6 max-w-3xl bg-[#FCE6AF] relative">
+                    <div className="container mx-auto px-6 max-w-6xl bg-[#FCE6AF] relative">
                         <img
                             src={"/images/videoplay.svg"}
                             className="absolute -bottom-36 right-0 lg:-right-20"
                         />
                         <div className="py-14 px-4  md:px-12 lg:px-20  flex items-center justify-center flex-col">
                             <div className="mb-4">
-                                <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-4xl">
+                                <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-[44px]">
                                     Creating a more inclusive web
                                 </h2>
                             </div>
                             <div>
-                                <p className=" text-center text-md">
+                                <p className=" text-center text-[22px] font-medium">
                                     At Zesha, we're on a mission to empower
                                     creators to make an impact with their
                                     content while giving viewers the power to
@@ -152,7 +152,7 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
-                    <div className="container mx-auto max-w-3xl rounded-lg mt-0">
+                    <div className="container mx-auto max-w-6xl rounded-lg mt-0">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 1440 320"
@@ -170,10 +170,10 @@ export default function Home() {
                     <div className="container mx-auto px-6 max-w-7xl ">
                         <div className="py-14">
                             <div className="mb-9">
-                                <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-4xl">
+                                <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-[44px]">
                                     How it Works
                                 </h2>
-                                <p className=" text-center text-md">
+                                <p className=" text-center text-[22px] font-medium">
                                     How to start earning from Zesha
                                 </p>
                             </div>
@@ -182,7 +182,7 @@ export default function Home() {
                                 <div className="grid grid-cols-1 py-14 gap-10 md:grid-cols-2 items-center">
                                     <div className="order-last md:order-first">
                                         <div className="pr-0 lg:pr-16">
-                                            <h3 className="text-xl font-semibold font-['Recoleta'] text-[#1E2428] mb-2">
+                                            <h3 className="text-[28px] font-semibold font-['Recoleta'] text-[#1E2428] mb-2">
                                                 One-click set-up
                                             </h3>
                                             <p className="mb-3 text-base">
@@ -209,7 +209,7 @@ export default function Home() {
                                 <div className="grid grid-cols-1 py-14 gap-10 md:grid-cols-2 items-center">
                                     <div className="order-last md:order-first">
                                         <div className="pr-0 lg:pr-16">
-                                            <h3 className="text-xl font-semibold font-['Recoleta'] text-[#1E2428] mb-2">
+                                            <h3 className="text-[28px] font-semibold font-['Recoleta'] text-[#1E2428] mb-2">
                                                 Get high-quality recommendations
                                             </h3>
                                             <p className="mb-3 text-base">
@@ -237,7 +237,7 @@ export default function Home() {
                                 <div className="grid grid-cols-1 py-14 gap-10 md:grid-cols-2 items-center">
                                     <div className="order-last md:order-first">
                                         <div className="pr-0 lg:pr-16">
-                                            <h3 className="text-xl font-semibold font-['Recoleta'] text-[#1E2428] mb-2">
+                                            <h3 className="text-[28px] font-semibold font-['Recoleta'] text-[#1E2428] mb-2">
                                                 Watch, engage, and get paid!
                                             </h3>
                                             <p className="mb-3 text-base">
@@ -271,11 +271,11 @@ export default function Home() {
                 <section className=" py-20 features__section">
                     <div className="container mx-auto px-6 max-w-7xl">
                         <div>
-                            <div className="mb-9 mx-auto text-center max-w-xl">
-                                <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-3xl mb-3">
+                            <div className="mb-9 mx-auto text-center max-w-4xl lg:pb-8">
+                                <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-[44px] mb-3">
                                     Features
                                 </h2>
-                                <p className="text-center text-md">
+                                <p className="text-center text-[22px] font-medium pb-4">
                                     Imagine a world where creators and viewers
                                     earn from creating and engaging with the
                                     content they love. We&apos;re taking back
@@ -283,11 +283,11 @@ export default function Home() {
                                 </p>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-y-4 gap-x-4">
+                            <div className="grid grid-cols-2 gap-y-4 gap-x-4 pt-4">
                                 <div className="col-span-2 py-16 gap-10  bg-[#046ED1] text-white px-4 lg:px-12 rounded-lg flex items-center justify-between lg:flex-nowrap flex-wrap ">
                                     <div className="order-first w-full lg:w-1/2">
                                         <div className="pr-0 lg:pr-16">
-                                            <h3 className="text-xl font-semibold font-['Recoleta']  mb-2">
+                                            <h3 className="text-[28px] leading-[38.08px] font-semibold font-['Recoleta']  mb-2">
                                                 Distraction-free mode
                                             </h3>
                                             <p className="mb-3 text-base">
@@ -315,7 +315,7 @@ export default function Home() {
                                 <div className="col-span-2 lg:col-span-1 py-16 gap-10  bg-[#F4F4F4] px-4 lg:px-12 rounded-lg">
                                     <div className="order-last md:order-first">
                                         <div className="pr-0 lg:pr-16">
-                                            <h3 className="text-xl font-semibold font-['Recoleta']  mb-2">
+                                            <h3 className="text-[28px] leading-[38.08px] font-semibold font-['Recoleta']  mb-2">
                                                 AI-based recommendations
                                             </h3>
                                             <p className="mb-3 text-base">
@@ -342,7 +342,7 @@ export default function Home() {
                                 <div className="col-span-2 lg:col-span-1 py-16 gap-10  bg-[#F57373] text-white px-4 lg:px-12 rounded-lg">
                                     <div className="order-last md:order-first">
                                         <div className="pr-0 lg:pr-16">
-                                            <h3 className="text-xl font-semibold font-['Recoleta']  mb-2">
+                                            <h3 className="text-[28px] leading-[38.08px] font-semibold font-['Recoleta']  mb-2">
                                                 Real-life rewards
                                             </h3>
                                             <p className="mb-3 text-base">
@@ -370,7 +370,7 @@ export default function Home() {
                                 <div className="col-span-2 py-16 gap-10  bg-[#043460] text-white px-4 lg:px-12 rounded-lg flex items-center justify-between lg:flex-nowrap flex-wrap ">
                                     <div className="order-first w-full lg:w-1/2">
                                         <div className="pr-0 lg:pr-16">
-                                            <h3 className="text-xl font-semibold font-['Recoleta']  mb-2">
+                                            <h3 className="text-[28px] leading-[38.08px] font-semibold font-['Recoleta']  mb-2">
                                                 Support creators
                                             </h3>
                                             <p className="mb-3 text-base">
@@ -420,9 +420,9 @@ export default function Home() {
                 </section>
 
                 <div>
-                    <div className="flex items-center justify-between w-full py-5 px-6 max-w-7xl mx-auto container flex-wrap">
+                    <div className="flex items-center justify-between w-full py-5 px-6 max-w-7xl mx-auto container flex-wrap gap-2">
                         <div className="">
-                            <h1 className="font-['Recoleta'] text-3xl">
+                            <h1 className="font-['Recoleta'] text-[44px] text-[#1E2428] font-semibold">
                                 Are you a creator?
                             </h1>
                             <p>We&apos;ve got tons of benefits for you!</p>
@@ -438,9 +438,9 @@ export default function Home() {
                 </div>
 
                 <section className=" py-14">
-                    <div className="container mx-auto px-6 bg-[#FAF9F4] max-w-4xl rounded-lg">
+                    <div className="container mx-auto px-6 bg-[#FAF9F4] max-w-7xl rounded-lg">
                         <div className="mb-9 py-4 ">
-                            <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-3xl py-3">
+                            <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-[44px] py-3">
                                 Hear what others have to say
                             </h2>
                         </div>
@@ -450,8 +450,8 @@ export default function Home() {
                 </section>
                 <section className="py-14">
                     <div className="container mx-auto px-6 max-w-6xl">
-                        <div className="mb-9 mx-auto px-6 max-w-lg">
-                            <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-3xl">
+                        <div className="mb-9 mx-auto px-6 max-w-xl">
+                            <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-[44px]">
                                 Questions we frequently get asked
                             </h2>
                         </div>
