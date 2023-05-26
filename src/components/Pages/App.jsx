@@ -14,12 +14,12 @@ export default function App() {
     return (
         <>
             <Layout>
-                <section className=" py-12 lg:py-20 bg-[#FAF9F4]">
-                    <div className="container mx-auto px-6 max-w-7xl w-full">
+                <section className=" py-8 lg:py-20 bg-[#FAF9F4]">
+                    <div className="container mx-auto px-3 lg:px-6 max-w-7xl w-full">
                         <div className="grid grid-cols-1 md:grid-cols-2 items-center ">
                             <div className="w-full md:w-3/2">
-                                <div>
-                                    <h1 className="text-[76px] font-bold font-['Recoleta'] text-[#0B0A1D] leading-[86.36px]">
+                                <div className="mx-1">
+                                    <h1 className="text-[76px] font-bold font-['Recoleta'] text-[#0B0A1D] leading-[76.36px]">
                                         <span className="text-[#F93D3D]">
                                             Earn
                                         </span>{" "}
@@ -29,44 +29,15 @@ export default function App() {
                                         </span>
                                     </h1>
                                 </div>
-                                <div className="mb-10 mt-5">
+                                <div className="mb-10 mt-5 mx-1">
                                     <p className="text-xl font-medium">
                                         With Zesha, you can earn rewards while
                                         enjoying the content you love.
                                     </p>
                                 </div>
 
-                                {/* <div className="flex items-center h-full w-full justify-start gap-3 flex-wrap items-start">
-                                    <div>
-                                        <button className="rounded-lg flex items-center gap-2 px-5 py-2 text-md bg-[#046ED1] text-white border border-[#046ED1]">
-                                            <span className="text-[#046ED1]">
-                                                <ChromeIcon />
-                                            </span>
-                                            Add to Chrome
-                                        </button>
-                                        <p className="text-center mt-1 text-xs italic font-mono">
-                                            <span class="underline underline-offset-4">
-                                                For Viewers
-                                            </span>
-                                        </p>
-                                    </div>
-
-                                    <div>
-                                        <Link
-                                            href="/creators"
-                                            className="rounded-lg px-5 py-4 text-md border border-[#046ED1] text-[#046ED1]"
-                                        >
-                                            For Creators
-                                        </Link>
-                                        <p className="text-center mt-1s text-xs italic font-mono">
-                                            <span class="underline underline-offset-4 text-[#ffffff]">
-                                                &nbsp;
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div> */}
-                                <div className="flex flex items-center h-full w-full justify-start gap-3 flex-wrap items-start">
-                                    <button className="relative rounded-lg flex-1s flex-col items-center gap-2s px-5 py-2 text-md bg-[#046ED1] text-white border border-[#046ED1]">
+                                <div className="flex flex items-center h-full w-full justify-start gap-2 flex-wrap items-start">
+                                    <button className="relative rounded-lg flex-1s flex-col items-center gap-2s px-4 py-2 text-md bg-[#046ED1] text-white border border-[#046ED1]">
                                         <span className="flex">
                                             <span className="text-[#046ED1]">
                                                 <ChromeIcon />
@@ -80,7 +51,7 @@ export default function App() {
                                             className="underlines text-xs underline-offset-4s absolute "
                                             style={{
                                                 bottom: "-1px",
-                                                right: "70px",
+                                                right: "67px",
                                             }}
                                         >
                                             For Viewers{" "}
@@ -91,7 +62,7 @@ export default function App() {
                                     <div className="flex-1">
                                         <Link
                                             href="/creators"
-                                            className="rounded-lg px-5 py-4 text-md border border-[#046ED1] text-[#046ED1]"
+                                            className="rounded-lg px-4 py-4 text-md border border-[#046ED1] text-[#046ED1]"
                                         >
                                             For Creators
                                         </Link>
