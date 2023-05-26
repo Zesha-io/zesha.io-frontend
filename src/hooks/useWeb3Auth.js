@@ -81,7 +81,6 @@ export default function useWeb3Auth(redirectUrl) {
 
                 await web3auth.init();
 
-                console.log(web3auth, "3Auth");
                 if (web3auth.provider) {
                     setProvider(web3auth.provider);
                 }
@@ -171,6 +170,7 @@ export default function useWeb3Auth(redirectUrl) {
             return {
                 userId: data.data.id,
                 channelId: data.data?.creatorchannel?.id,
+                typeOfUser: data.data.userType,
             };
         } else {
             const res2 = await fetch(
@@ -183,7 +183,7 @@ export default function useWeb3Auth(redirectUrl) {
                     body: JSON.stringify({
                         name: name,
                         email: email,
-                        userType: userType,
+                        userType: data.data.userType,
                         walletAddress: walletAddress,
                         profileAvatar: avatar,
                     }),
@@ -204,6 +204,7 @@ export default function useWeb3Auth(redirectUrl) {
                 return {
                     userId: data2.data.id,
                     channelId: data2.data?.creatorchannel?.id,
+                    typeOfUser: data.data.userType,
                 };
             } else {
                 throw new Error(data2.message || "Something went wrong");
@@ -248,7 +249,7 @@ export default function useWeb3Auth(redirectUrl) {
 
             const userType = pathname.match("creator") ? "CREATOR" : "VIEWER";
 
-            const { userId, channelId } = await getUserById(
+            const { userId, channelId, typeOfUser } = await getUserById(
                 user.email,
                 userType,
                 address,
@@ -263,7 +264,7 @@ export default function useWeb3Auth(redirectUrl) {
                     profileImage: user.profileImage,
                     idToken: user.idToken,
                     address: address,
-                    userType: userType,
+                    userType: typeOfUser,
                     userId: userId,
                     channelId: channelId,
                 };
@@ -274,7 +275,7 @@ export default function useWeb3Auth(redirectUrl) {
                 document.cookie = `zesha_account=${JSON.stringify(
                     profile
                 )}; path=/;`;
-                document.cookie = `zesha_profile=${userType}; path=/;`;
+                document.cookie = `zesha_profile=${typeOfUser}; path=/;`;
 
                 router.replace(redirect);
             } else {

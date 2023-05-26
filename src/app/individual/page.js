@@ -195,20 +195,25 @@ const Dashboard = () => {
                                     <div className="flex items-center mb-3 flex-col lg:w-1/4 w-full">
                                         <TabList className="flex flex-col items-start justify-start flex-wrap inner_tab_header  rounded-md gap-3 w-full ">
                                             <Tab className="w-full">
-                                                <button className="flex items-center justify-start text-sm p-2 px-3 w-full transition-colors duration-200 ease-in-out hover:bg-[#F6F6F7] hover:text-[#344054]  rounded-lg gap-2">
-                                                    <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
-                                                        <EyeIcon />
-                                                    </span>
-                                                    <b className="text-lg">
-                                                        {
-                                                            analytics.totalviewerviews
-                                                        }
-                                                    </b>{" "}
-                                                    <span className="text-xs">
+                                                <>
+                                                    <span className="text-sm w-full block">
                                                         Views
                                                     </span>
-                                                </button>
+                                                    <button className="flex items-center justify-start text-sm p-2 px-3 w-full transition-colors duration-200 ease-in-out hover:bg-[#F6F6F7] hover:text-[#344054]  rounded-lg gap-2">
+                                                        <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
+                                                            <EyeIcon />
+                                                        </span>
+                                                        <b className="text-lg">
+                                                            {
+                                                                analytics.totalviewerviews
+                                                            }
+                                                        </b>{" "}
+                                                    </button>
+                                                </>
                                             </Tab>
+                                            <span className="text-sm w-full block">
+                                                Time Spent
+                                            </span>
                                             <Tab className="w-full">
                                                 <button className="flex items-center justify-start text-sm p-2 px-3 w-full transition-colors duration-200 ease-in-out hover:bg-[#F6F6F7] hover:text-[#344054]  rounded-lg gap-2">
                                                     <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
@@ -220,11 +225,11 @@ const Dashboard = () => {
                                                             analytics.totaltimewatched
                                                         )}
                                                     </b>{" "}
-                                                    <span className="text-xs">
-                                                        Time Spent
-                                                    </span>
                                                 </button>
                                             </Tab>
+                                            <span className="text-sm w-full block">
+                                                Earnings
+                                            </span>
                                             <Tab className="w-full">
                                                 <button className="flex items-center justify-start text-sm p-2 px-3 w-full transition-colors duration-200 ease-in-out hover:bg-[#F6F6F7] hover:text-[#344054]  rounded-lg gap-2">
                                                     <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
@@ -236,9 +241,6 @@ const Dashboard = () => {
                                                             analytics.totalviewerearnings
                                                         }{" "}
                                                     </b>
-                                                    <span className="text-xs">
-                                                        Earnings
-                                                    </span>
                                                 </button>
                                             </Tab>
                                         </TabList>

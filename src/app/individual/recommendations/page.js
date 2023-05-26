@@ -344,122 +344,174 @@ const Recommendations = () => {
 
                     {recommendations ? (
                         <>
-                            <div className="w-full">
-                                {videoJsOptions && (
-                                    <VideoJS
-                                        options={videoJsOptions}
-                                        onReady={handlePlayerReady}
-                                    />
+                            <div class="flex">
+                                <div className="flex md:w-full sm:w-full w-3/5 px-2">
+                                    {videoJsOptions && (
+                                        <VideoJS
+                                            options={videoJsOptions}
+                                            onReady={handlePlayerReady}
+                                        />
+                                    )}
+                                </div>
+
+                                {recommendations.length > 0 && (
+                                    <div
+                                        className="flex-initial w-2/5"
+                                        id="playlist-options"
+                                    >
+                                        <div className="flex flex-col gap-5">
+                                            {recommendations.map(
+                                                (video, index) => (
+                                                    <div
+                                                        key={video._id}
+                                                        className=""
+                                                    >
+                                                        <div
+                                                            onClick={() =>
+                                                                changePlayerSrc(
+                                                                    sources[
+                                                                        index
+                                                                    ],
+                                                                    index
+                                                                )
+                                                            }
+                                                            className="h-32 block relative w-full object-cover each-item cursor-pointer"
+                                                            style={{
+                                                                minWidth:
+                                                                    "200px",
+                                                            }}
+                                                        >
+                                                            <Image
+                                                                src={
+                                                                    video.videoThumbnail
+                                                                }
+                                                                loader={({
+                                                                    src,
+                                                                }) =>
+                                                                    video.videoThumbnail
+                                                                }
+                                                                fill
+                                                                priority
+                                                                alt={`Picture of image`}
+                                                                className="object-cover"
+                                                            />
+                                                            <span className="absolute bottom-2 right-2 bg-[#0B0A1D] text-white rounded-full px-2 py-1 text-xs flex items-center justify-center">
+                                                                {convertTimeToVideoTime(
+                                                                    video.videoLength
+                                                                )}
+                                                            </span>
+                                                        </div>
+                                                        <div className="flex items-center justify-start gap-3 w-full py-4 ">
+                                                            <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF]">
+                                                                <Image
+                                                                    src={
+                                                                        video
+                                                                            .channel
+                                                                            .channelAvatar
+                                                                    }
+                                                                    width={50}
+                                                                    height={50}
+                                                                    loader={({
+                                                                        src,
+                                                                    }) =>
+                                                                        video
+                                                                            .channel
+                                                                            .channelAvatar
+                                                                    }
+                                                                    priority
+                                                                    alt={
+                                                                        video.title
+                                                                    }
+                                                                    className=" rounded-full object-cover"
+                                                                />
+                                                            </span>
+                                                            <div className="flex items-start justify-between w-full flex-col">
+                                                                <h5 className="text-[#344054] line-clamp-1 text-sm font-medium">
+                                                                    {
+                                                                        video.title
+                                                                    }
+                                                                </h5>
+                                                                <span className="text-[#5C636E] line-clamp-1 text-xs font-normal">
+                                                                    {
+                                                                        video
+                                                                            .channel
+                                                                            .name
+                                                                    }
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            )}
+                                        </div>
+                                    </div>
                                 )}
                             </div>
                             {playing && (
                                 <>
-                                    <div className="flex inline-flex items-center gap p-4 mt-3  bg-[#f2f2f2] px-2 py-1 rounded-full">
-                                        <span
-                                            className={`inline-flex  items-center cursor-pointer ${
-                                                liking ? "animate-ping" : ""
-                                            }`}
-                                            onClick={likePlaying}
-                                        >
-                                            <ThumbsUpIcon />{" "}
-                                            <span className="font-bold pl-2">
-                                                {playing?.analytics
-                                                    ?.totallikes || 0}
-                                            </span>
-                                        </span>
-                                        <span className="ml-2 mr-2">|</span>
-                                        <span
-                                            className={`inline-flex  gap-1 items-center cursor-pointer ${
-                                                disliking ? "animate-ping" : ""
-                                            }`}
-                                            onClick={dislikePlaying}
-                                        >
-                                            <ThumbsDownIcon />{" "}
-                                            <span className="font-bold pl-2">
-                                                {playing?.analytics
-                                                    ?.totaldislikes || 0}
-                                            </span>
-                                        </span>
+                                    <div className="flex w-full">
+                                        <div className="flex w-full">
+                                            <div className="flex inline-flex items-center gap p-4 mt-3  bg-[#f2f2f2] px-2 py-1 rounded-full">
+                                                <span
+                                                    className={`inline-flex  items-center cursor-pointer ${
+                                                        liking
+                                                            ? "animate-ping"
+                                                            : ""
+                                                    }`}
+                                                    onClick={likePlaying}
+                                                >
+                                                    <ThumbsUpIcon />{" "}
+                                                    <span className="font-bold pl-2">
+                                                        {playing?.analytics
+                                                            ?.totallikes || 0}
+                                                    </span>
+                                                </span>
+                                                <span className="ml-2 mr-2">
+                                                    |
+                                                </span>
+                                                <span
+                                                    className={`inline-flex  gap-1 items-center cursor-pointer ${
+                                                        disliking
+                                                            ? "animate-ping"
+                                                            : ""
+                                                    }`}
+                                                    onClick={dislikePlaying}
+                                                >
+                                                    <ThumbsDownIcon />{" "}
+                                                    <span className="font-bold pl-2">
+                                                        {playing?.analytics
+                                                            ?.totaldislikes ||
+                                                            0}
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <div className="ml-4 flex inline-flex items-center gap p-4 mt-3  bg-[#f2f2f2] px-2 py-1 rounded-full">
+                                                <span className="inline-flex  items-center">
+                                                    <EyeIcon />{" "}
+                                                    <span className="font-bold pl-2">
+                                                        {playing?.analytics
+                                                            ?.totalvideoviews ||
+                                                            0}
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="ml-4 flex inline-flex items-center gap p-4 mt-3  bg-[#f2f2f2] px-2 py-1 rounded-full">
-                                        <span className="inline-flex  items-center">
-                                            <EyeIcon />{" "}
-                                            <span className="font-bold pl-2">
-                                                {playing?.analytics
-                                                    ?.totalvideoviews || 0}
-                                            </span>
-                                        </span>
+                                    <div className="flex flex-col">
+                                        <div className="flex w-3/5 my-2">
+                                            <p class="font-bold w-full">
+                                                {playing.title}
+                                            </p>
+                                        </div>
+
+                                        <div className="flex w-3/5">
+                                            <p class="font-normal">
+                                                {playing.description}
+                                            </p>
+                                        </div>
                                     </div>
                                 </>
                             )}
-
-                            <div className="py-5">
-                                <div
-                                    className="flex gap-5"
-                                    style={{
-                                        width: "75.6vw",
-                                        overflowX: "scroll",
-                                    }}
-                                >
-                                    {recommendations.map((video, index) => (
-                                        <div key={video._id}>
-                                            <div
-                                                onClick={() =>
-                                                    changePlayerSrc(
-                                                        sources[index],
-                                                        index
-                                                    )
-                                                }
-                                                className="h-32 block relative w-full object-cover each-item cursor-pointer"
-                                                style={{ minWidth: "200px" }}
-                                            >
-                                                <Image
-                                                    src={video.videoThumbnail}
-                                                    loader={({ src }) =>
-                                                        video.videoThumbnail
-                                                    }
-                                                    fill
-                                                    priority
-                                                    alt={`Picture of image`}
-                                                    className="object-cover"
-                                                />
-                                                <span className="absolute bottom-2 right-2 bg-[#0B0A1D] text-white rounded-full px-2 py-1 text-xs flex items-center justify-center">
-                                                    {convertTimeToVideoTime(
-                                                        video.videoLength
-                                                    )}
-                                                </span>
-                                            </div>
-                                            <div className="flex items-center justify-start gap-3 w-full py-4 ">
-                                                <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF]">
-                                                    <Image
-                                                        src={
-                                                            video.channel
-                                                                .channelAvatar
-                                                        }
-                                                        width={50}
-                                                        height={50}
-                                                        loader={({ src }) =>
-                                                            video.channel
-                                                                .channelAvatar
-                                                        }
-                                                        priority
-                                                        alt={video.title}
-                                                        className=" rounded-full object-cover"
-                                                    />
-                                                </span>
-                                                <div className="flex items-start justify-between w-full flex-col">
-                                                    <h5 className="text-[#344054] line-clamp-1 text-sm font-medium">
-                                                        {video.title}
-                                                    </h5>
-                                                    <span className="text-[#5C636E] line-clamp-1 text-xs font-normal">
-                                                        {video.channel.name}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
                         </>
                     ) : (
                         <EmptyState

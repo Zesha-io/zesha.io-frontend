@@ -202,6 +202,9 @@ const Dashboard = () => {
                                 <div className="flex gap-4 flex-wraps">
                                     <div className="flex items-center mb-3 flex-col lg:w-1/4 w-fulls">
                                         <TabList className="flex flex-col items-start justify-start flex-wrap inner_tab_header  rounded-md gap-3 w-full ">
+                                            <span className="text-sm w-full block">
+                                                Views{" "}
+                                            </span>
                                             <Tab className="w-full">
                                                 <button className="flex items-center justify-start text-sm p-2 px-3 w-full transition-colors duration-200 ease-in-out hover:bg-[#F6F6F7] hover:text-[#344054]  rounded-lg gap-2">
                                                     <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
@@ -212,11 +215,11 @@ const Dashboard = () => {
                                                             analytics.totalcreatorviews
                                                         }
                                                     </b>{" "}
-                                                    <span className="text-xs">
-                                                        Views{" "}
-                                                    </span>
                                                 </button>
                                             </Tab>
+                                            <span className="text-sm w-full block">
+                                                Time consumed{" "}
+                                            </span>
                                             <Tab className="w-full">
                                                 <button className="flex items-center justify-start text-sm p-2 px-3 w-full transition-colors duration-200 ease-in-out hover:bg-[#F6F6F7] hover:text-[#344054]  rounded-lg gap-2">
                                                     <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
@@ -227,11 +230,11 @@ const Dashboard = () => {
                                                             analytics.totaltimewatched
                                                         )}
                                                     </b>{" "}
-                                                    <span className="text-xs">
-                                                        Time consumed{" "}
-                                                    </span>
                                                 </button>
                                             </Tab>
+                                            <span className="text-sm w-full block">
+                                                Earnings{" "}
+                                            </span>
                                             <Tab className="w-full">
                                                 <button className="flex items-center justify-start text-sm p-2 px-3 w-full transition-colors duration-200 ease-in-out hover:bg-[#F6F6F7] hover:text-[#344054]  rounded-lg gap-2">
                                                     <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
@@ -244,7 +247,7 @@ const Dashboard = () => {
                                                                 tfuelUsd
                                                         ).toFixed(1)}{" "}
                                                     </b>
-                                                    <span className="text-xs">
+                                                    <span className="text-sm w-full block">
                                                         Earnings{" "}
                                                     </span>
                                                 </button>

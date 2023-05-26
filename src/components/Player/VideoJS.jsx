@@ -57,7 +57,7 @@ export const VideoJS = (props) => {
     }, [playerRef]);
 
     return (
-        <div data-vjs-player>
+        <div className="data-vjs-player" data-vjs-player>
             <div className="vjs-theme-city" ref={videoRef} />
         </div>
     );
