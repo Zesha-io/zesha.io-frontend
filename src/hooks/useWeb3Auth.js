@@ -101,6 +101,8 @@ export default function useWeb3Auth(redirectUrl) {
             "authorized=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         document.cookie =
             "zesha_account=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie =
+            "zesha_profile=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
         router.replace(
             `${process.env.NEXT_PUBLIC_BASE_URL}/${
@@ -272,6 +274,7 @@ export default function useWeb3Auth(redirectUrl) {
                 document.cookie = `zesha_account=${JSON.stringify(
                     profile
                 )}; path=/;`;
+                document.cookie = `zesha_profile=${userType}; path=/;`;
 
                 router.replace(redirect);
             } else {

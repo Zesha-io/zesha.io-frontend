@@ -8,6 +8,30 @@ const nextConfig = {
     async redirects() {
         return [
             {
+                source: "/creator/:path*",
+                has: [
+                    {
+                        type: "cookie",
+                        key: "zesha_profile",
+                        value: "VIEWER",
+                    },
+                ],
+                permanent: true,
+                destination: "/individual/:path*",
+            },
+            {
+                source: "/individual/:path*",
+                has: [
+                    {
+                        type: "cookie",
+                        key: "zesha_profile",
+                        value: "CREATOR",
+                    },
+                ],
+                permanent: true,
+                destination: "/creator/:path*",
+            },
+            {
                 source: "/:path(creator|individual)/auth/signup",
                 has: [
                     {

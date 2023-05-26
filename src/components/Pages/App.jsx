@@ -19,7 +19,7 @@ export default function App() {
                         <div className="grid grid-cols-1 md:grid-cols-2 items-center ">
                             <div className="w-full md:w-3/2">
                                 <div>
-                                    <h1 className="text-[76px] font-bold font-['Recoleta'] text-[#0B0A1D] leading-[103.36px]">
+                                    <h1 className="text-[76px] font-bold font-['Recoleta'] text-[#0B0A1D] leading-[86.36px]">
                                         <span className="text-[#F93D3D]">
                                             Earn
                                         </span>{" "}

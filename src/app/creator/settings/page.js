@@ -5,11 +5,9 @@
 import React, { useState, useEffect } from "react";
 import Layout from "@/components/CreatorLayout/Layout";
 import useWeb3Auth from "@/hooks/useWeb3Auth";
-import { usePathname } from "next/navigation";
 import Loader from "@/components/Utils/Loader";
 
 const Settings = () => {
-    const pathname = usePathname();
     const { account } = useWeb3Auth(
         `${process.env.NEXT_PUBLIC_BASE_URL}/creator`
     );
