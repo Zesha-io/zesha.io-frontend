@@ -2,7 +2,7 @@ import WelcomePage from "@/components/Pages/WelcomePage";
 
 export async function generateMetadata({ params }) {
     return {
-        title: "Zesha - Welcome",
+        title: "Introducing Zesha",
     };
 }
 

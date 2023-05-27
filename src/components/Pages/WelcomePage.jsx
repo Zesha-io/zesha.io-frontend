@@ -77,18 +77,6 @@ export default function WelcomePage() {
         newStep > 0 && newStep <= steps.length && setCurrentStep(newStep);
     };
 
-    const openExtension = (e) => {
-        e.preventDefault();
-        console.log(extensionId);
-        chrome.runtime.sendMessage(
-            extensionId,
-            { popup: "open" },
-            function (response) {
-                console.log(response);
-            }
-        );
-    };
-
     return (
         <>
             <div className={`main_unboard_box`}>
@@ -97,11 +85,10 @@ export default function WelcomePage() {
 
                     <div className="w-full text-center mt-3">
                         <Link
-                            onClick={openExtension}
-                            href="/"
+                            href="#"
                             className="text-center text-[#046ED1] text-sm underline"
                         >
-                            Open Zesha extension to continue
+                            Open Zesha in Chrome extensions to continue
                         </Link>
                     </div>
                 </div>

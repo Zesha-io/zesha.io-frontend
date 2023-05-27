@@ -173,6 +173,7 @@ export default function useWeb3Auth(redirectUrl) {
                 typeOfUser: data.data.userType,
             };
         } else {
+            console.log("userType: ", userType);
             const res2 = await fetch(
                 `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/users`,
                 {
@@ -183,7 +184,7 @@ export default function useWeb3Auth(redirectUrl) {
                     body: JSON.stringify({
                         name: name,
                         email: email,
-                        userType: data.data.userType,
+                        userType: userType,
                         walletAddress: walletAddress,
                         profileAvatar: avatar,
                     }),
@@ -204,7 +205,7 @@ export default function useWeb3Auth(redirectUrl) {
                 return {
                     userId: data2.data.id,
                     channelId: data2.data?.creatorchannel?.id,
-                    typeOfUser: data.data.userType,
+                    typeOfUser: data2.data?.userType,
                 };
             } else {
                 throw new Error(data2.message || "Something went wrong");

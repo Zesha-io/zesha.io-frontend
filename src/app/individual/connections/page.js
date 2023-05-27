@@ -8,6 +8,10 @@ import ConvertIcon from "@/components/Icons/ConvertIcon";
 import Layout from "@/components/IndividualLayout/Layout";
 
 const Connections = () => {
+    const sendConnectionNotice = async () => {
+        fetch("/api/connections", {});
+    };
+
     return (
         <Layout>
             <div className="pb-20">
