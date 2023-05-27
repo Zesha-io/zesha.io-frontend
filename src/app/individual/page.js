@@ -133,7 +133,11 @@ const Dashboard = () => {
                                         <h5 className="text-[#344054] text-xl font-bold">
                                             {analytics?.walletbalance || 0}{" "}
                                             <span className="text-[#7F8691] text-sm font-normal">
-                                                ~ ${tfuelUsd.toFixed(2)}
+                                                ~ $
+                                                {Number(
+                                                    tfuelUsd *
+                                                        analytics?.walletbalance
+                                                ).toFixed(2)}
                                             </span>
                                         </h5>
                                         <span className="text-[#7F8691] text-sm">
@@ -310,7 +314,7 @@ const Dashboard = () => {
                                                             }
                                                             {toMinutes(
                                                                 earning.video
-                                                                    .length
+                                                                    .videoLength
                                                             )}{" "}
                                                             mins
                                                         </h5>
@@ -331,9 +335,9 @@ const Dashboard = () => {
                                                         </span>
                                                         <span className="text-[#7F8691] text-xs font-normal">
                                                             ~$
-                                                            {
+                                                            {Number(
                                                                 earning.viewerAmountUSD
-                                                            }
+                                                            ).toFixed(4)}
                                                         </span>
                                                     </div>
                                                 </div>
