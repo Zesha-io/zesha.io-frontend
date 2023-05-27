@@ -81,7 +81,7 @@ const Faqs = () => {
                                 creators to earn from creating content they
                                 love, and viewers alike make from engaging with
                                 the content they love. We are building a more
-                                inclusive web where everyone benefits – from the
+                                inclusive web where everyone benefits - from the
                                 creator to the viewer to the platform.
                             </Typography>
                         </AccordionDetails>
@@ -122,7 +122,26 @@ const Faqs = () => {
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Typography>...</Typography>
+                            <Typography>
+                                To access your payout options, go to the Payouts
+                                link on your Dashboard, or click on Withdraw on
+                                your Chrome extension. Zesha offers multiple
+                                payout options, including gift cards, wallet
+                                transfers, and charity donations (coming soon!).
+                                With Wallet Transfer, you can send your TFUEL
+                                rewards to another crypto wallet. To access gift
+                                card payouts, you need at least $5 worth of
+                                TFUEL in your wallet. Click on the gift card
+                                option on the Payouts page, and we'll send the
+                                equivalent amount to your registered email.
+                                Charity donations are coming soon! We're
+                                planning to add more payout options gradually.
+                                When exactly it will happen depends on things
+                                like how many people are using Zesha and any
+                                technical issues that might come up. Whenever it
+                                does happen, we'll make sure to let everyone
+                                know about it so you don't miss out!
+                            </Typography>
                         </AccordionDetails>
                     </Accordion>
                     <Accordion
@@ -138,7 +157,18 @@ const Faqs = () => {
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Typography>...</Typography>
+                            <Typography>
+                                Each ad view earns you 0.1 TFUEL. To see the
+                                equivalent amount in USD, view this link. How
+                                much you earn per month depends on how active
+                                you are on Zesha. During our beta period, a good
+                                estimate is around $1 - $5 per month. As our
+                                users increase, we expect this amount to
+                                increase significantly! We'll also be adding
+                                more earning options for viewers very soon,
+                                including engagement rewards, creator giveaways,
+                                and many other features. Stay tuned!
+                            </Typography>
                         </AccordionDetails>
                     </Accordion>
                 </div>
