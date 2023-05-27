@@ -24,7 +24,6 @@
         "busboy": "^1.6.0",
         "classnames": "^2.3.2",
         "ethers": "^5.7.2",
-        "formidable": "^3.2.4",
         "next": "^13.4.2",
         "react": "18.2.0",
         "react-apexcharts": "^1.4.0",
