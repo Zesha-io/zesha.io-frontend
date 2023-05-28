@@ -72,7 +72,7 @@ export default function App() {
                                             <ChromeIcon />
                                         </span>
                                         <span className="flex flex-col text-white">
-                                            <span className="flex">
+                                            <span className="flex font-semibold">
                                                 Add to Chrome
                                             </span>
                                             <span className="flex text-xs">
@@ -81,7 +81,7 @@ export default function App() {
                                         </span>
                                     </button>
 
-                                    <div className="flex">
+                                    <div className="flex font-semibold">
                                         <Link
                                             href="/creators"
                                             className="rounded-lg px-4 py-4 text-md border border-[#046ED1] text-[#046ED1]"
