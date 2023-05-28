@@ -448,7 +448,7 @@ const Recommendations = () => {
                                 <>
                                     <div className="flex w-full">
                                         <div className="flex w-full">
-                                            <div className="flex inline-flex items-center gap p-4 mt-3  bg-[#f2f2f2] px-2 py-1 rounded-full">
+                                            <div className="flex inline-flex  shadow-md items-center gap p-4 mt-3  bg-[#f2f2f2] px-2 py-1 rounded-full">
                                                 <span
                                                     className={`inline-flex  items-center cursor-pointer ${
                                                         liking
@@ -482,7 +482,7 @@ const Recommendations = () => {
                                                     </span>
                                                 </span>
                                             </div>
-                                            <div className="ml-4 flex inline-flex items-center gap p-4 mt-3  bg-[#f2f2f2] px-2 py-1 rounded-full">
+                                            <div className="ml-4 shadow-md flex inline-flex items-center gap p-4 mt-3  bg-[#f2f2f2] px-2 py-1 rounded-full">
                                                 <span className="inline-flex  items-center">
                                                     <EyeIcon />{" "}
                                                     <span className="font-bold pl-2">
