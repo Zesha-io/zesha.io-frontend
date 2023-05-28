@@ -34,7 +34,6 @@
         "uuid": "^9.0.0",
         "videojs-ads": "^0.1.0",
         "videojs-contrib-ads": "^7.3.0",
-        "videojs-playlist": "^5.1.0",
         "videojs-preroll-v2": "^2.0.0"
     },
     "devDependencies": {

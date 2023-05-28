@@ -3,7 +3,6 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import EmptyState from "@/components/EmptyState";
 import VideoAddIcon from "@/components/Icons/VideoAddIcon";
-import VideoPlayIcon from "@/components/Icons/VideoPlayIcon";
 import ThumbsDownIcon from "@/components/Icons/ThumbsDownIcon";
 import ThumbsUpIcon from "@/components/Icons/ThumbsUpIcon";
 import EyeIcon from "@/components/Icons/EyeIcon";
@@ -16,7 +15,6 @@ import useWeb3Auth from "@/hooks/useWeb3Auth";
 const Recommendations = () => {
     const [recommendations, setRecommendations] = useState([]);
     const [videojsPlayer, setVideojsPlayer] = useState(null);
-    const [currentTrack, setCurrentTrack] = useState(null);
     const [sources, setSources] = useState([]);
     const [videoJsOptions, setVideoJsOptions] = useState(null);
     const { account } = useWeb3Auth(
@@ -79,7 +77,6 @@ const Recommendations = () => {
             setPlaying(recommendations[0]);
 
             const current = srcs[0];
-            setCurrentTrack(0);
 
             setVideoJsOptions({
                 autoplay: true,
@@ -344,7 +341,7 @@ const Recommendations = () => {
 
                     {recommendations ? (
                         <>
-                            <div class="flex">
+                            <div className="flex">
                                 <div className="flex md:w-full sm:w-full w-3/5 px-2">
                                     {videoJsOptions && (
                                         <VideoJS
@@ -499,13 +496,13 @@ const Recommendations = () => {
                                     </div>
                                     <div className="flex flex-col">
                                         <div className="flex w-3/5 my-2">
-                                            <p class="font-bold w-full">
+                                            <p className="font-bold w-full">
                                                 {playing.title}
                                             </p>
                                         </div>
 
                                         <div className="flex w-3/5">
-                                            <p class="font-normal">
+                                            <p className="font-normal">
                                                 {playing.description}
                                             </p>
                                         </div>
