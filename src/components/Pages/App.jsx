@@ -36,7 +36,7 @@ export default function App() {
                                     </p>
                                 </div>
 
-                                <div className="flex flex items-center h-full w-full justify-start gap-2 flex-wrap items-start">
+                                {/* <div className="flex flex items-center h-full w-full justify-start gap-2 flex-wrap items-start">
                                     <button className="relative rounded-lg flex-1s flex-col items-center gap-2s px-4 py-2 text-md bg-[#046ED1] text-white border border-[#046ED1]">
                                         <span className="flex">
                                             <span className="text-[#046ED1]">
@@ -46,7 +46,6 @@ export default function App() {
                                                 </span>
                                             </span>
                                         </span>
-                                        {/* <p className="text-center text-xs italic font-mono"> */}{" "}
                                         <span
                                             className="underlines text-xs underline-offset-4s absolute "
                                             style={{
@@ -56,10 +55,33 @@ export default function App() {
                                         >
                                             For Viewers{" "}
                                         </span>
-                                        {/* </p> */}
                                     </button>
 
                                     <div className="flex-1">
+                                        <Link
+                                            href="/creators"
+                                            className="rounded-lg px-4 py-4 text-md border border-[#046ED1] text-[#046ED1]"
+                                        >
+                                            For Creators
+                                        </Link>
+                                    </div>
+                                </div> */}
+                                <div className="flex flex items-center h-full w-full justify-start gap-2 flex-wrap items-start">
+                                    <button className="rounded-lg  flex items-center px-5 py-2 text-md bg-[#046ED1] text-white border border-[#046ED1]">
+                                        <span className="flex flex-initial">
+                                            <ChromeIcon />
+                                        </span>
+                                        <span className="flex flex-col text-white">
+                                            <span className="flex">
+                                                Add to Chrome
+                                            </span>
+                                            <span className="flex text-xs">
+                                                For Viewers
+                                            </span>
+                                        </span>
+                                    </button>
+
+                                    <div className="flex">
                                         <Link
                                             href="/creators"
                                             className="rounded-lg px-4 py-4 text-md border border-[#046ED1] text-[#046ED1]"
