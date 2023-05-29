@@ -84,12 +84,11 @@ export default function WelcomePage() {
                     {displayStep(currentStep)}
 
                     <div className="w-full text-center mt-3">
-                        <Link
-                            href="#"
-                            className="text-center text-[#046ED1] text-sm underline"
+                        <p
+                            className="text-center text-sm"
                         >
-                            Open Zesha in Chrome extensions to continue
-                        </Link>
+                            Open Zesha Chrome extension to continue
+                        </p>
                     </div>
                 </div>
             </div>
