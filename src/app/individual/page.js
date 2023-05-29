@@ -118,7 +118,7 @@ const Dashboard = () => {
                     <div className="grow py-2 mb-3">
                         <h1 className="text-xl font-medium">Dashboard</h1>
                         <p className="text-[#7F8691] text-base">
-                            View all activities on zesha
+                            View all your activities on Zesha
                         </p>
                     </div>
 

@@ -19,7 +19,7 @@ const Connections = () => {
                     <div>
                         <h1 className="text-xl font-medium">Connections</h1>
                         <p className="text-[#7F8691] text-base">
-                            View all activities on zesha
+                            View all activities on Zesha
                         </p>
                     </div>
                     <button className="flex items-center gap-2 text-[#046ED1] border border-[#046ED1] px-2 py-2 rounded-lg filter">
