@@ -160,7 +160,7 @@ const Dashboard = () => {
                                                 {Number(
                                                     analytics?.totalviewerearnings *
                                                         tfuelUsd
-                                                ).toFixed(2)}
+                                                ).toFixed(3)}
                                             </span>
                                         </h5>
                                         <span className="text-[#7F8691] text-sm">
@@ -241,9 +241,10 @@ const Dashboard = () => {
                                                     </span>
                                                     <b className="text-lg">
                                                         ${" "}
-                                                        {
-                                                            analytics.totalviewerearnings
-                                                        }{" "}
+                                                        {Number(
+                                                            analytics.totalviewerearnings *
+                                                                tfuelUsd
+                                                        ).toFixed(1)}{" "}
                                                     </b>
                                                 </button>
                                             </Tab>
@@ -319,9 +320,9 @@ const Dashboard = () => {
                                                             mins
                                                         </h5>
                                                         <span className="text-[#344054] text-sm font-medium">
-                                                            {
+                                                            {Number(
                                                                 earning.viewerAmount
-                                                            }{" "}
+                                                            ).toFixed(4)}{" "}
                                                             TFUEL
                                                         </span>
                                                     </div>
