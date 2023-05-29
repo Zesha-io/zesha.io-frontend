@@ -47,7 +47,7 @@ const Referral = () => {
                                     id="link"
                                     className=" py-3 px-4  block w-full pr-36 sm:text-sm rounded-lg h-full focus:outline-none focus:border-gray-400 border border-[#CBD5E1]"
                                     autoComplete="off"
-                                    defaultValue="https://zesha/syqiey4rfw"
+                                    defaultValue="https://zesha.io/syqiey4rfw"
                                 />
                             </div>
                         </div>

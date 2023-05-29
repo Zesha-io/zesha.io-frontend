@@ -152,7 +152,7 @@ const Edit = ({ params }) => {
                         </div>
 
                         <p className="text-[#7F8691] text-base">
-                            Add your videos to zesha to start earning
+                            Add your videos to Zesha to start earning
                         </p>
                     </div>
                     <div className="h-full w-full mb-6 py-6 ">

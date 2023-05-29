@@ -9,7 +9,7 @@ const UploadVideo = () => {
                 <div className="grow py-2 mb-3">
                     <h1 className="text-xl font-medium">Upload video</h1>
                     <p className="text-[#7F8691] text-base">
-                        Add your videos to zesha to start earning
+                        Add your videos to Zesha to start earning
                     </p>
                 </div>
                 <UploadVideoForm />
