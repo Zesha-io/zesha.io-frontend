@@ -366,10 +366,7 @@ const Creators = () => {
                                                 Add your channel details
                                             </h3>
                                             <p className="mb-3 text-base">
-                                                Sign up to Zesha with your
-                                                Google account, and we&apos;ll
-                                                instantly create a wallet for
-                                                you.
+                                                Set up your channel name, description and logo to make yourself stand out.
                                             </p>
                                         </div>
                                     </div>
@@ -383,13 +380,10 @@ const Creators = () => {
                                                 />
                                             </div>
                                             <h3 className="text-[28px] font-semibold font-['Recoleta'] text-[#1E2428] mt-4 mb-3">
-                                                Payout to
+                                                Upload videos
                                             </h3>
                                             <p className="mb-3 text-base">
-                                                Sign up to Zesha with your
-                                                Google account, and we&apos;ll
-                                                instantly create a wallet for
-                                                you.
+                                                When uploading your video, make sure to include a catchy title, description and thumbnail.
                                             </p>
                                         </div>
                                     </div>
@@ -406,10 +400,7 @@ const Creators = () => {
                                                 Start earning
                                             </h3>
                                             <p className="mb-3 text-base">
-                                                Sign up to Zesha with your
-                                                Google account, and we&apos;ll
-                                                instantly create a wallet for
-                                                you.
+                                                View and payout your earnings from your Zesha Creator dashboard!
                                             </p>
                                         </div>
                                     </div>
