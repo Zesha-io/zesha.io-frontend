@@ -332,7 +332,7 @@ const Recommendations = () => {
         <>
             <Layout pagePadding={""}>
                 <div className="pb-20">
-                    <div className="grow py-2 mb-1">
+                    <div className="grow py-2 mb-3">
                         <h1 className="text-xl font-medium">Recommendations</h1>
                         <p className="text-[#7F8691] text-base">
                             Watch your recommended videos for the day

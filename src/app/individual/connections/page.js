@@ -19,12 +19,12 @@ const Connections = () => {
                     <div>
                         <h1 className="text-xl font-medium">Connections</h1>
                         <p className="text-[#7F8691] text-base">
-                            View all activities on zesha
+                            Your connection to Zesha chrome extension
                         </p>
                     </div>
-                    <button className="flex items-center gap-2 text-[#046ED1] border border-[#046ED1] px-2 py-2 rounded-lg filter">
+                    {/* <button className="flex items-center gap-2 text-[#046ED1] border border-[#046ED1] px-2 py-2 rounded-lg filter">
                         <CloudConnectionIcon /> Connect new extension
-                    </button>
+                    </button> */}
                 </div>
 
                 <div className="mb-7">
@@ -43,12 +43,13 @@ const Connections = () => {
                                         Chrome
                                     </h5>
                                     <span className="text-[#7F8691] text-sm">
-                                        Mon, May 2nd, 2023
+                                        {/* Mon, May 2nd, 2023 */}
+                                        recently used
                                     </span>
                                 </div>
                             </div>
                             <span className="text-[#7F8691] text-sm font-normal absolute top-4 right-4">
-                                Last used 55 mins ago
+                                recently used
                             </span>
                         </div>
                     </div>
