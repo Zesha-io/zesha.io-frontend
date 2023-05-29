@@ -131,18 +131,6 @@ const nextConfig = {
                 destination: "/:path/auth/login",
             },
             {
-                source: "/creator",
-                has: [
-                    {
-                        type: "cookie",
-                        key: "zesha_profile",
-                        value: "VIEWER",
-                    },
-                ],
-                permanent: true,
-                destination: "/individual",
-            },
-            {
                 source: "/individual",
                 has: [
                     {
