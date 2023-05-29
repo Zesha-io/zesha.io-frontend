@@ -21,6 +21,16 @@ const Creators = () => {
                     <div className="container mx-auto px-6 max-w-7xl w-full">
                         <div className="grid grid-cols-1 md:grid-cols-2 items-center ">
                             <div className="w-full md:w-3/2">
+                            <div className="flex items-start w-3/4 sm:w-3/4 md:w-3/4 lg:w-2/4">
+                                <Link href="https://www.thetavideoapi.com/" target={'_blank'} className="inline-flex items-center w-full justify-center transition font-semibold mb-4 px-3 py-1 rounded-full border border-[#046ED1]  text-[#046ED1] text-xs md:text-sm ">
+                                    <span className="relative inline-block w-[9px] md:w-[9.65px] h-[14px] md:h-[15px]">
+                                        <Image src={'/images/theta.svg'} fill alt="theta"/>
+                                    </span>
+                                    <div className="pl-2">Powered by Theta Blockchain</div>
+                                </Link>
+
+                                </div>
+
                                 <div>
                                     <h1 className="text-[76px] font-bold font-['Recoleta'] text-[#0B0A1D] leading-[103.36px]">
                                         <span className="text-[#F93D3D]">
@@ -135,7 +145,7 @@ const Creators = () => {
                 <section className="bg-[#F8F7F7] py-4 features__section">
                     <div className="container mx-auto px-6 max-w-7xl ">
                         <div>
-                            <div className="mb-9 text-center max-w-2xl mx-auto">
+                            <div className="mb-9 text-center max-w-4xl mx-auto">
                                 <h2 className="text-5xl font-bold font-['Recoleta'] text-[#1E2428]">
                                     Imagine a world where creators{" "}
                                     <span className="text-[#F93D3D]">earn</span>{" "}
@@ -406,6 +416,20 @@ const Creators = () => {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section className=" ">
+                    <div className="container mx-auto px-6 bg-[#FAF9F4] max-w-7xl rounded-lg py-14">
+                        <div className="mb-5 py-4 ">
+                            <h2 className="text-center text-[#1E2428] font-semibold font-['Recoleta'] text-[44px] ">
+                                Hear what others have to say
+                            </h2>
+                        </div>
+
+                        <div className="flex items-center justify-center mx-auto max-w-3xl h-72 md:h-[500px] w-full py-4">
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Idpgjs-20ww" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
                     </div>
                 </section>
