@@ -41,7 +41,7 @@ export default function App() {
                                         <span className="text-[#F93D3D]">
                                             Earn
                                         </span>{" "}
-                                        from doing what you{" "}
+                                        from watching what you{" "}
                                         <span className="text-[#F93D3D]">
                                             love
                                         </span>

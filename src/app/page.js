@@ -4,7 +4,7 @@ import App from "@/components/Pages/App";
 
 export async function generateMetadata({ params }) {
     return {
-        title: "Zesha - Earn from doing what you love",
+        title: "Zesha - Earn from watching what you love",
     };
 }
 
