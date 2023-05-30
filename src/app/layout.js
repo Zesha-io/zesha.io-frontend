@@ -3,10 +3,10 @@ import "./globals.css";
 export const metadata = {
     title: {
         template: "Zesha - %s",
-        default: "Zesha - Earn from doing what you love",
+        default: "Zesha - Earn from watching what you love",
     },
     metadataBase: new URL("https://zesha.io"),
-    description: "Earn from creating the content you love",
+    description: "Earn from creating and engaging with the content you love",
     keyword: [
         "Zesha",
         "Watch to earn",
