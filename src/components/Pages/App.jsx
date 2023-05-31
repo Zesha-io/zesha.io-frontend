@@ -47,7 +47,7 @@ export default function App() {
                                         </span>
                                     </h1>
                                 </div>
-                                <div className="mb-10 sm:mb-5 mt-5 mx-1">
+                                <div className="mb-5 md:mb-10 mt-5 mx-1">
                                     <p className="text-xl font-medium">
                                         With Zesha, you can earn rewards while
                                         enjoying the content you love.

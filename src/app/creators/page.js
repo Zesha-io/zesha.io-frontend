@@ -45,13 +45,13 @@ const Creators = () => {
                                         <span className="text-[#F93D3D]">
                                             Earn
                                         </span>{" "}
-                                        from creating the content you{" "}
+                                        from creating content you{" "}
                                         <span className="text-[#F93D3D]">
                                             love
                                         </span>
                                     </h1>
                                 </div>
-                                <div className="mb-10 sm:mb-5 mt-5">
+                                <div className="mb-5 md:mb-10 mt-5">
                                     <p className="text-xl font-medium">
                                         Zesha allows you to monetize your
                                         videos, get paid for ads and premium
