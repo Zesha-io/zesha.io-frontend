@@ -41,7 +41,7 @@ const Creators = () => {
                                 </div>
 
                                 <div>
-                                    <h1 className="text-[76px] font-bold font-['Recoleta'] text-[#0B0A1D] leading-[72.36px]">
+                                    <h1 className="text-[76px] font-bold font-['Recoleta'] text-[#0B0A1D] leading-[71.36px]">
                                         <span className="text-[#F93D3D]">
                                             Earn
                                         </span>{" "}
