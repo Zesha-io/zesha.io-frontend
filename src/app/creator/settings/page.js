@@ -323,7 +323,7 @@ const Settings = () => {
                                             type="submit"
                                             className="inline-block px-7 py-3 bg-secondary text-white bg-[#046ED1] font-medium text-sm leading-snug capitalize rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                                         >
-                                            Update Video
+                                            Update Channel
                                         </button>
                                     )}
                                 </div>

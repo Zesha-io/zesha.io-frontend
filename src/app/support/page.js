@@ -63,9 +63,7 @@ export default function Support() {
                         </div>
 
                         <Link
-                            href={
-                                "https://www.notion.so/Report-a-Problem-17f2f2662a31409184bc2a3638291b81?pvs=4"
-                            }
+                            href={"https://forms.gle/d3tMsHoe4YZEcpAR9"}
                             target="_blank"
                             className="rounded-lg px-5 py-4 text-md bg-[#046ED1] text-white border border-[#046ED1]"
                         >
@@ -81,9 +79,7 @@ export default function Support() {
                         </div>
 
                         <Link
-                            href={
-                                "https://www.notion.so/Report-a-Problem-17f2f2662a31409184bc2a3638291b81?pvs=4"
-                            }
+                            href={"https://forms.gle/d3tMsHoe4YZEcpAR9"}
                             target="_blank"
                             className="rounded-lg px-5 py-4 text-md bg-[#046ED1] text-white border border-[#046ED1]"
                         >
