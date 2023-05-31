@@ -300,57 +300,59 @@ const Dashboard = () => {
                                 <div className="bg-white rounded-lg">
                                     <div className="px-6 divide-y divide-[#EEEFF2] py-6">
                                         {earningHistory.map(
-                                            (earning, index) => (
-                                                <div
-                                                    className="flex items-center justify-start gap-3 w-full py-4 "
-                                                    key={earning.id}
-                                                >
-                                                    <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
-                                                        <VideoPlayIcon />
-                                                    </span>
+                                            (earning, index) =>
+                                                earning.video && (
+                                                    <div
+                                                        className="flex items-center justify-start gap-3 w-full py-4 "
+                                                        key={earning.id}
+                                                    >
+                                                        <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
+                                                            <VideoPlayIcon />
+                                                        </span>
 
-                                                    <div className="flex items-start justify-start flex-col w-full">
-                                                        <div className="flex items-center justify-between w-full">
-                                                            <h5 className="text-[#344054] text-sm font-medium">
-                                                                Someone viewed{" "}
-                                                                {
-                                                                    earning
-                                                                        ?.video
-                                                                        ?.title
-                                                                }
-                                                                {toMinutes(
-                                                                    earning
-                                                                        .video
-                                                                        .length
-                                                                )}{" "}
-                                                                mins
-                                                            </h5>
-                                                            <span className="text-[#344054] text-sm font-medium">
-                                                                {
-                                                                    earning.creatorAmount
-                                                                }{" "}
-                                                                TFUEL
-                                                            </span>
-                                                        </div>
+                                                        <div className="flex items-start justify-start flex-col w-full">
+                                                            <div className="flex items-center justify-between w-full">
+                                                                <h5 className="text-[#344054] text-sm font-medium">
+                                                                    Someone
+                                                                    viewed{" "}
+                                                                    {
+                                                                        earning
+                                                                            ?.video
+                                                                            ?.title
+                                                                    }
+                                                                    {toMinutes(
+                                                                        earning
+                                                                            .video
+                                                                            .length
+                                                                    )}{" "}
+                                                                    mins
+                                                                </h5>
+                                                                <span className="text-[#344054] text-sm font-medium">
+                                                                    {
+                                                                        earning.creatorAmount
+                                                                    }{" "}
+                                                                    TFUEL
+                                                                </span>
+                                                            </div>
 
-                                                        <div className="flex items-center justify-between w-full">
-                                                            <span className="text-[#7F8691] text-xs">
-                                                                {toDate(
-                                                                    earning
-                                                                        ?.video
-                                                                        ?.createdAt
-                                                                )}
-                                                            </span>
-                                                            <span className="text-[#7F8691] text-xs font-normal">
-                                                                ~$
-                                                                {
-                                                                    earning.creatorAmountUSD
-                                                                }
-                                                            </span>
+                                                            <div className="flex items-center justify-between w-full">
+                                                                <span className="text-[#7F8691] text-xs">
+                                                                    {toDate(
+                                                                        earning
+                                                                            ?.video
+                                                                            ?.createdAt
+                                                                    )}
+                                                                </span>
+                                                                <span className="text-[#7F8691] text-xs font-normal">
+                                                                    ~$
+                                                                    {
+                                                                        earning.creatorAmountUSD
+                                                                    }
+                                                                </span>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            )
+                                                )
                                         )}
                                     </div>
                                 </div>

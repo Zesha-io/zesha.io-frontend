@@ -358,87 +358,92 @@ const Recommendations = () => {
                                     >
                                         <div className="flex flex-col gap-5">
                                             {recommendations.map(
-                                                (video, index) => (
-                                                    <div
-                                                        key={video._id}
-                                                        className=""
-                                                    >
+                                                (video, index) =>
+                                                    video.videoUrl && (
                                                         <div
-                                                            onClick={() =>
-                                                                changePlayerSrc(
-                                                                    sources[
-                                                                        index
-                                                                    ],
-                                                                    index
-                                                                )
-                                                            }
-                                                            className="h-32 block relative w-full object-cover each-item cursor-pointer"
-                                                            style={{
-                                                                minWidth:
-                                                                    "200px",
-                                                            }}
+                                                            key={video._id}
+                                                            className=""
                                                         >
-                                                            <Image
-                                                                src={
-                                                                    video.videoThumbnail
+                                                            <div
+                                                                onClick={() =>
+                                                                    changePlayerSrc(
+                                                                        sources[
+                                                                            index
+                                                                        ],
+                                                                        index
+                                                                    )
                                                                 }
-                                                                loader={({
-                                                                    src,
-                                                                }) =>
-                                                                    video.videoThumbnail
-                                                                }
-                                                                fill
-                                                                priority
-                                                                alt={`Picture of image`}
-                                                                className="object-cover"
-                                                            />
-                                                            <span className="absolute bottom-2 right-2 bg-[#0B0A1D] text-white rounded-full px-2 py-1 text-xs flex items-center justify-center">
-                                                                {convertTimeToVideoTime(
-                                                                    video.videoLength
-                                                                )}
-                                                            </span>
-                                                        </div>
-                                                        <div className="flex items-center justify-start gap-3 w-full py-4 ">
-                                                            <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF]">
+                                                                className="h-32 block relative w-full object-cover each-item cursor-pointer"
+                                                                style={{
+                                                                    minWidth:
+                                                                        "200px",
+                                                                }}
+                                                            >
                                                                 <Image
                                                                     src={
-                                                                        video
-                                                                            .channel
-                                                                            .channelAvatar
+                                                                        video.videoThumbnail
                                                                     }
-                                                                    width={50}
-                                                                    height={50}
                                                                     loader={({
                                                                         src,
                                                                     }) =>
-                                                                        video
-                                                                            .channel
-                                                                            .channelAvatar
+                                                                        video.videoThumbnail
                                                                     }
+                                                                    fill
                                                                     priority
-                                                                    alt={
-                                                                        video.title
-                                                                    }
-                                                                    className=" rounded-full object-cover"
+                                                                    alt={`Picture of image`}
+                                                                    className="object-cover"
                                                                 />
-                                                            </span>
-                                                            <div className="flex items-start justify-between w-full flex-col">
-                                                                <h5 className="text-[#344054] line-clamp-1 text-sm font-medium">
-                                                                    {
-                                                                        video.title
-                                                                    }
-                                                                </h5>
-                                                                <span className="text-[#5C636E] line-clamp-1 text-xs font-normal">
-                                                                    {
-                                                                        video
-                                                                            .channel
-                                                                            .name
-                                                                    }
+                                                                <span className="absolute bottom-2 right-2 bg-[#0B0A1D] text-white rounded-full px-2 py-1 text-xs flex items-center justify-center">
+                                                                    {convertTimeToVideoTime(
+                                                                        video.videoLength
+                                                                    )}
                                                                 </span>
                                                             </div>
+                                                            <div className="flex items-center justify-start gap-3 w-full py-4 ">
+                                                                <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF]">
+                                                                    <Image
+                                                                        src={
+                                                                            video
+                                                                                .channel
+                                                                                .channelAvatar
+                                                                        }
+                                                                        width={
+                                                                            50
+                                                                        }
+                                                                        height={
+                                                                            50
+                                                                        }
+                                                                        loader={({
+                                                                            src,
+                                                                        }) =>
+                                                                            video
+                                                                                .channel
+                                                                                .channelAvatar
+                                                                        }
+                                                                        priority
+                                                                        alt={
+                                                                            video.title
+                                                                        }
+                                                                        className=" rounded-full object-cover"
+                                                                    />
+                                                                </span>
+                                                                <div className="flex items-start justify-between w-full flex-col">
+                                                                    <h5 className="text-[#344054] line-clamp-1 text-sm font-medium">
+                                                                        {
+                                                                            video.title
+                                                                        }
+                                                                    </h5>
+                                                                    <span className="text-[#5C636E] line-clamp-1 text-xs font-normal">
+                                                                        {
+                                                                            video
+                                                                                .channel
+                                                                                .name
+                                                                        }
+                                                                    </span>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                )
+                                                    )
                                             )}
                                         </div>
                                     </div>
