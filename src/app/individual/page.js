@@ -160,7 +160,7 @@ const Dashboard = () => {
                                                 {Number(
                                                     analytics?.totalviewerearnings *
                                                         tfuelUsd
-                                                ).toFixed(3)}
+                                                ).toFixed(4)}
                                             </span>
                                         </h5>
                                         <span className="text-[#7F8691] text-sm">
