@@ -153,14 +153,15 @@ const Dashboard = () => {
                                     </span>
                                     <div className="flex items-start justify-start flex-col w-full">
                                         <h5 className="text-[#344054] text-xl font-bold">
-                                            {analytics?.totalviewerearnings ||
-                                                0}{" "}
+                                            {Number(
+                                                analytics?.totalviewerearnings
+                                            ).toFixed(4) || 0}{" "}
                                             <span className="text-[#7F8691] text-sm font-normal">
                                                 ~ $
                                                 {Number(
                                                     analytics?.totalviewerearnings *
                                                         tfuelUsd
-                                                ).toFixed(4)}
+                                                ).toFixed(3)}
                                             </span>
                                         </h5>
                                         <span className="text-[#7F8691] text-sm">
