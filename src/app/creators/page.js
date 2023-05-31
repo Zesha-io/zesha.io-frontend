@@ -21,18 +21,27 @@ const Creators = () => {
                     <div className="container mx-auto px-6 max-w-7xl w-full">
                         <div className="grid grid-cols-1 md:grid-cols-2 items-center ">
                             <div className="w-full md:w-3/2">
-                            <div className="flex items-start w-3/4 sm:w-3/4 md:w-3/4 lg:w-2/4">
-                                <Link href="https://www.thetavideoapi.com/" target={'_blank'} className="inline-flex items-center w-full justify-center transition font-semibold mb-4 px-3 py-1 rounded-full border border-[#046ED1]  text-[#046ED1] text-xs md:text-sm ">
-                                    <span className="relative inline-block w-[9px] md:w-[9.65px] h-[14px] md:h-[15px]">
-                                        <Image src={'/images/theta.svg'} fill alt="theta"/>
-                                    </span>
-                                    <div className="pl-2">Powered by Theta Blockchain</div>
-                                </Link>
-
+                                <div className="flex items-start w-3/4 sm:w-3/4 md:w-3/4 lg:w-2/4">
+                                    <Link
+                                        href="https://www.thetavideoapi.com/"
+                                        target={"_blank"}
+                                        className="inline-flex items-center w-full justify-center transition font-semibold mb-4 px-3 py-1 rounded-full border border-[#046ED1]  text-[#046ED1] text-xs md:text-sm "
+                                    >
+                                        <span className="relative inline-block w-[9px] md:w-[9.65px] h-[14px] md:h-[15px]">
+                                            <Image
+                                                src={"/images/theta.svg"}
+                                                fill
+                                                alt="theta"
+                                            />
+                                        </span>
+                                        <div className="pl-2">
+                                            Powered by Theta Blockchain
+                                        </div>
+                                    </Link>
                                 </div>
 
                                 <div>
-                                    <h1 className="text-[76px] font-bold font-['Recoleta'] text-[#0B0A1D] leading-[103.36px]">
+                                    <h1 className="text-[76px] font-bold font-['Recoleta'] text-[#0B0A1D] leading-[76.36px]">
                                         <span className="text-[#F93D3D]">
                                             Earn
                                         </span>{" "}
@@ -42,7 +51,7 @@ const Creators = () => {
                                         </span>
                                     </h1>
                                 </div>
-                                <div className="mb-10 mt-5">
+                                <div className="mb-10 sm:mb-5 mt-5">
                                     <p className="text-xl font-medium">
                                         Zesha allows you to monetize your
                                         videos, get paid for ads and premium
@@ -376,7 +385,9 @@ const Creators = () => {
                                                 Add your channel details
                                             </h3>
                                             <p className="mb-3 text-base">
-                                                Set up your channel name, description and logo to make yourself stand out.
+                                                Set up your channel name,
+                                                description and logo to make
+                                                yourself stand out.
                                             </p>
                                         </div>
                                     </div>
@@ -393,7 +404,9 @@ const Creators = () => {
                                                 Upload videos
                                             </h3>
                                             <p className="mb-3 text-base">
-                                                When uploading your video, make sure to include a catchy title, description and thumbnail.
+                                                When uploading your video, make
+                                                sure to include a catchy title,
+                                                description and thumbnail.
                                             </p>
                                         </div>
                                     </div>
@@ -410,7 +423,9 @@ const Creators = () => {
                                                 Start earning
                                             </h3>
                                             <p className="mb-3 text-base">
-                                                View and payout your earnings from your Zesha Creator dashboard!
+                                                View and payout your earnings
+                                                from your Zesha Creator
+                                                dashboard!
                                             </p>
                                         </div>
                                     </div>
@@ -419,7 +434,7 @@ const Creators = () => {
                         </div>
                     </div>
                 </section>
-                
+
                 <section className=" ">
                     <div className="container mx-auto px-6 bg-[#FAF9F4] max-w-7xl rounded-lg py-14">
                         <div className="mb-5 py-4 ">
@@ -429,7 +444,15 @@ const Creators = () => {
                         </div>
 
                         <div className="flex items-center justify-center mx-auto max-w-3xl h-72 md:h-[500px] w-full py-4">
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Idpgjs-20ww" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullscreen></iframe>
+                            <iframe
+                                width="100%"
+                                height="100%"
+                                src="https://www.youtube.com/embed/Idpgjs-20ww"
+                                title="YouTube video player"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullscreen
+                            ></iframe>
                         </div>
                     </div>
                 </section>
