@@ -46,14 +46,12 @@ const Header = () => {
     };
 
     const handleMobileMenu = () => {
-
-        console.log('clickedddd')
-    // function (){
+        console.log("clickedddd");
+        // function (){
         // setMobMenu(!mobMenu)
-        setMobMenu((prev) => !prev)
-        console.log(mobMenu, 'mobmenu')
-
-    }
+        setMobMenu((prev) => !prev);
+        console.log(mobMenu, "mobmenu");
+    };
 
     return (
         <>
@@ -75,7 +73,10 @@ const Header = () => {
                             </Link>
                         </div>
                         <div className="block lg:hidden">
-                            <button className="navbar-burger flex items-center py-2 px-3 text-indigo-500 rounded border border-indigo-500"  onClick={handleMobileMenu}>
+                            <button
+                                className="navbar-burger flex items-center py-2 px-3 text-indigo-500 rounded border border-indigo-500"
+                                onClick={handleMobileMenu}
+                            >
                                 <svg
                                     className="fill-current h-3 w-3"
                                     viewBox="0 0 20 20"
@@ -89,12 +90,12 @@ const Header = () => {
                         <div className="hidden lg:order-2 lg:block w-full lg:w-auto lg:text-center">
                             <div className="navbar-menu flex items-center justify-end gap-4  ">
                                 <Link
-                                    href="/"
+                                    target="_blank"
+                                    href="https://github.com/Zesha-io/zesha.io-extension/releases/download/v0.0.5/zesha-extension-v0.0.5.zip"
                                     className="block lg:inline-block mt-4 lg:mt-0 text-[#344054] hover:text-indigo-600 px-5"
                                 >
                                     Extension
                                 </Link>
-
                                 <Link
                                     className="block lg:inline-block mt-4 lg:mt-0 text-[#344054] hover:text-indigo-600 px-5 "
                                     href="/creators"
@@ -103,7 +104,8 @@ const Header = () => {
                                 </Link>
                                 <Link
                                     className="block lg:inline-block mt-4 lg:mt-0 text-[#344054] hover:text-indigo-600 px-5 "
-                                    href={"https://forms.gle/dXkqhv8UhZvaCKRK9"} target={'_blank'}
+                                    href={"https://forms.gle/zHZh4N3ntpYP7Dur5"}
+                                    target={"_blank"}
                                 >
                                     Advertise
                                 </Link>
@@ -113,7 +115,6 @@ const Header = () => {
                                 >
                                     Support
                                 </Link>
-
                                 <Link
                                     href={`/individual/auth/signup`}
                                     className="block lg:inline-block mt-4 lg:mt-0 text-white bg-[#046ED1] rounded-lg px-7 py-2 transition duration-300 ease"
@@ -132,7 +133,6 @@ const Header = () => {
                                 >
                                     Sign Up
                                 </Link> */}
-
                                 <Link
                                     href={`/creator/auth/signup`}
                                     className="block lg:inline-block mt-4 lg:mt-0 text-[#046ED1] border border-[#046ED1] rounded-lg px-7 py-2 transition duration-300 ease"
@@ -145,15 +145,14 @@ const Header = () => {
                 </div>
             </header>
 
-{/* {
+            {/* {
     mobMenu ? ( */}
-    <div className="block lg:hidden">
-        <MobileMenu show={mobMenu} dismiss={handleMobileMenu}/>
-    </div>
-        
-    {/* ) : ''
+            <div className="block lg:hidden">
+                <MobileMenu show={mobMenu} dismiss={handleMobileMenu} />
+            </div>
+
+            {/* ) : ''
 } */}
-            
         </>
     );
 };

@@ -17,7 +17,7 @@ export default function Support() {
                         <div className="items-center justify-center flex max-w-xl mx-auto">
                             <div className="w-full text-center">
                                 <div>
-                                    <h1 className="text-[76px] font-bold font-['Recoleta'] text-[#0B0A1D] leading-[103.36px]">
+                                    <h1 className="text-[76px] font-bold font-['Recoleta'] text-[#0B0A1D] leading-[80.36px]">
                                         Let&apos;s start earning{" "}
                                         <span className="text-[#F93D3D]">
                                             together
