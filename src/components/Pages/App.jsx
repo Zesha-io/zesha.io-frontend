@@ -89,7 +89,7 @@ export default function App() {
                                     <button
                                         onClick={() => {
                                             window.open(
-                                                "https://github.com/Zesha-io/zesha.io-extension/releases/tag/v1.0.1",
+                                                "https://github.com/Zesha-io/zesha.io-extension/releases/download/v1.0.1/zesha-extension-v1.0.1.zip",
                                                 "_blank"
                                             );
                                         }}
@@ -561,7 +561,7 @@ export default function App() {
                             <button
                                 onClick={() => {
                                     window.open(
-                                        "https://github.com/Zesha-io/zesha.io-extension/releases/tag/v1.0.1",
+                                        "https://github.com/Zesha-io/zesha.io-extension/releases/download/v1.0.1/zesha-extension-v1.0.1.zip",
                                         "_blank"
                                     );
                                 }}

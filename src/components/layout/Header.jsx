@@ -91,7 +91,7 @@ const Header = () => {
                             <div className="navbar-menu flex items-center justify-end gap-4  ">
                                 <Link
                                     target="_blank"
-                                    href="https://github.com/Zesha-io/zesha.io-extension/releases/tag/v1.0.1"
+                                    href="https://github.com/Zesha-io/zesha.io-extension/releases/download/v1.0.1/zesha-extension-v1.0.1.zip"
                                     className="block lg:inline-block mt-4 lg:mt-0 text-[#344054] hover:text-indigo-600 px-5"
                                 >
                                     Extension
