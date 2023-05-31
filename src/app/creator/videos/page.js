@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import DotsDropdown from "@/components/Dropdowns/DotsDropdown";
 import ThumbsDownIcon from "@/components/Icons/ThumbsDownIcon";
@@ -7,29 +5,22 @@ import ThumbsUpIcon from "@/components/Icons/ThumbsUpIcon";
 import Layout from "@/components/CreatorLayout/Layout";
 import VideoAddIcon from "@/components/Icons/VideoAddIcon";
 import EmptyState from "@/components/EmptyState";
-import useWeb3Auth from "@/hooks/useWeb3Auth";
-import React, { useEffect, useState } from "react";
 
-// import { cookies } from "next/headers";
+import { cookies } from "next/headers";
 
 export default async function Videos() {
-    const [videoData, setVideoData] = useState([]);
-    // function getUser() {
-    //     const cookieStore = cookies();
-    //     const user = JSON.parse(cookieStore.get("zesha_account").value);
+    function getUser() {
+        const cookieStore = cookies();
+        const user = JSON.parse(cookieStore.get("zesha_account").value);
 
-    //     return user;
-    // }
-
-    const { account } = useWeb3Auth(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/creator`
-    );
+        return user;
+    }
 
     async function getVideoData() {
-        // const user = getUser();
+        const user = getUser();
 
         const res = await fetch(
-            `${process.env.BACKEND_API_URL}/api/users/${account.userId}/videos`
+            `${process.env.BACKEND_API_URL}/api/users/${user.userId}/videos`
         );
 
         const data = await res.json();
@@ -41,13 +32,7 @@ export default async function Videos() {
         return [];
     }
 
-    useEffect(() => {
-        if (account) {
-            getVideoData().then((data) => {
-                setVideoData(data);
-            });
-        }
-    }, [account]);
+    const VideoData = await getVideoData();
 
     const dateFormat = (date) => {
         const d = new Date(date);
@@ -58,15 +43,15 @@ export default async function Videos() {
     };
 
     const onDeleteVideo = async (id) => {
-        const index = videoData.findIndex((x) => x.id == id);
+        const index = VideoData.findIndex((x) => x.id == id);
         if (index !== -1) {
-            videoData.splice(index, 1);
+            VideoData.splice(index, 1);
         }
     };
 
     return (
         <Layout>
-            {videoData.length ? (
+            {VideoData.length ? (
                 <div className="pb-20">
                     <div className="grow py-2 mb-3">
                         <h1 className="text-xl font-medium">Videos</h1>
