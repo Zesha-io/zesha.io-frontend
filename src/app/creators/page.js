@@ -41,7 +41,7 @@ const Creators = () => {
                                 </div>
 
                                 <div>
-                                    <h1 className="text-[76px] font-bold font-['Recoleta'] text-[#0B0A1D] leading-[71.36px]">
+                                    <h1 className="text-[76px] font-bold font-['Recoleta'] text-[#0B0A1D] leading-[68.36px]">
                                         <span className="text-[#F93D3D]">
                                             Earn
                                         </span>{" "}
@@ -54,10 +54,13 @@ const Creators = () => {
                                 <div className="mb-5 md:mb-10 mt-5">
                                     <p className="text-xl font-medium">
                                         Zesha allows you to monetize your
-                                        videos, get paid for ads and premium
-                                        content you create, and collect tips and
-                                        subscriptions from your loyal fans.
+                                        videos, from the first view and get paid
+                                        from your loyal fans.
                                     </p>
+                                    {/* Zesha allows you to monetize your videos,
+                                    get paid for ads and premium content you
+                                    create, and collect tips and subscriptions
+                                    from your loyal fans. */}
                                 </div>
 
                                 <div className="flex items-center h-full w-full justify-start gap-3 flex-wrap">

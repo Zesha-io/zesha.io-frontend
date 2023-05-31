@@ -49,7 +49,7 @@ export default function App() {
                                 </div>
                                 <div className="mb-5 md:mb-10 mt-5 mx-1">
                                     <p className="text-xl font-medium">
-                                        With Zesha, you can earn rewards while
+                                        With Zesha, you can earn rewards
                                         enjoying the content you love.
                                     </p>
                                 </div>
