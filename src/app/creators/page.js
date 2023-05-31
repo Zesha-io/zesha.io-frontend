@@ -54,8 +54,8 @@ const Creators = () => {
                                 <div className="mb-5 md:mb-10 mt-5">
                                     <p className="text-xl font-medium">
                                         Zesha allows you to monetize your
-                                        videos, from the first view and get paid
-                                        from your loyal fans.
+                                        videos, from the first view and accept
+                                        payments from your loyal fans.
                                     </p>
                                     {/* Zesha allows you to monetize your videos,
                                     get paid for ads and premium content you
