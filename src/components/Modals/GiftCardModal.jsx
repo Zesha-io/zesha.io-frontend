@@ -14,7 +14,7 @@ const GiftCardModal = ({ show, dismiss, max, tfuelUsd }) => {
     );
     const [payout, setPayout] = useState({
         amount: Number(max),
-        fees: 0.1,
+        fees: 0.4,
         address: "",
     });
     const [loading, setLoading] = useState(false);
@@ -62,13 +62,56 @@ const GiftCardModal = ({ show, dismiss, max, tfuelUsd }) => {
             });
 
             let signer = new ethers.Wallet(privateKey, p);
+            console.log("private key: ", privateKey, signer.address);
+
+            // let gas = await signer.estimateGas({
+            //     to: payout.address,
+            //     value: ethers.utils.parseEther(payout.amount.toString()),
+            // });
+            let gasPrice = (await p.getGasPrice()).toNumber();
+
+            // console.log(gasPrice, await p.getGasPrice());
+
+            // setLoading(false);
+
+            // return;
 
             const tx = await signer.sendTransaction({
+                gasLimit: 25000,
                 to: payout.address,
                 value: ethers.utils.parseEther(payout.amount.toString()),
             });
 
             const receipt = await tx.wait();
+
+            if (receipt.transactionHash) {
+                try {
+                    const response = await fetch(
+                        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/payouts`,
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+
+                            body: JSON.stringify({
+                                amount: payout.amount,
+                                amountUSD: payout.amount * tfuelUsd,
+                                payoutMethod: "WALLET_TRANSFER",
+                                zeshaFee: 0.4,
+                                userId: account.userId,
+                                walletAddress: signer.address,
+                                destinationWallet: payout.address,
+                                blockchainTrx: receipt.transactionHash,
+                            }),
+                        }
+                    );
+
+                    const data = await response.json();
+                } catch (error) {
+                    console.log(error);
+                }
+            }
 
             setLoading(false);
             setStatusText("Withdrawal successful.");

@@ -8,9 +8,11 @@ import WalletIcon from "@/components/Icons/WalletIcon";
 import Layout from "@/components/IndividualLayout/Layout";
 import GiftCardModal from "@/components/Modals/GiftCardModal";
 import useWeb3Auth from "@/hooks/useWeb3Auth";
+import EmptyState from "@/components/EmptyState";
 
 const Payout = () => {
     const pathname = usePathname();
+    const [withdrawals, setWithdrawals] = useState([]);
     const [openPayoutModal, setOpenPayoutModal] = useState(false);
     const { account } = useWeb3Auth(
         `${process.env.NEXT_PUBLIC_BASE_URL}/individual`
@@ -236,82 +238,42 @@ const Payout = () => {
                             </div> */}
 
                             <div className="bg-white rounded-lg">
-                                <div className="px-6 divide-y divide-[#EEEFF2] py-6">
-                                    <div className="flex items-center justify-start gap-3 w-full py-4 ">
-                                        <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
-                                            <WalletIcon />
-                                        </span>
-                                        <div className="flex items-start justify-start flex-col w-full">
-                                            <div className="flex items-center justify-between w-full">
-                                                <h5 className="text-[#344054] text-sm font-medium">
-                                                    Transfer to wallet address
-                                                </h5>
-                                                <span className="text-[#344054] text-sm font-medium">
-                                                    - $3,000
-                                                </span>
-                                            </div>
+                                {withdrawals.length > 0 && (
+                                    <div className="px-6 divide-y divide-[#EEEFF2] py-6">
+                                        <div className="flex items-center justify-start gap-3 w-full py-4 ">
+                                            <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
+                                                <WalletIcon />
+                                            </span>
+                                            <div className="flex items-start justify-start flex-col w-full">
+                                                <div className="flex items-center justify-between w-full">
+                                                    <h5 className="text-[#344054] text-sm font-medium">
+                                                        Transfer to wallet
+                                                        address
+                                                    </h5>
+                                                    <span className="text-[#344054] text-sm font-medium">
+                                                        - $3,000
+                                                    </span>
+                                                </div>
 
-                                            <div className="flex items-center justify-between w-full">
-                                                <span className="text-[#7F8691] text-xs">
-                                                    Jan 05, 12:50
-                                                </span>
-                                                <span className="text-[#34A853] text-xs font-normal">
-                                                    Successful
-                                                </span>
+                                                <div className="flex items-center justify-between w-full">
+                                                    <span className="text-[#7F8691] text-xs">
+                                                        Jan 05, 12:50
+                                                    </span>
+                                                    <span className="text-[#34A853] text-xs font-normal">
+                                                        Successful
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                )}
 
-                                    <div className="flex items-center justify-start gap-3 w-full py-4 ">
-                                        <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
-                                            <WalletIcon />
-                                        </span>
-                                        <div className="flex items-start justify-start flex-col w-full">
-                                            <div className="flex items-center justify-between w-full">
-                                                <h5 className="text-[#344054] text-sm font-medium">
-                                                    Transfer charges
-                                                </h5>
-                                                <span className="text-[#344054] text-sm font-medium">
-                                                    - $0.55
-                                                </span>
-                                            </div>
-
-                                            <div className="flex items-center justify-between w-full">
-                                                <span className="text-[#7F8691] text-xs">
-                                                    Jan 05, 12:50
-                                                </span>
-                                                <span className="text-[#34A853] text-xs font-normal">
-                                                    Successful
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-center justify-start gap-3 w-full py-4 ">
-                                        <span className="text-[#046ED1] text-xs rounded-full bg-[#F3F9FF] p-2 transition duration-200 ease">
-                                            <WalletIcon />
-                                        </span>
-                                        <div className="flex items-start justify-start flex-col w-full">
-                                            <div className="flex items-center justify-between w-full">
-                                                <h5 className="text-[#344054] text-sm font-medium">
-                                                    Transfer to wallet address
-                                                </h5>
-                                                <span className="text-[#344054] text-sm font-medium">
-                                                    - $3,000
-                                                </span>
-                                            </div>
-
-                                            <div className="flex items-center justify-between w-full">
-                                                <span className="text-[#7F8691] text-xs">
-                                                    Jan 05, 12:50
-                                                </span>
-                                                <span className="text-[#34A853] text-xs font-normal">
-                                                    Successful
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {withdrawals.length === 0 && (
+                                    <EmptyState
+                                        icon={<WalletIcon />}
+                                        text="Transaction history of your withdrawal will show up here"
+                                    />
+                                )}
                             </div>
                         </div>
                     </div>

@@ -319,11 +319,11 @@ const Dashboard = () => {
                                                                         earning
                                                                             ?.video
                                                                             ?.title
-                                                                    }
+                                                                    }{" "}
                                                                     {toMinutes(
                                                                         earning
                                                                             .video
-                                                                            .length
+                                                                            .videoLength
                                                                     )}{" "}
                                                                     mins
                                                                 </h5>
